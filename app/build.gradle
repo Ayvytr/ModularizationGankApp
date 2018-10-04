@@ -7,11 +7,11 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.ayvytr.modularization"
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
