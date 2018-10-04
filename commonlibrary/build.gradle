@@ -39,5 +39,10 @@ dependencies {
 
     api rootProject.ext.dependencies.glide
 
+    api rootProject.ext.kotlin.kotlin_jdk7
+    api rootProject.ext.kotlin.anko
+    api rootProject.ext.kotlin.anko_commons
+    api rootProject.ext.kotlin.easykotlin
+
     api project(":mvp")
 }
