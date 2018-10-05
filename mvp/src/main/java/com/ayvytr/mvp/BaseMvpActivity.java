@@ -3,7 +3,9 @@ package com.ayvytr.mvp;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 /**
  * @author admin
@@ -34,5 +36,13 @@ public abstract class BaseMvpActivity<P extends IPresenter> extends AppCompatAct
 
     public AppCompatActivity getActivity() {
         return this;
+    }
+
+    public void toast(String msg) {
+        Toast.makeText(BaseMvpActivity.this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void toast(@StringRes int id) {
+        Toast.makeText(BaseMvpActivity.this, id, Toast.LENGTH_SHORT).show();
     }
 }
