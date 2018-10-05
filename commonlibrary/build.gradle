@@ -1,4 +1,9 @@
-apply plugin: 'com.android.library'
+//def isLib = false
+if (isLib) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -31,11 +36,6 @@ dependencies {
 
     api rootProject.ext.dependencies.rxjava2
     api rootProject.ext.dependencies.rxjava2_android
-    api rootProject.ext.dependencies.okhttp3
-    api rootProject.ext.dependencies.retrofit
-    api rootProject.ext.dependencies.retrofit_adapter_rxjava2
-    api rootProject.ext.dependencies.retrofit_converter_gson
-    api rootProject.ext.dependencies.retrofit_converter_scalars
 
     api rootProject.ext.dependencies.glide
 
@@ -44,5 +44,8 @@ dependencies {
     api rootProject.ext.kotlin.anko_commons
     api rootProject.ext.kotlin.easykotlin
 
-    api project(":mvp")
+    if(isLib) {
+        api project(":mvp")
+        api project(":network")
+    }
 }
