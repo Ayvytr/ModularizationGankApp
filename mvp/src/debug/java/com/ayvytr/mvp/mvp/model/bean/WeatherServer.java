@@ -1,4 +1,6 @@
-package com.ayvytr.network;
+package com.ayvytr.mvp.mvp.model.bean;
+
+import com.ayvytr.mvp.WeatherBeseEntity;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

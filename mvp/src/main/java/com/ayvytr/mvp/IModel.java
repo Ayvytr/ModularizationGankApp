@@ -3,5 +3,6 @@ package com.ayvytr.mvp;
 /**
  * @author admin
  */
-public class IModel {
+public interface IModel {
+    void onDestroy();
 }

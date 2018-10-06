@@ -7,16 +7,22 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
 /**
  * @author admin
  */
-public abstract class BaseMvpActivity<P extends IPresenter> extends AppCompatActivity {
+public abstract class BaseMvpActivity<P extends IPresenter> extends RxAppCompatActivity implements IView, IInit {
     protected P mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getContentViewRes());
         mPresenter = getPresenter();
+        initExtra();
+        initView(savedInstanceState);
+        initData(savedInstanceState);
     }
 
     protected abstract P getPresenter();
@@ -44,5 +50,14 @@ public abstract class BaseMvpActivity<P extends IPresenter> extends AppCompatAct
 
     public void toast(@StringRes int id) {
         Toast.makeText(BaseMvpActivity.this, id, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessage(String message) {
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

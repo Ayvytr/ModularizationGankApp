@@ -1,4 +1,4 @@
-//def isLib = false
+def isLib = false
 if (isLib) {
     apply plugin: 'com.android.library'
 } else {
@@ -23,7 +23,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -44,7 +43,13 @@ dependencies {
     api rootProject.ext.kotlin.anko_commons
     api rootProject.ext.kotlin.easykotlin
 
-    if(isLib) {
+    api rootProject.ext.dependencies.logger
+
+    api rootProject.ext.dependencies.junit
+    api rootProject.ext.dependencies.testRunner
+    api rootProject.ext.dependencies.espresso
+
+    if (isLib) {
         api project(":mvp")
         api project(":network")
     }

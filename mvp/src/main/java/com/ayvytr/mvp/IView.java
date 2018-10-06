@@ -6,4 +6,6 @@ package com.ayvytr.mvp;
 public interface IView {
 
     void showMessage(String message);
+    void showLoading();
+    void hideLoading();
 }

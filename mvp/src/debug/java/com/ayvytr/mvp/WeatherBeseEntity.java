@@ -1,4 +1,4 @@
-package com.ayvytr.network;
+package com.ayvytr.mvp;
 
 import java.io.Serializable;
 import java.util.List;

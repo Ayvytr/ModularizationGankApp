@@ -1,3 +1,4 @@
+def isLib = true
 //def isLib = false
 if (isLib) {
     apply plugin: 'com.android.library'
