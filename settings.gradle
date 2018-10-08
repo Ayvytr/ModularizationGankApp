@@ -1,1 +1,7 @@
-include ':app', ':commonlibrary', ':mvp', ':network', ':web'
+include ':app', ':commonlibrary', ':web'
+
+include ':mvp'
+project(':mvp').projectDir = new File("../ModularizationComponent/mvp")
+
+include ':network'
+project(':network').projectDir= new File("../ModularizationComponent/network")
