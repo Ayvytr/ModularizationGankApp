@@ -3,7 +3,7 @@ ext {
     isLib = true
 //    isLib = false
 
-    applicationId = "com.ayvytr.modularization"
+    applicationId = "com.ayvytr.gank"
 
     compileSdkVersion = 27
     buildToolsVersion = "27.0.3"

@@ -1,4 +1,4 @@
-package com.ayvytr.modularization
+package com.ayvytr.gank
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.ayvytr.modularization
+package com.ayvytr.gank
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
