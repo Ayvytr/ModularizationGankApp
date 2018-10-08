@@ -1,4 +1,4 @@
-def isLib = false
+//def isLib = false
 if (isLib) {
     apply plugin: 'com.android.library'
 } else {
@@ -34,7 +34,9 @@ dependencies {
     api rootProject.ext.support.cardview
 
     api rootProject.ext.dependencies.rxjava2
-    api rootProject.ext.dependencies.rxjava2_android
+    api (rootProject.ext.dependencies.rxjava2_android){
+        exclude module: "rxjava"
+    }
 
     api rootProject.ext.dependencies.glide
 
