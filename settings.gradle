@@ -1,4 +1,4 @@
-include ':app', ':commonlibrary', ':web'
+include ':app', ':commonlibrary', ':web', ':girl', ':knowledge', ':settings'
 
 include ':mvp'
 project(':mvp').projectDir = new File("../ModularizationComponent/mvp")

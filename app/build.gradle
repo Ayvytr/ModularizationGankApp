@@ -20,6 +20,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            if (!isComponentLib) {
+                manifest.srcFile 'src/debug/AndroidManifest.xml'
+                // 合并 debug和main中的res
+                res.srcDirs = ['src/debug/res', 'src/main/res']
+                java.srcDirs = ['src/debug/java', 'src/main/java']
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                res.srcDirs = ['src/main/res']
+                java {
+                    //排除java/demo文件夹下的所有文件
+                    exclude 'src/debug/**'
+                }
+
+                resources {
+                    exclude 'src/debug/*'
+                }
+            }
+        }
+    }
 }
 
 dependencies {
