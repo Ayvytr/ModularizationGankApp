@@ -4,7 +4,7 @@ if (isLib) {
 } else {
     apply plugin: 'com.android.application'
 }
-apply plugin: 'kotlin-android'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -17,6 +17,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -31,14 +36,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation rootProject.ext.support.appcompat_v7
-    api rootProject.ext.dependencies.rxlifecycle2_components
-    implementation rootProject.ext.support.constraint
-    implementation rootProject.ext.dependencies.logger
-    implementation rootProject.ext.dependencies.butterknife
-    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
-
     if(isLib) {
-        implementation project(":network")
+        implementation project(":commonlibrary")
     }
+    implementation rootProject.ext.dependencies.butterknife
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler
+    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
 }

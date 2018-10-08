@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import butterknife.ButterKnife;
+
 /**
  * @author admin
  */
@@ -19,6 +21,7 @@ public abstract class BaseMvpActivity<P extends IPresenter> extends RxAppCompatA
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewRes());
+        ButterKnife.bind(this);
         mPresenter = getPresenter();
         initExtra();
         initView(savedInstanceState);
@@ -54,6 +57,16 @@ public abstract class BaseMvpActivity<P extends IPresenter> extends RxAppCompatA
 
     @Override
     public void showMessage(String message) {
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 
     @Override

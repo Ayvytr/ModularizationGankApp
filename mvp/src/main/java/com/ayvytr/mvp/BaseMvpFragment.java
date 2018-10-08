@@ -9,13 +9,17 @@ import android.view.ViewGroup;
 
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * @author admin
  */
 public abstract class BaseMvpFragment<P extends IPresenter> extends RxFragment
-        implements IView, IInit{
+        implements IView, IInit {
 
     protected P mPresenter;
+    private Unbinder mUnbinder;
 
     @Nullable
     @Override
@@ -28,12 +32,21 @@ public abstract class BaseMvpFragment<P extends IPresenter> extends RxFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter = getPresenter();
+        mUnbinder = ButterKnife.bind(this, view);
         initExtra();
         initView(savedInstanceState);
         initData(savedInstanceState);
     }
 
     protected abstract P getPresenter();
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(mUnbinder != null) {
+            mUnbinder.unbind();
+        }
+    }
 
     @Override
     public void onDestroy() {
@@ -46,5 +59,13 @@ public abstract class BaseMvpFragment<P extends IPresenter> extends RxFragment
 
     @Override
     public void showMessage(String message) {
+    }
+
+    @Override
+    public void showLoading() {
+    }
+
+    @Override
+    public void hideLoading() {
     }
 }

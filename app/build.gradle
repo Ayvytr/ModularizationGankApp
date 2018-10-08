@@ -24,7 +24,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation project(":commonlibrary")
+    if (isLib) {
+        implementation project(":commonlibrary")
+        implementation project(':web')
+    }
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }

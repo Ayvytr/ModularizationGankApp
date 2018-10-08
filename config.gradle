@@ -60,7 +60,7 @@ ext {
 
             greenDao                  : "org.greenrobot:greendao:3.2.2",
 
-            arouter_api               : "com.alibaba:arouter-api:1.4.0",
+            arouter                   : "com.alibaba:arouter-api:1.4.0",
             arouter_compiler          : "com.alibaba:arouter-compiler:1.2.1",
 
             butterknife               : "com.jakewharton:butterknife:8.8.1",
@@ -72,6 +72,8 @@ ext {
 
             okhttploginterceptor      : "com.ayvytr:okhttploginterceptor:1.0.0",
             logger                    : "com.ayvytr:logger:3.0.0",
+
+            agentweb                  : "com.just.agentweb:agentweb:4.0.2",
     ]
 
     ext.anko_version = '0.10.6'
