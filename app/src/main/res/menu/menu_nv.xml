@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/item1"
+    <item android:id="@+id/nv_android"
           android:icon="@drawable/ic_clear"
-          android:title="Item1"/>
-    <item android:id="@+id/item2"
+          android:title="@string/android"/>
+    <item android:id="@+id/nv_girls"
           android:icon="@android:drawable/ic_menu_search"
-          android:title="Item2"/>
-    <item android:id="@+id/item3"
+          android:title="@string/girls"/>
+    <item android:id="@+id/nv_settings"
           android:icon="@android:drawable/ic_menu_search"
-          android:title="Item3"/>
-
+          android:title="@string/settings"/>
 </menu>

@@ -1,6 +1,6 @@
-package com.ayvytr.commonlibrary.constant;
+package com.ayvytr.commonlibrary.app;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ayvytr.commonlibrary.Env;
@@ -9,7 +9,7 @@ import com.ayvytr.network.ApiClient;
 /**
  * @author admin
  */
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();

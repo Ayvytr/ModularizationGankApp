@@ -10,6 +10,11 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -19,13 +24,31 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            if (!isComponentLib) {
+                manifest.srcFile 'src/demo/AndroidManifest.xml'
+                // 合并 demo和main中的res
+                res.srcDirs = ['src/demo/res', 'src/main/res']
+                java.srcDirs = ['src/demo/java', 'src/main/java']
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                res.srcDirs = ['src/main/res']
+                java {
+                    //排除java/demo文件夹下的所有文件
+                    exclude 'src/demo/**'
+                }
+
+                resources {
+                    exclude 'src/demo/*'
+                }
+            }
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    api project(":commonlibrary")
 }

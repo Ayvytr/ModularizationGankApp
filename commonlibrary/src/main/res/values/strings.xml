@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">commonlibrary</string>
     <string name="android">Android</string>
-    <string name="girls">Girls</string>
-    <string name="settings">Settings</string>
+    <string name="girls">妹子</string>
+    <string name="settings">设置</string>
 </resources>

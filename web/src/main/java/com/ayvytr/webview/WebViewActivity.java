@@ -12,14 +12,14 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.ayvytr.commonlibrary.constant.Web;
+import com.ayvytr.commonlibrary.constant.WebConstant;
 import com.ayvytr.mvp.BaseMvpActivity;
 import com.ayvytr.mvp.IPresenter;
 import com.just.agentweb.AgentWeb;
 
 import butterknife.BindView;
 
-@Route(path = Web.WEBVIEW)
+@Route(path = WebConstant.WEBVIEW)
 public class WebViewActivity extends BaseMvpActivity {
     @BindView(R2.id.flContainer)
     FrameLayout mFlContainer;
@@ -73,9 +73,9 @@ public class WebViewActivity extends BaseMvpActivity {
 
     @Override
     public void initExtra() {
-        mUrl = getIntent().getStringExtra(Web.EXTRA_URL);
-        mTitle = getIntent().getStringExtra(Web.EXTRA_TITLE);
-        mUseWebTitle = getIntent().getBooleanExtra(Web.EXTRA_USE_WEB_TITLE, true);
+        mUrl = getIntent().getStringExtra(WebConstant.EXTRA_URL);
+        mTitle = getIntent().getStringExtra(WebConstant.EXTRA_TITLE);
+        mUseWebTitle = getIntent().getBooleanExtra(WebConstant.EXTRA_USE_WEB_TITLE, true);
     }
 
     @Override

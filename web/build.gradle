@@ -60,7 +60,6 @@ dependencies {
     if (isLib) {
         implementation project(":commonlibrary")
     }
-    implementation rootProject.ext.dependencies.butterknife
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
 }

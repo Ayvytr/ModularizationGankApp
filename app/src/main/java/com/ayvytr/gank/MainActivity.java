@@ -1,18 +1,25 @@
 package com.ayvytr.gank;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.ayvytr.girl.GirlsFragment;
+import com.ayvytr.knowledge.view.fragment.AndroidFragment;
 import com.ayvytr.mvp.BaseMvpActivity;
 import com.ayvytr.mvp.IPresenter;
+import com.ayvytr.settings.SettingsFragment;
 
 import butterknife.BindView;
 
@@ -27,6 +34,14 @@ public class MainActivity extends BaseMvpActivity
     DrawerLayout mDrawerLayout;
     @BindView(R.id.bottom_navigation)
     BottomNavigationView mBottomNavigation;
+    @BindView(R.id.vp)
+    ViewPager mVp;
+
+    private Fragment[] mFragments = {
+            new AndroidFragment(),
+            new GirlsFragment(),
+            new SettingsFragment()
+    };
 
     @Override
     protected IPresenter getPresenter() {
@@ -102,6 +117,61 @@ public class MainActivity extends BaseMvpActivity
         toggle.syncState();
         mNavView.setNavigationItemSelectedListener(this);
 
+        mVp.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return mFragments[position];
+            }
+
+            @Override
+            public int getCount() {
+                return mFragments.length;
+            }
+        });
+
+        mBottomNavigation.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch(item.getItemId()) {
+                            case R.id.nv_android:
+                                mVp.setCurrentItem(0);
+                                return true;
+                            case R.id.nv_girls:
+                                mVp.setCurrentItem(1);
+                                return true;
+                            case R.id.nv_settings:
+                                mVp.setCurrentItem(2);
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+        mVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch(position) {
+                    case 0:
+                        mBottomNavigation.setSelectedItemId(R.id.nv_android);
+                        break;
+                    case 1:
+                        mBottomNavigation.setSelectedItemId(R.id.nv_girls);
+                        break;
+                    default:
+                        mBottomNavigation.setSelectedItemId(R.id.nv_settings);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 
     @Override
