@@ -77,6 +77,10 @@ ext {
             logger                    : "com.ayvytr:logger:3.0.0",
 
             agentweb                  : "com.just.agentweb:agentweb:4.0.2",
+
+            smartrefresh              : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14",
+
+            base_rvadapter            : "com.zhy:base-rvadapter:3.0.3",
     ]
 
     ext.anko_version = '0.10.6'

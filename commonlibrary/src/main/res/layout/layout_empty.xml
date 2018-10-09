@@ -4,9 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/layout_list"
+    <TextView
+        android:id="@+id/tv_empty"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Empty"
+        android:textSize="@dimen/_30sp"/>
 
 </android.support.constraint.ConstraintLayout>

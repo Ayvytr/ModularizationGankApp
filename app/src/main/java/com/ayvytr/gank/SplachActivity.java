@@ -6,8 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.ayvytr.mvp.BaseMvpActivity;
 import com.ayvytr.mvp.IPresenter;
-import com.ayvytr.mvp.RxLifecycleUtils;
-import com.ayvytr.mvp.RxSchedulers;
+import com.ayvytr.mvp.RxUtils;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 
 import java.util.concurrent.TimeUnit;
@@ -40,8 +39,8 @@ public class SplachActivity extends BaseMvpActivity {
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         Observable.timer(1, TimeUnit.SECONDS)
-                  .compose(RxSchedulers.<Long>applySchedulers(null))
-                  .compose(RxLifecycleUtils.<Long>bindUntilEvent(this, ActivityEvent.STOP))
+                  .compose(RxUtils.<Long>applySchedulers(null))
+                  .compose(RxUtils.<Long>bindUntilEvent(this, ActivityEvent.STOP))
                   .subscribe(new Consumer<Long>() {
                       @Override
                       public void accept(Long aLong) {

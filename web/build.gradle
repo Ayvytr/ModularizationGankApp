@@ -57,9 +57,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    if (isLib) {
-        implementation project(":commonlibrary")
-    }
+    api project(":commonlibrary")
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
 }
