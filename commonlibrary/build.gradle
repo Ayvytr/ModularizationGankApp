@@ -63,10 +63,9 @@ dependencies {
 
     api rootProject.ext.dependencies.smartrefresh
 
-    api rootProject.ext.dependencies.base_rvadapter
-
     if (isLib) {
         api project(":mvp")
         api project(":network")
+        api project(":baseadapter")
     }
 }

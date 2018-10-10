@@ -5,3 +5,6 @@ project(':mvp').projectDir = new File("../ModularizationComponent/mvp")
 
 include ':network'
 project(':network').projectDir= new File("../ModularizationComponent/network")
+
+include ':baseadapter'
+project(':baseadapter').projectDir= new File("../ModularizationComponent/baseadapter")

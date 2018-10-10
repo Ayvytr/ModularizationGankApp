@@ -1,5 +1,7 @@
 package com.ayvytr.commonlibrary.server;
 
+import com.ayvytr.commonlibrary.bean.BaseGank;
+
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
@@ -63,8 +65,8 @@ public interface GankApi {
      * 分类数据
      */
     @GET("data/{type}/{pageSize}/{currentPage}")
-    Observable getDataByType(@Path("type") String type, @Path("pageSize") int pageSize,
-                             @Path("currentPage") int currentPage);
+    Observable<BaseGank> getDataByType(@Path("type") String type, @Path("pageSize") int pageSize,
+                                       @Path("currentPage") int currentPage);
 
     /**
      * 每日数据
