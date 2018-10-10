@@ -15,15 +15,14 @@ import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.adapter.AndroidAdapter;
 import com.ayvytr.knowledge.contract.AndroidContract;
 import com.ayvytr.knowledge.presenter.AndroidPresenter;
-import com.ayvytr.mvp.BaseMvpFragment;
+import com.ayvytr.mvp.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 /**
  * @author admin
  */
-public class AndroidFragment extends BaseMvpFragment<AndroidPresenter> implements AndroidContract.View {
-    private AndroidAdapter androidAdapter;
+public class AndroidFragment extends BaseListFragment<AndroidPresenter> implements AndroidContract.View {
 
     @Override
     protected AndroidPresenter getPresenter() {
@@ -37,16 +36,17 @@ public class AndroidFragment extends BaseMvpFragment<AndroidPresenter> implement
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+        super.initView(savedInstanceState);
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
-        androidAdapter = new AndroidAdapter(getContext(), R.layout.layout_item_android);
-        mRvList.setAdapter(androidAdapter);
-        androidAdapter.setEmptyView(R.layout.layout_empty);
+        mAdapter = new AndroidAdapter(getContext(), R.layout.layout_item_android);
+        mRvList.setAdapter(mAdapter);
+        mAdapter.setEmptyView(R.layout.layout_empty);
 
         mRvList.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        androidAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                BaseGank.Gank gank = androidAdapter.getItemAt(position);
+                BaseGank.Gank gank = (BaseGank.Gank) mAdapter.getItemAt(position);
                 ARouter.getInstance().build(WebConstant.WEBVIEW)
                        .withString(WebConstant.EXTRA_TITLE, gank.getDesc())
                        .withString(WebConstant.EXTRA_URL, gank.getUrl())
@@ -80,15 +80,6 @@ public class AndroidFragment extends BaseMvpFragment<AndroidPresenter> implement
 
     @Override
     public void showAndroidGank(BaseGank baseGank) {
-        if(currentPage == 1) {
-            androidAdapter.updateList(baseGank.getResults());
-            mSmartRefreshLayout.setEnableLoadMore(baseGank.getResults().size() == pageSize);
-        } else {
-            androidAdapter.addList(baseGank.getResults());
-            mSmartRefreshLayout.setEnableLoadMore(baseGank.getResults().size() == pageSize);
-        }
-
-        currentPage++;
-        finishRefresh();
+        updateList(baseGank.getResults());
     }
 }
