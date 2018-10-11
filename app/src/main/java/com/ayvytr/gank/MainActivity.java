@@ -3,10 +3,12 @@ package com.ayvytr.gank;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,14 +16,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
+import com.ayvytr.easykotlin.ui.ViewKt;
 import com.ayvytr.girl.view.fragment.GirlsFragment;
 import com.ayvytr.knowledge.view.fragment.AndroidFragment;
+import com.ayvytr.knowledge.view.fragment.GankHistoryFragment;
 import com.ayvytr.mvp.BaseMvpActivity;
 import com.ayvytr.mvp.IPresenter;
 import com.ayvytr.settings.SettingsFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseMvpActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +42,10 @@ public class MainActivity extends BaseMvpActivity
     BottomNavigationView mBottomNavigation;
     @BindView(R.id.vp)
     ViewPager mVp;
+    @BindView(R.id.flContainer)
+    FrameLayout mFlContainer;
+    @BindView(R.id.group)
+    Group mGroup;
 
     private Fragment[] mFragments = {
             new AndroidFragment(),
@@ -85,10 +95,15 @@ public class MainActivity extends BaseMvpActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if(id == R.id.nav_gallery) {
+        ViewKt.show(mFlContainer, id != R.id.nav_home);
+        ViewKt.show(mGroup, id == R.id.nav_home);
 
+        if(id == R.id.nav_home) {
+            ViewKt.hide(mFlContainer);
+        } else if(id == R.id.nav_gank_history) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flContainer, new GankHistoryFragment());
+            ft.commit();
         } else if(id == R.id.nav_slideshow) {
 
         } else if(id == R.id.nav_manage) {
@@ -182,5 +197,12 @@ public class MainActivity extends BaseMvpActivity
     @Override
     public int getContentViewRes() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

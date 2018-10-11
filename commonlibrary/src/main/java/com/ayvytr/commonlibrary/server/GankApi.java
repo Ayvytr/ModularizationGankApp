@@ -1,6 +1,7 @@
 package com.ayvytr.commonlibrary.server;
 
 import com.ayvytr.commonlibrary.bean.BaseGank;
+import com.ayvytr.commonlibrary.bean.GankHistory;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -45,7 +46,7 @@ public interface GankApi {
      * 获取发过干货日期接口
      */
     @GET("day/history")
-    Observable getPublishDate();
+    Observable<GankHistory> getPublishDate();
 
     /**
      * 支持提交干货到审核区

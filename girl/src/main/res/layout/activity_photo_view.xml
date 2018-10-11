@@ -7,10 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activity.PhotoViewActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50dp"/>
+    <include layout="@layout/layout_toolbar"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
