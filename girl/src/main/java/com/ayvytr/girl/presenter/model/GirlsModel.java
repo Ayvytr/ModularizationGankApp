@@ -1,9 +1,9 @@
-package com.ayvytr.knowledge.model;
+package com.ayvytr.girl.presenter.model;
 
 import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.commonlibrary.server.GankApi;
-import com.ayvytr.knowledge.contract.AndroidContract;
+import com.ayvytr.girl.contract.GirlsContract;
 import com.ayvytr.network.ApiClient;
 
 import io.reactivex.Observable;
@@ -11,11 +11,11 @@ import io.reactivex.Observable;
 /**
  * @author admin
  */
-public class AndroidModel implements AndroidContract.Model {
+public class GirlsModel implements GirlsContract.Model {
 
     private GankApi mGankApi;
 
-    public AndroidModel() {
+    public GirlsModel() {
         mGankApi = ApiClient.getInstance().create(GankApi.class);
     }
 
@@ -25,7 +25,7 @@ public class AndroidModel implements AndroidContract.Model {
     }
 
     @Override
-    public Observable<BaseGank> getAndroidGank(int pageSize, int currentPage) {
-        return mGankApi.getDataByType(GankType.ANDROID.toString(), pageSize, currentPage);
+    public Observable<BaseGank> getGankMm(int pageSize, int currentPage) {
+        return mGankApi.getDataByType(GankType.GIRLS.toString(), pageSize, currentPage);
     }
 }

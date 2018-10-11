@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">knowledge</string>
-    <string name="request_data_error">请求数据出错</string>
 </resources>

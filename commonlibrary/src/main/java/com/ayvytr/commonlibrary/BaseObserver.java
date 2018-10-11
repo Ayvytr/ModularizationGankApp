@@ -1,0 +1,57 @@
+package com.ayvytr.commonlibrary;
+
+import com.ayvytr.mvp.BasePresenter;
+
+import java.net.ConnectException;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+
+/**
+ * @author admin
+ */
+public abstract class BaseObserver<T> implements Observer<T> {
+    private BasePresenter basePresenter;
+
+    public BaseObserver() {
+    }
+
+    public BaseObserver(BasePresenter basePresenter) {
+        this.basePresenter = basePresenter;
+    }
+
+    @Override
+    public void onSubscribe(Disposable d) {
+    }
+
+    @Override
+    public void onError(Throwable e) {
+        if(basePresenter != null) {
+            basePresenter.handlerErrorMessage(unifiedError(e));
+        }
+    }
+
+    /**
+     * 统一错误处理 -> 汉化了提示，以下错误出现的情况 (ps:不一定百分百按我注释的情况，可能其他情况)
+     */
+    public static String unifiedError(Throwable e) {
+        String msg;
+        if(e instanceof UnknownHostException) {
+            //无网络的情况，或者主机挂掉了。返回，对应消息  Unable to resolve host "m.app.haosou.com": No address associated with hostname
+            msg = "网络不可用/主机无法识别";
+        } else if(e instanceof ConnectException || e instanceof SocketTimeoutException || e instanceof SocketException) {
+            //连接超时等
+            msg = "连接超时";
+        } else {
+            msg = "未知错误:" + e.getMessage();
+        }
+        return msg;
+    }
+
+    @Override
+    public void onComplete() {
+    }
+}

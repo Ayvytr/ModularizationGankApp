@@ -7,7 +7,7 @@ import com.ayvytr.knowledge.contract.AndroidContract;
 import com.ayvytr.knowledge.model.AndroidModel;
 import com.ayvytr.mvp.BasePresenter;
 import com.ayvytr.mvp.RxUtils;
-import com.ayvytr.network.BaseObserver;
+import com.ayvytr.commonlibrary.BaseObserver;
 
 /**
  * @author admin
@@ -24,12 +24,9 @@ public class AndroidPresenter extends BasePresenter<AndroidContract.Model, Andro
               .subscribe(new BaseObserver<BaseGank>() {
                   @Override
                   public void onNext(BaseGank gank) {
-                      if(gank.isError())
-                      {
+                      if(gank.isError()) {
                           mView.showMessage(R.string.request_data_error);
-                      }
-                      else
-                      {
+                      } else {
                           mView.showAndroidGank(gank);
                       }
                   }

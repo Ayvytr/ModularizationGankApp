@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ayvytr.girl.GirlsFragment;
+import com.ayvytr.girl.view.fragment.GirlsFragment;
 import com.ayvytr.knowledge.view.fragment.AndroidFragment;
 import com.ayvytr.mvp.BaseMvpActivity;
 import com.ayvytr.mvp.IPresenter;

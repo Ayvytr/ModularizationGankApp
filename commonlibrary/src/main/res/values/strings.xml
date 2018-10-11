@@ -3,4 +3,6 @@
     <string name="android">Android</string>
     <string name="girls">妹子</string>
     <string name="settings">设置</string>
+    <string name="request_data_error">请求数据出错</string>
+    <string name="no_photos">没有可以浏览的图片</string>
 </resources>
