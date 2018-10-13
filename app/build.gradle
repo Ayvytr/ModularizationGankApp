@@ -15,12 +15,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
-
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = [AROUTER_MODULE_NAME: project.getName()]
-//            }
-//        }
     }
     buildTypes {
         release {
@@ -64,4 +58,9 @@ dependencies {
     }
     implementation rootProject.ext.support.constraint
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+
+    debugImplementation rootProject.ext.dependencies.leakcanary
+    releaseImplementation rootProject.ext.dependencies.leakcanary_release
+    debugImplementation rootProject.ext.dependencies.leakcanary_fragment
+    implementation rootProject.ext.dependencies.blockcanary
 }

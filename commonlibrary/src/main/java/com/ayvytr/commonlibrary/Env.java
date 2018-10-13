@@ -9,4 +9,8 @@ public class Env {
     public static boolean isDebug() {
         return isDebug;
     }
+
+    public static void setDebug(boolean isDebug) {
+        Env.isDebug = isDebug;
+    }
 }
