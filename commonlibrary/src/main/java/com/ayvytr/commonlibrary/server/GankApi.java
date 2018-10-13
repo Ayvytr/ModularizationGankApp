@@ -2,6 +2,7 @@ package com.ayvytr.commonlibrary.server;
 
 import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.commonlibrary.bean.GankHistory;
+import com.ayvytr.commonlibrary.bean.GankHistoryContent;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -37,12 +38,6 @@ public interface GankApi {
     Observable getHistoryDataByCount(@Path("pageSize") int pageSize, @Path("currentPage") int currentPage);
 
     /**
-     * 获取特定日期网站数据:
-     */
-    @GET("history/content/day/{year}/{month}/{day}")
-    Observable getHistoryData(@Path("year") int year, @Path("month") int month, @Path("day") int dayOfMonth);
-
-    /**
      * 获取发过干货日期接口
      */
     @GET("day/history")
@@ -72,7 +67,8 @@ public interface GankApi {
     /**
      * 每日数据
      */
-    @GET("day/{year{/{month}/{day}")
-    Observable getDataByDate(@Path("year") int year, @Path("month") int month, @Path("day") int dayOfMonth);
+    @GET("day/{year}/{month}/{day}")
+    Observable<GankHistoryContent> getDataByDate(@Path("year") String year, @Path("month") String month,
+                                                 @Path("day") String dayOfMonth);
 }
 

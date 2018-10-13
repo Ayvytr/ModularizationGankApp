@@ -32,6 +32,12 @@ public class Gank implements Parcelable {
     private boolean used;
     private String who;
     private List<String> images;
+    private boolean isHeader;
+
+    public Gank(String type, boolean isHeader) {
+        this.type = type;
+        this.isHeader = isHeader;
+    }
 
     public String get_id() {
         return _id;
@@ -111,6 +117,14 @@ public class Gank implements Parcelable {
 
     public void setImages(List<String> images) {
         this.images = images;
+    }
+
+    public boolean isHeader() {
+        return isHeader;
+    }
+
+    public void setHeader(boolean header) {
+        isHeader = header;
     }
 
     @Override

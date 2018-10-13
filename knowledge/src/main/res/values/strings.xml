@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">knowledge</string>
+    <string name="no_gank_date">未获取到日期信息</string>
 </resources>

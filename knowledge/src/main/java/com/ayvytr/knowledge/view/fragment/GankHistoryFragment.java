@@ -5,13 +5,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.ayvytr.commonlibrary.constant.KnowledgeConstant;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.adapter.GankHistoryAdapter;
 import com.ayvytr.knowledge.contract.GankHistoryContract;
 import com.ayvytr.knowledge.presenter.GankHistoryPresenter;
 import com.ayvytr.mvp.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.List;
 
@@ -27,7 +32,6 @@ public class GankHistoryFragment extends BaseListFragment<GankHistoryPresenter, 
 
     @Override
     public void initExtra() {
-
     }
 
     @Override
@@ -38,6 +42,15 @@ public class GankHistoryFragment extends BaseListFragment<GankHistoryPresenter, 
         mAdapter = new GankHistoryAdapter(getContext());
         mAdapter.setEmptyView(R.layout.layout_empty);
         mRvList.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                ARouter.getInstance()
+                       .build(KnowledgeConstant.GANK_HISTORY_CONTENT)
+                       .withString(KnowledgeConstant.EXTRA_DATE, mAdapter.getItemAt(position))
+                       .navigation(getContext());
+            }
+        });
         mSmartRefreshLayout.setEnableLoadMore(false);
     }
 
