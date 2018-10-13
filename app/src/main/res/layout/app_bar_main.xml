@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/layout_appbar"/>
 
     <include layout="@layout/content_main"/>
 
