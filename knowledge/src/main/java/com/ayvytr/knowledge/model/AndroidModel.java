@@ -1,6 +1,5 @@
 package com.ayvytr.knowledge.model;
 
-import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.commonlibrary.server.GankApi;
 import com.ayvytr.knowledge.contract.AndroidContract;
@@ -25,7 +24,7 @@ public class AndroidModel implements AndroidContract.Model {
     }
 
     @Override
-    public Observable<BaseGank> getAndroidGank(int pageSize, int currentPage) {
-        return mGankApi.getDataByType(GankType.ANDROID.toString(), pageSize, currentPage);
+    public Observable<BaseGank> getGankByType(String gankType, int pageSize, int currentPage) {
+        return mGankApi.getDataByType(gankType, pageSize, currentPage);
     }
 }

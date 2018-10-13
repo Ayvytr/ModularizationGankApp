@@ -18,16 +18,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.easykotlin.ui.ViewKt;
 import com.ayvytr.girl.view.fragment.GirlsFragment;
 import com.ayvytr.knowledge.view.fragment.AndroidFragment;
+import com.ayvytr.knowledge.view.fragment.ClassifyGankFragment;
 import com.ayvytr.knowledge.view.fragment.GankHistoryFragment;
 import com.ayvytr.mvp.BaseMvpActivity;
 import com.ayvytr.mvp.IPresenter;
 import com.ayvytr.settings.SettingsFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseMvpActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,7 +49,7 @@ public class MainActivity extends BaseMvpActivity
     Group mGroup;
 
     private Fragment[] mFragments = {
-            new AndroidFragment(),
+            AndroidFragment.newInstance(GankType.ANDROID),
             new GirlsFragment(),
             new SettingsFragment()
     };
@@ -104,8 +105,10 @@ public class MainActivity extends BaseMvpActivity
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flContainer, new GankHistoryFragment());
             ft.commit();
-        } else if(id == R.id.nav_slideshow) {
-
+        } else if(id == R.id.nav_gank_of_type) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flContainer, new ClassifyGankFragment());
+            ft.commit();
         } else if(id == R.id.nav_manage) {
 
         } else if(id == R.id.nav_share) {
@@ -197,12 +200,5 @@ public class MainActivity extends BaseMvpActivity
     @Override
     public int getContentViewRes() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

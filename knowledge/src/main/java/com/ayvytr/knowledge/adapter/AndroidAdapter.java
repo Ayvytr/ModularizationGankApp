@@ -1,9 +1,12 @@
 package com.ayvytr.knowledge.adapter;
 
 import android.content.Context;
+import android.widget.ImageView;
 
 import com.ayvytr.commonlibrary.bean.Gank;
+import com.ayvytr.easykotlin.ui.ViewKt;
 import com.ayvytr.knowledge.R;
+import com.bumptech.glide.Glide;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.wrapper.EmptyWrapperAdapter;
 
@@ -24,6 +27,15 @@ public class AndroidAdapter extends EmptyWrapperAdapter<Gank> {
 
     @Override
     public void convert(ViewHolder holder, Gank gank, int position) {
+        List<String> images = gank.getImages();
+        boolean showImage = images != null && !images.isEmpty();
+        if(showImage) {
+            Glide.with(mContext)
+                 .load(images.get(0))
+                 .into((ImageView) holder.getView(R.id.iv));
+        }
+        ViewKt.show(holder.getView(R.id.iv), showImage);
+
         holder.setText(R.id.tv_title, gank.getDesc());
         holder.setText(R.id.tv_date, gank.getPublishedAt());
         holder.setText(R.id.tv_who, gank.getWho());

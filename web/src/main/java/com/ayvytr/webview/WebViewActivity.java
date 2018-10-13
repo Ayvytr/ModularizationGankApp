@@ -44,8 +44,9 @@ public class WebViewActivity extends BaseMvpActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //AgentWeb goBack不起作用
-                finish();
+                if(!mAgentWeb.back()) {
+                    finish();
+                }
             }
         });
         mWebViewClient = new WebViewClient() {
@@ -89,8 +90,8 @@ public class WebViewActivity extends BaseMvpActivity {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
-        initAgentWeb();
         setSupportActionBar(mToolbar);
+        initAgentWeb();
         if(!mUseWebTitle) {
             mToolbar.setTitle(mTitle);
         }

@@ -17,8 +17,8 @@ public class AndroidPresenter extends BasePresenter<AndroidContract.Model, Andro
         super(new AndroidModel(), rootView);
     }
 
-    public void requestAndroidGank(int pageSize, int currentPage) {
-        mModel.getAndroidGank(pageSize, currentPage)
+    public void requestGankByType(String gankType, int pageSize, int currentPage) {
+        mModel.getGankByType(gankType, pageSize, currentPage)
               .compose(RxUtils.<BaseGank>applySchedulers(mView))
               .compose(RxUtils.<BaseGank>bindToLifecycle(mView))
               .subscribe(new BaseObserver<BaseGank>() {
@@ -27,7 +27,7 @@ public class AndroidPresenter extends BasePresenter<AndroidContract.Model, Andro
                       if(gank.isError()) {
                           mView.showMessage(R.string.request_data_error);
                       } else {
-                          mView.showAndroidGank(gank);
+                          mView.showGank(gank);
                       }
                   }
               });

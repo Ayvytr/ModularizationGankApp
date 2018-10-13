@@ -11,10 +11,10 @@ import io.reactivex.Observable;
  */
 public class AndroidContract {
     public interface Model extends IModel {
-        Observable<BaseGank> getAndroidGank(int pageSize, int currentPage);
+        Observable<BaseGank> getGankByType(String gankType, int pageSize, int currentPage);
     }
 
     public interface View extends IView {
-        void showAndroidGank(BaseGank gank);
+        void showGank(BaseGank gank);
     }
 }
