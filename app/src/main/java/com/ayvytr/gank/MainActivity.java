@@ -201,4 +201,12 @@ public class MainActivity extends BaseMvpActivity
     public int getContentViewRes() {
         return R.layout.activity_main;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mBottomNavigation.setOnNavigationItemSelectedListener(null);
+        mVp.setAdapter(null);
+        mFragments = null;
+    }
 }
