@@ -67,12 +67,11 @@ public class AndroidFragment extends BaseListFragment<AndroidPresenter, Gank> im
                        .navigation(getContext());
             }
         });
+        mSmartRefreshLayout.autoRefresh();
     }
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        mSmartRefreshLayout.autoRefresh();
-        mPresenter.requestGankByType(gankType, pageSize, currentPage);
     }
 
     @Override
@@ -95,5 +94,17 @@ public class AndroidFragment extends BaseListFragment<AndroidPresenter, Gank> im
     @Override
     public void showGank(BaseGank baseGank) {
         updateList(baseGank.getResults());
+    }
+
+    @Override
+    public void showMessage(int stringId) {
+        super.showMessage(stringId);
+        finishRefreshLoadMore();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        super.showMessage(message);
+        finishRefreshLoadMore();
     }
 }

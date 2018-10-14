@@ -28,7 +28,7 @@ public class GankApplication extends MultiDexApplication {
         Env.setDebug(true);
         initArouter();
         L.settings().showLog(Env.isDebug());
-        ApiClient.getInstance().init();
+        ApiClient.getInstance().init(getApplicationContext());
     }
 
     private void initArouter() {

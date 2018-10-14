@@ -1,19 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activity.PhotoViewActivity">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/layout_appbar"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_0dp"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="60dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="@dimen/_10dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:behavior_hideable="true"-->
+        <!--app:behavior_peekHeight="60dp"-->
+        <!--app:cardBackgroundColor="@color/white"-->
+        <!--app:cardCornerRadius="10dp"-->
+        <!--app:cardElevation="@dimen/_10dp"-->
+        <!--app:layout_behavior="@string/bottom_sheet_behavior">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/_5dp">
+
+            <Button
+                android:id="@+id/btnSavePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"
+                android:text="@string/save_photo"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200dp"
+                android:src="@color/pink"/>
+        </LinearLayout>
+        <!--</android.support.v7.widget.CardView>-->
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

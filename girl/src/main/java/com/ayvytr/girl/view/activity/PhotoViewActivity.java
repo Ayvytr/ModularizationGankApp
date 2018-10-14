@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ayvytr.commonlibrary.GankType;
@@ -19,6 +18,7 @@ import com.ayvytr.girl.R2;
 import com.ayvytr.mvp.BaseMvpActivity;
 import com.ayvytr.mvp.IPresenter;
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.List;
 
@@ -37,6 +37,8 @@ public class PhotoViewActivity extends BaseMvpActivity {
     Toolbar mToolbar;
     @BindView(R2.id.vp)
     ViewPager mVp;
+//    @BindView(R2.id.btnSavePhoto)
+//    Button mBtnSavePhoto;
 
     private List<Gank> list;
     private int position;
@@ -60,6 +62,14 @@ public class PhotoViewActivity extends BaseMvpActivity {
             showMessage(R.string.no_photos);
             return;
         }
+        mToolbar.setNavigationIcon(R.drawable.ic_back_white);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         mVp.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -74,12 +84,12 @@ public class PhotoViewActivity extends BaseMvpActivity {
             @NonNull
             @Override
             public Object instantiateItem(@NonNull ViewGroup container, int position) {
-                ImageView iv = new ImageView(getContext());
+                PhotoView photoView = new PhotoView(getContext());
                 Glide.with(getContext())
                      .load(list.get(position).getUrl())
-                     .into(iv);
-                container.addView(iv);
-                return iv;
+                     .into(photoView);
+                container.addView(photoView);
+                return photoView;
             }
 
             @Override

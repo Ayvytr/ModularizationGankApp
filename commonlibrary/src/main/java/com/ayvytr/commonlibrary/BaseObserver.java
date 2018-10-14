@@ -19,6 +19,12 @@ public abstract class BaseObserver<T> implements Observer<T> {
     public BaseObserver() {
     }
 
+    /**
+     * 委托BasePresenter来处理错误，比如显示错误等.
+     * 如果使用无参构造，并且又想处理错误，请重写 {@link #onError(Throwable)} 来自行处理错误
+     *
+     * @param basePresenter {@link BasePresenter}
+     */
     public BaseObserver(BasePresenter basePresenter) {
         this.basePresenter = basePresenter;
     }
@@ -30,14 +36,14 @@ public abstract class BaseObserver<T> implements Observer<T> {
     @Override
     public void onError(Throwable e) {
         if(basePresenter != null) {
-            basePresenter.handlerErrorMessage(unifiedError(e));
+            basePresenter.handlerErrorMessage(getStringError(e));
         }
     }
 
     /**
      * 统一错误处理 -> 汉化了提示，以下错误出现的情况 (ps:不一定百分百按我注释的情况，可能其他情况)
      */
-    public static String unifiedError(Throwable e) {
+    public static String getStringError(Throwable e) {
         String msg;
         if(e instanceof UnknownHostException) {
             //无网络的情况，或者主机挂掉了。返回，对应消息  Unable to resolve host "m.app.haosou.com": No address associated with hostname
