@@ -1,5 +1,6 @@
 package com.ayvytr.girl.view.activity;
 
+import android.app.WallpaperManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.commonlibrary.constant.GirlsConstant;
 import com.ayvytr.easykotlin.context.ContextKt;
+import com.ayvytr.easykotlin.context.ManagerKt;
 import com.ayvytr.easykotlin.ui.ViewKt;
 import com.ayvytr.girl.R;
 import com.ayvytr.girl.R2;
@@ -34,6 +36,7 @@ import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -201,9 +204,9 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
                     return;
                 }
                 if(!AndPermission.hasPermissions(getContext(), Permission.WRITE_EXTERNAL_STORAGE)) {
-                    requestStoragePermission();
+                    requestStoragePermission(false);
                 } else {
-                    mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName());
+                    mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName(), false);
                 }
             }
         });
@@ -211,7 +214,20 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
         mBtnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 mPresenter.getShareIntent(mList.get(mPosition).getUrl(), getPackageName(), getContext());
+            }
+        });
+
+        mBtnSetToDesktopBg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                if(!AndPermission.hasPermissions(getContext(), Permission.WRITE_EXTERNAL_STORAGE)) {
+                    requestStoragePermission(true);
+                } else {
+                    mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName(), true);
+                }
             }
         });
     }
@@ -226,20 +242,21 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
         return R.layout.activity_photo_view;
     }
 
-    private void requestStoragePermission() {
+    private void requestStoragePermission(final boolean isSettingWallpaper) {
         AndPermission.with(getContext())
                      .runtime()
                      .permission(Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE)
                      .onDenied(new Action<List<String>>() {
                          @Override
                          public void onAction(List<String> data) {
-                             Toast.makeText(PhotoViewActivity.this, "未获取到权限", Toast.LENGTH_SHORT).show();
+                             Toast.makeText(PhotoViewActivity.this, R.string.cannot_get_storage_permission,
+                                     Toast.LENGTH_SHORT).show();
                          }
                      })
                      .onGranted(new Action<List<String>>() {
                          @Override
                          public void onAction(List<String> data) {
-                             mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName());
+                             mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName(), isSettingWallpaper);
                          }
                      }).start();
     }
@@ -247,6 +264,18 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
     @Override
     public void onGotShareIntent(Intent intent) {
         startActivity(Intent.createChooser(intent, getString(R.string.share_to)));
+    }
+
+    @Override
+    public void onSettingWallpaper(final Bitmap bitmap) {
+        WallpaperManager wallpaperManager = ManagerKt.getWallpaperManager(getContext());
+        try {
+            wallpaperManager.setBitmap(bitmap);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        showMessage(R.string.wallpaper_changed);
     }
 
     @Override

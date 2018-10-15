@@ -32,19 +32,20 @@ public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, P
         super(new PhotoViewModel(), view);
     }
 
-    public void savePhoto(final String url, final String packageName) {
+    public void savePhoto(final String url, final String packageName, final boolean isSettingWallpaper) {
         mModel.getImage(url)
               .compose(RxUtils.<ResponseBody>applySchedulers(mView))
               .compose(RxUtils.<ResponseBody>bindToLifecycle(mView))
               .subscribe(new BaseObserver<ResponseBody>() {
                   @Override
                   public void onNext(ResponseBody responseBody) {
-                      performSavePhoto(url, responseBody, packageName);
+                      performSavePhoto(url, responseBody, packageName, isSettingWallpaper);
                   }
               });
     }
 
-    private void performSavePhoto(final String url, final ResponseBody responseBody, String packageName) {
+    private void performSavePhoto(final String url, final ResponseBody responseBody, String packageName,
+                                  final boolean isSettingWallpaper) {
         final File path = getPhotoSavePath(packageName);
         Observable.just(path)
                   .compose(RxUtils.<File>applySchedulers(mView))
@@ -57,7 +58,7 @@ public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, P
                           }
 
                           File photo = getPhotoFile(file, url);
-                          if(photo.exists()) {
+                          if(photo.exists() && !isSettingWallpaper) {
                               throw new Exception("文件已存在，无需保存");
                           } else {
                               photo.createNewFile();
@@ -66,9 +67,9 @@ public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, P
                           return photo;
                       }
                   })
-                  .map(new Function<File, String>() {
+                  .map(new Function<File, Bitmap>() {
                       @Override
-                      public String apply(File file) throws Exception {
+                      public Bitmap apply(File file) throws Exception {
                           FileOutputStream fos = null;
                           try {
                               fos = new FileOutputStream(file);
@@ -83,13 +84,17 @@ public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, P
 
                           fos.close();
                           responseBody.close();
-                          return path.getAbsolutePath();
+                          return bitmap;
                       }
                   })
-                  .subscribe(new BaseObserver<String>(this) {
+                  .subscribe(new BaseObserver<Bitmap>(this) {
                       @Override
-                      public void onNext(String path) {
-                          mView.showMessage(path);
+                      public void onNext(Bitmap bitmap) {
+                          if(isSettingWallpaper) {
+                              mView.onSettingWallpaper(bitmap);
+                          } else {
+                              mView.showMessage(path.getAbsolutePath());
+                          }
                       }
                   });
     }

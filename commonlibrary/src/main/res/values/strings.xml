@@ -15,4 +15,6 @@
     <string name="no_photo_loaded">图片未加载</string>
     <string name="save_photo_succeed">保存图片成功</string>
     <string name="save_photo_failed">保存图片失败</string>
+    <string name="cannot_get_storage_permission">未获取到存储权限</string>
+    <string name="wallpaper_changed">桌面壁纸已更改</string>
 </resources>
