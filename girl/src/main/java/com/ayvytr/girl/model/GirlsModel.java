@@ -1,4 +1,4 @@
-package com.ayvytr.girl.presenter.model;
+package com.ayvytr.girl.model;
 
 import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.commonlibrary.bean.BaseGank;

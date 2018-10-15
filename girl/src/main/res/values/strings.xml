@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">girl</string>
+    <string name="upglide_or_click_show_more_options">上滑或点击展开更多选项</string>
+    <string name="share_to">分享到</string>
 </resources>

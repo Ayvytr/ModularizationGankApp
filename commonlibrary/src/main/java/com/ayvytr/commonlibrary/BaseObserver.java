@@ -52,7 +52,7 @@ public abstract class BaseObserver<T> implements Observer<T> {
             //连接超时等
             msg = "连接超时";
         } else {
-            msg = "未知错误:" + e.getMessage();
+            msg = e.getMessage();
         }
         return msg;
     }

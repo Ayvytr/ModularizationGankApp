@@ -5,10 +5,12 @@ import com.ayvytr.commonlibrary.bean.GankHistory;
 import com.ayvytr.commonlibrary.bean.GankHistoryContent;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 
 /**
  * 干货网api接口
@@ -70,5 +72,7 @@ public interface GankApi {
     @GET("day/{year}/{month}/{day}")
     Observable<GankHistoryContent> getDataByDate(@Path("year") String year, @Path("month") String month,
                                                  @Path("day") String dayOfMonth);
+    @GET
+    Observable<ResponseBody> getImageData(@Url String url);
 }
 
