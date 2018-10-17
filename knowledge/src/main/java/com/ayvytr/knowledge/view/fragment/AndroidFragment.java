@@ -95,16 +95,4 @@ public class AndroidFragment extends BaseListFragment<AndroidPresenter, Gank> im
     public void showGank(BaseGank baseGank) {
         updateList(baseGank.getResults());
     }
-
-    @Override
-    public void showMessage(int stringId) {
-        super.showMessage(stringId);
-        finishRefreshLoadMore();
-    }
-
-    @Override
-    public void showMessage(String message) {
-        super.showMessage(message);
-        finishRefreshLoadMore();
-    }
 }

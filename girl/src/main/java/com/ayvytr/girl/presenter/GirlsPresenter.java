@@ -30,7 +30,7 @@ public class GirlsPresenter extends BasePresenter<GirlsContract.Model, GirlsCont
         mModel.getGankMm(pageSize, currentPage)
               .compose(RxUtils.<BaseGank>applySchedulers(mView))
               .compose(RxUtils.<BaseGank>bindToLifecycle(mView))
-              .subscribe(new BaseObserver<BaseGank>() {
+              .subscribe(new BaseObserver<BaseGank>(this) {
                   @Override
                   public void onNext(BaseGank gank) {
                       if(gank.isError()) {
