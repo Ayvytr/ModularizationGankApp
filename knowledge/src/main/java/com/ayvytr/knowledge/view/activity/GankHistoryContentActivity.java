@@ -108,7 +108,7 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         if(TextUtils.isEmpty(date)) {
-            showMessage(R.string.no_gank_date);
+            showError(R.string.no_gank_date);
         }
         mPresenter.requestGankByDate(date);
     }

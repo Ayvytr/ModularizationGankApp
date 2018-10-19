@@ -24,7 +24,7 @@ public class GankHistoryPresenter extends BasePresenter<GankHistoryContract.Mode
                   @Override
                   public void onNext(GankHistory gankHistory) {
                       if(gankHistory.isError()) {
-                          mView.showMessage(R.string.request_data_error);
+                          mView.showError(R.string.request_data_error);
                       } else {
                          mView.showGankHistory(gankHistory.getResults());
                       }

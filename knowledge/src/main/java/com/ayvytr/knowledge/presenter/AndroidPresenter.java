@@ -25,7 +25,7 @@ public class AndroidPresenter extends BasePresenter<AndroidContract.Model, Andro
                   @Override
                   public void onNext(BaseGank gank) {
                       if(gank.isError()) {
-                          mView.showMessage(R.string.request_data_error);
+                          mView.showError(R.string.request_data_error);
                       } else {
                           mView.showGank(gank);
                       }

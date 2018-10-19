@@ -34,7 +34,7 @@ public class GirlsPresenter extends BasePresenter<GirlsContract.Model, GirlsCont
                   @Override
                   public void onNext(BaseGank gank) {
                       if(gank.isError()) {
-                          mView.showMessage(R.string.request_data_error);
+                          mView.showError(R.string.request_data_error);
                       } else {
                           mView.showGankMm(gank);
                       }

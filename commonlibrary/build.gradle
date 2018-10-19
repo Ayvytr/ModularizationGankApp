@@ -67,6 +67,8 @@ dependencies {
 
     api rootProject.ext.dependencies.andpermission
 
+    api rootProject.ext.dependencies.customviews
+
     if (isLib) {
         api project(":mvp")
         api project(":network")

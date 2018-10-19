@@ -87,7 +87,7 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
         setSupportActionBar(mToolbar);
         mToolbar.setTitle(GankType.GIRLS.toString());
         if(mList == null) {
-            showMessage(R.string.no_photos);
+            showError(R.string.no_photos);
             return;
         }
         mToolbar.setNavigationIcon(R.drawable.ic_back_white);
@@ -200,7 +200,7 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
             public void onClick(View v) {
                 mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 if(mBitmap == null) {
-                    showMessage(R.string.no_photo_loaded);
+                    showError(R.string.no_photo_loaded);
                     return;
                 }
                 if(!AndPermission.hasPermissions(getContext(), Permission.WRITE_EXTERNAL_STORAGE)) {
@@ -275,7 +275,7 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
             e.printStackTrace();
         }
 
-        showMessage(R.string.wallpaper_changed);
+        showError(R.string.wallpaper_changed);
     }
 
     @Override

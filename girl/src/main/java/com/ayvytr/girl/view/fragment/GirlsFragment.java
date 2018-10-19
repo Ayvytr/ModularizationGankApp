@@ -40,7 +40,6 @@ public class GirlsFragment extends BaseListFragment<GirlsPresenter, Gank> implem
         super.initView(savedInstanceState);
         mAdapter = new GirlsAdapter(getContext(), R.layout.layout_item_girl);
         mRvList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        mAdapter.setEmptyView(R.layout.layout_empty);
         mAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {

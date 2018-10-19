@@ -93,7 +93,7 @@ public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, P
                           if(isSettingWallpaper) {
                               mView.onSettingWallpaper(bitmap);
                           } else {
-                              mView.showMessage(path.getAbsolutePath());
+                              mView.showError(path.getAbsolutePath());
                           }
                       }
                   });

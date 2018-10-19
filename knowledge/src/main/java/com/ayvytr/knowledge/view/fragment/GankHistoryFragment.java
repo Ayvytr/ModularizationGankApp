@@ -40,7 +40,7 @@ public class GankHistoryFragment extends BaseListFragment<GankHistoryPresenter, 
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvList.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mAdapter = new GankHistoryAdapter(getContext());
-        mAdapter.setEmptyView(R.layout.layout_empty);
+//        mAdapter.setEmptyView(R.layout.layout_empty);
         mRvList.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override

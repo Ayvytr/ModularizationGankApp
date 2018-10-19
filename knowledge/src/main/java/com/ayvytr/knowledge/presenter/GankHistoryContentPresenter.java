@@ -26,7 +26,7 @@ public class GankHistoryContentPresenter
                   @Override
                   public void onNext(GankHistoryContent gankHistoryContent) {
                       if(gankHistoryContent.isError()) {
-                          mView.showMessage(R.string.request_data_error);
+                          mView.showError(R.string.request_data_error);
                       } else {
                           mView.showGankByDate(gankHistoryContent);
                       }

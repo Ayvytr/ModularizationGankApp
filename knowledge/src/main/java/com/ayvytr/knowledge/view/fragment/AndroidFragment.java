@@ -53,7 +53,6 @@ public class AndroidFragment extends BaseListFragment<AndroidPresenter, Gank> im
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new AndroidAdapter(getContext(), R.layout.layout_item_android);
         mRvList.setAdapter(mAdapter);
-        mAdapter.setEmptyView(R.layout.layout_empty);
 
         mRvList.setItemAnimator(new DefaultItemAnimator());
         mRvList.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
@@ -72,6 +71,7 @@ public class AndroidFragment extends BaseListFragment<AndroidPresenter, Gank> im
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
+        showLoading();
     }
 
     @Override
