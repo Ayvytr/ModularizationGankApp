@@ -34,6 +34,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.jaeger.library.StatusBarUtil;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
@@ -77,6 +78,7 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+        StatusBarUtil.setTranslucentForImageView(this, null);
         mCtLayout.setTitle(date);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_back_white);
@@ -103,6 +105,13 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
             }
         });
         mRvList.setAdapter(mContentAdapter);
+
+        mStatusView.showLoading();
+    }
+
+    @Override
+    public boolean useStatusView() {
+        return true;
     }
 
     @Override
@@ -120,6 +129,7 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
 
     @Override
     public void showGankByDate(GankHistoryContent gankHistoryContent) {
+        mStatusView.showContent();
         HashMap<String, List<Gank>> results = gankHistoryContent.getResults();
         L.e(results);
         List<Gank> girls = results.get(GankType.GIRLS.toString());
