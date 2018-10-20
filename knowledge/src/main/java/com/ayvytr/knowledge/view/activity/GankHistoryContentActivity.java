@@ -1,6 +1,8 @@
 package com.ayvytr.knowledge.view.activity;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -34,7 +36,6 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.jaeger.library.StatusBarUtil;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
@@ -78,7 +79,23 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
-        StatusBarUtil.setTranslucentForImageView(this, null);
+        if(Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) mToolbar.getLayoutParams();
+
+            int statusBarHeight = 0;
+            //获取status_bar_height资源的ID
+            int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if(resourceId > 0) {
+                //根据资源ID获取响应的尺寸值
+                statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+            }
+            lp.topMargin = statusBarHeight;
+        }
         mCtLayout.setTitle(date);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_back_white);
