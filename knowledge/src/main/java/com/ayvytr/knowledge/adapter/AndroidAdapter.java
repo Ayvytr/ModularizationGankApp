@@ -17,8 +17,8 @@ import java.util.List;
  * @author admin
  */
 public class AndroidAdapter extends EmptyWrapperAdapter<Gank> {
-    public AndroidAdapter(Context context, int layoutResId) {
-        this(context, layoutResId, new ArrayList<Gank>(0));
+    public AndroidAdapter(Context context){
+        this(context, R.layout.layout_item_android, new ArrayList<Gank>(0));
     }
 
     public AndroidAdapter(Context context, int layoutResId, List<Gank> list) {

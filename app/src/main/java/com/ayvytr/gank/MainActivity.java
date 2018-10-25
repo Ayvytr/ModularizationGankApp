@@ -18,7 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.ayvytr.commonlibrary.GankType;
+import com.ayvytr.commonlibrary.constant.KnowledgeConstant;
 import com.ayvytr.easykotlin.ui.ViewKt;
 import com.ayvytr.girl.view.fragment.GirlsFragment;
 import com.ayvytr.knowledge.view.fragment.AndroidFragment;
@@ -84,6 +86,7 @@ public class MainActivity extends BaseMvpActivity
 
         //noinspection SimplifiableIfStatement
         if(id == R.id.menu_search) {
+            ARouter.getInstance().build(KnowledgeConstant.SEARCH).navigation(getContext());
             return true;
         }
 

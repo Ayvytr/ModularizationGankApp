@@ -29,9 +29,9 @@ public interface GankApi {
      * category 后面可接受参数 all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
      * count 最大 50
      */
-    @GET("search/query/listview/category/{type}/count/{pageSize}/page/{currentPage}")
-    Observable search(@Path("type") String keyType, @Path("pageSize") int pageSize,
-                      @Path("currentPage") int currentPage);
+    @GET("search/query/{key}/category/{type}/count/{pageSize}/page/{currentPage}")
+    Observable<BaseGank> search(@Path("key") String key, @Path("type") String keyType, @Path("pageSize") int pageSize,
+                                  @Path("currentPage") int currentPage);
 
     /**
      * 获取某几日干货网站数据
@@ -72,6 +72,7 @@ public interface GankApi {
     @GET("day/{year}/{month}/{day}")
     Observable<GankHistoryContent> getDataByDate(@Path("year") String year, @Path("month") String month,
                                                  @Path("day") String dayOfMonth);
+
     @GET
     Observable<ResponseBody> getImageData(@Url String url);
 }
