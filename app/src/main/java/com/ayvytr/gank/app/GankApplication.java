@@ -7,7 +7,12 @@ import com.ayvytr.commonlibrary.Env;
 import com.ayvytr.logger.L;
 import com.ayvytr.network.ApiClient;
 import com.github.moduth.blockcanary.BlockCanary;
+import com.maning.librarycrashmonitor.MCrashMonitor;
+import com.maning.librarycrashmonitor.listener.MCrashCallBack;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.squareup.leakcanary.LeakCanary;
+
+import java.io.File;
 
 /**
  * @author admin
@@ -26,9 +31,16 @@ public class GankApplication extends MultiDexApplication {
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
 
         Env.setDebug(true);
+        MCrashMonitor.init(this, Env.isDebug(), new MCrashCallBack() {
+            @Override
+            public void onCrash(File file) {
+                //可以在这里保存标识，下次再次进入把日志发送给服务器
+            }
+        });
+
         initArouter();
         L.settings().showLog(Env.isDebug());
-        ApiClient.getInstance().init(getApplicationContext());
+        ApiClient.getInstance().init(getApplicationContext(), new ChuckInterceptor(getApplicationContext()));
     }
 
     private void initArouter() {

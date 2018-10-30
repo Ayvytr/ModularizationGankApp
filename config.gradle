@@ -93,6 +93,11 @@ ext {
             customviews               : 'com.ayvytr:custom-views:0.9.0',
 
             statusbar                 : 'com.jaeger.statusbarutil:library:1.5.1',
+
+            okhttp_chuck_debug        : 'com.readystatesoftware.chuck:library:1.1.0',
+            okhttp_chuck_release      : 'com.readystatesoftware.chuck:library-no-op:1.1.0',
+
+            crashMonitor              : 'com.github.maning0303:MNCrashMonitor:V1.0.9',
     ]
 
     ext.anko_version = '0.10.6'
