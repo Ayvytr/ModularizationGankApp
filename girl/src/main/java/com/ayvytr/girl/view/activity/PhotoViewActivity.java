@@ -43,7 +43,6 @@ import butterknife.BindView;
 
 /**
  * 图片浏览Activity.
- * TODO: 支持双击放大/还原
  *
  * @author admin
  */
