@@ -157,7 +157,7 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
 
     private void showContent(HashMap<String, List<Gank>> results) {
         Observable.just(results)
-                  .compose(RxUtils.<HashMap<String, List<Gank>>>applySchedulers(this))
+                  .compose(RxUtils.<HashMap<String, List<Gank>>>subscribeIo(this))
                   .compose(RxUtils.<HashMap<String, List<Gank>>>bindToLifecycle(this))
                   .map(new Function<HashMap<String, List<Gank>>, List<Gank>>() {
                       @Override

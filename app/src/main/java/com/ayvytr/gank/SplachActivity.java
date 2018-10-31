@@ -45,7 +45,7 @@ public class SplachActivity extends BaseMvpActivity {
         super.onStart();
         //放在这里因为：放在initData，从锁屏到解锁，会卡到这个页面，不会切换到主页
         Observable.timer(1, TimeUnit.SECONDS)
-                  .compose(RxUtils.<Long>applySchedulers(null))
+                  .compose(RxUtils.<Long>subscribeIo(null))
                   .compose(RxUtils.<Long>bindUntilEvent(this, ActivityEvent.STOP))
                   .subscribe(new Consumer<Long>() {
                       @Override

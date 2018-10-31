@@ -20,7 +20,7 @@ public class GankHistoryContentPresenter
     public void requestGankByDate(String date) {
         String[] split = date.split("-");
         mModel.getGankByDate(split[0], split[1], split[2])
-              .compose(RxUtils.<GankHistoryContent>applySchedulers(mView))
+              .compose(RxUtils.<GankHistoryContent>subscribeIo(mView))
               .compose(RxUtils.<GankHistoryContent>bindToLifecycle(mView))
               .subscribe(new BaseObserver<GankHistoryContent>() {
                   @Override

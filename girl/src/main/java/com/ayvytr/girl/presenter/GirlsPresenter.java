@@ -28,7 +28,7 @@ public class GirlsPresenter extends BasePresenter<GirlsContract.Model, GirlsCont
 
     public void requestGankMm(int pageSize, int currentPage) {
         mModel.getGankMm(pageSize, currentPage)
-              .compose(RxUtils.<BaseGank>applySchedulers(mView))
+              .compose(RxUtils.<BaseGank>subscribeIo(mView))
               .compose(RxUtils.<BaseGank>bindToLifecycle(mView))
               .subscribe(new BaseObserver<BaseGank>(this) {
                   @Override

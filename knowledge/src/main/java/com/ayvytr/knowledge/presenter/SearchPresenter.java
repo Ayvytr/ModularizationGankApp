@@ -19,7 +19,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.Model, SearchC
 
     public void search(String key, int currentPage, int pageSize) {
         mModel.search(key, currentPage, pageSize)
-              .compose(RxUtils.<BaseGank>applySchedulers(mView))
+              .compose(RxUtils.<BaseGank>subscribeIo(mView))
               .compose(RxUtils.<BaseGank>bindToLifecycle(mView))
               .subscribe(new BaseObserver<BaseGank>() {
                   @Override

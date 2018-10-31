@@ -6,6 +6,8 @@ package com.ayvytr.commonlibrary;
 public class Env {
     private static boolean isDebug = true;
 
+    public static final String BASE_URL = "http://gank.io/api/";
+
     public static boolean isDebug() {
         return isDebug;
     }

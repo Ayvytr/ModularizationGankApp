@@ -19,7 +19,7 @@ public class AndroidPresenter extends BasePresenter<AndroidContract.Model, Andro
 
     public void requestGankByType(String gankType, int pageSize, int currentPage) {
         mModel.getGankByType(gankType, pageSize, currentPage)
-              .compose(RxUtils.<BaseGank>applySchedulers(mView))
+              .compose(RxUtils.<BaseGank>subscribeIo(mView))
               .compose(RxUtils.<BaseGank>bindToLifecycle(mView))
               .subscribe(new BaseObserver<BaseGank>(this) {
                   @Override

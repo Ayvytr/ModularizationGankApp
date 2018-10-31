@@ -19,7 +19,7 @@ public class GankHistoryPresenter extends BasePresenter<GankHistoryContract.Mode
     public void requestGankHistory() {
         mModel.getGankHistory()
               .compose(RxUtils.<GankHistory>bindToLifecycle(mView))
-              .compose(RxUtils.<GankHistory>applySchedulers(mView))
+              .compose(RxUtils.<GankHistory>subscribeIo(mView))
               .subscribe(new BaseObserver<GankHistory>() {
                   @Override
                   public void onNext(GankHistory gankHistory) {
