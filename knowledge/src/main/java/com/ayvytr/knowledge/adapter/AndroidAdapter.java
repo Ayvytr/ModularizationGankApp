@@ -3,12 +3,12 @@ package com.ayvytr.knowledge.adapter;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.ayvytr.baseadapter.ViewHolder;
+import com.ayvytr.baseadapter.wrapper.EmptyWrapperAdapter;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.easykotlin.ui.ViewKt;
 import com.ayvytr.knowledge.R;
 import com.bumptech.glide.Glide;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
-import com.zhy.adapter.recyclerview.wrapper.EmptyWrapperAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

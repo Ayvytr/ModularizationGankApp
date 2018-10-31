@@ -67,6 +67,6 @@ dependencies {
     if (isLib) {
         api project(":mvp")
         api project(":network")
-        api project(":baseadapter")
+        api project(":base-adapter")
     }
 }

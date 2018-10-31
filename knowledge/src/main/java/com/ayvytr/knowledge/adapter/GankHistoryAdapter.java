@@ -2,9 +2,9 @@ package com.ayvytr.knowledge.adapter;
 
 import android.content.Context;
 
+import com.ayvytr.baseadapter.ViewHolder;
+import com.ayvytr.baseadapter.wrapper.EmptyWrapperAdapter;
 import com.ayvytr.knowledge.R;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
-import com.zhy.adapter.recyclerview.wrapper.EmptyWrapperAdapter;
 
 /**
  * @author admin

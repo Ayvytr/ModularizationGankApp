@@ -17,6 +17,7 @@ import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.ayvytr.baseadapter.MultiItemTypeAdapter;
 import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.commonlibrary.bean.GankHistoryContent;
@@ -36,7 +37,6 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

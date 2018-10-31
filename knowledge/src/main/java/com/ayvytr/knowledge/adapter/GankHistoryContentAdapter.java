@@ -2,11 +2,11 @@ package com.ayvytr.knowledge.adapter;
 
 import android.content.Context;
 
+import com.ayvytr.baseadapter.ItemViewDelegate;
+import com.ayvytr.baseadapter.MultiItemTypeAdapter;
+import com.ayvytr.baseadapter.ViewHolder;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.knowledge.R;
-import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
-import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
 

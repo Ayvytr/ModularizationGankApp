@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.ayvytr.baseadapter.MultiItemTypeAdapter;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant;
 import com.ayvytr.commonlibrary.constant.WebConstant;
@@ -24,7 +25,6 @@ import com.ayvytr.knowledge.contract.SearchContract;
 import com.ayvytr.knowledge.presenter.SearchPresenter;
 import com.ayvytr.mvp.BaseListActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.List;
 

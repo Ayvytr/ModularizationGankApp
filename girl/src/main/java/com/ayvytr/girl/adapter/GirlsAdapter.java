@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.ayvytr.baseadapter.ViewHolder;
+import com.ayvytr.baseadapter.wrapper.EmptyWrapperAdapter;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.easykotlin.context.ScreenKt;
 import com.ayvytr.girl.R;
@@ -14,8 +16,6 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
-import com.zhy.adapter.recyclerview.wrapper.EmptyWrapperAdapter;
 
 import java.util.LinkedHashMap;
 

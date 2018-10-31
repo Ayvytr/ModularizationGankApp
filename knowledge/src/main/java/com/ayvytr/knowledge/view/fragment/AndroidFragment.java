@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.ayvytr.baseadapter.MultiItemTypeAdapter;
 import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.commonlibrary.bean.Gank;
@@ -20,7 +21,6 @@ import com.ayvytr.knowledge.contract.AndroidContract;
 import com.ayvytr.knowledge.presenter.AndroidPresenter;
 import com.ayvytr.mvp.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 /**
  * @author admin
