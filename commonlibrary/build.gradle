@@ -66,4 +66,10 @@ dependencies {
     api rootProject.ext.dependencies.baseadapter
     api rootProject.ext.dependencies.mvp
     api rootProject.ext.dependencies.network
+
+    api rootProject.ext.dependencies.okhttp3
+    api rootProject.ext.dependencies.retrofit
+    api rootProject.ext.dependencies.retrofit_adapter_rxjava2
+    api rootProject.ext.dependencies.retrofit_converter_gson
+    api rootProject.ext.dependencies.okhttploginterceptor
 }
