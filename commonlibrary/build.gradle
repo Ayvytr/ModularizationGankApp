@@ -63,10 +63,7 @@ dependencies {
     api rootProject.ext.dependencies.andpermission
     api rootProject.ext.dependencies.customviews
     api rootProject.ext.dependencies.statusbar
-
-    if (isLib) {
-        api project(":mvp")
-        api project(":network")
-        api project(":base-adapter")
-    }
+    api rootProject.ext.dependencies.baseadapter
+    api rootProject.ext.dependencies.mvp
+    api rootProject.ext.dependencies.network
 }

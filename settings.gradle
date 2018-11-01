@@ -1,10 +1,2 @@
 include ':app', ':commonlibrary', ':web', ':girl', ':knowledge', ':settings'
 
-include ':mvp'
-project(':mvp').projectDir = new File("../ModularizationComponent/mvp")
-
-include ':network'
-project(':network').projectDir= new File("../ModularizationComponent/network")
-
-include ':base-adapter'
-project(':base-adapter').projectDir= new File("../ModularizationComponent/base-adapter")
