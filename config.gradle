@@ -99,9 +99,9 @@ ext {
 
             crashMonitor              : 'com.github.maning0303:MNCrashMonitor:V1.0.9',
 
-            baseadapter               : 'com.ayvytr:base-adapter:1.0.0',
-            mvp                       : 'com.ayvytr:mvp:1.0.0',
-            network                   : 'com.ayvytr:network:1.0.1',
+            baseadapter               : 'com.ayvytr:base-adapter:1.1.0',
+            mvp                       : 'com.ayvytr:mvp:1.1.0',
+            network                   : 'com.ayvytr:network:1.1.0',
     ]
 
     ext.anko_version = '0.10.6'
