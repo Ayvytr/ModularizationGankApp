@@ -3,8 +3,8 @@ package com.ayvytr.girl.contract;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
-import com.ayvytr.mvp.IModel;
-import com.ayvytr.mvp.IView;
+import com.ayvytr.mvpbase.IModel;
+import com.ayvytr.mvpbase.IView;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;

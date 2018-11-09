@@ -12,8 +12,8 @@ import com.ayvytr.commonlibrary.BaseObserver;
 import com.ayvytr.commonlibrary.IntentUtil;
 import com.ayvytr.girl.contract.PhotoViewContract;
 import com.ayvytr.girl.model.PhotoViewModel;
-import com.ayvytr.mvp.BasePresenter;
-import com.ayvytr.mvp.RxUtils;
+import com.ayvytr.mvpbase.BasePresenter;
+import com.ayvytr.mvprxlifecycle.RxUtils;
 import com.yanzhenjie.permission.AndPermission;
 
 import java.io.File;

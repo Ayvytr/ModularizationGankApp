@@ -32,7 +32,7 @@ android {
 
     sourceSets {
         main {
-            if (!isComponentLib) {
+            if (!isLib) {
                 manifest.srcFile 'src/demo/AndroidManifest.xml'
                 // 合并 demo和main中的res
                 res.srcDirs = ['src/demo/res', 'src/main/res']

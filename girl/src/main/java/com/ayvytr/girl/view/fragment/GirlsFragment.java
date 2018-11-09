@@ -16,10 +16,12 @@ import com.ayvytr.girl.R;
 import com.ayvytr.girl.adapter.GirlsAdapter;
 import com.ayvytr.girl.contract.GirlsContract;
 import com.ayvytr.girl.presenter.GirlsPresenter;
-import com.ayvytr.mvp.BaseListFragment;
+import com.ayvytr.mvpbaselist.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
+
+import butterknife.ButterKnife;
 
 /**
  * @author admin
@@ -38,6 +40,7 @@ public class GirlsFragment extends BaseListFragment<GirlsPresenter, Gank> implem
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        ButterKnife.bind(this, mContentView);
         mAdapter = new GirlsAdapter(getContext(), R.layout.layout_item_girl);
         mRvList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {

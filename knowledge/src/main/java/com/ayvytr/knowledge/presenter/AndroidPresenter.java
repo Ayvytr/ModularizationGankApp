@@ -1,13 +1,13 @@
 package com.ayvytr.knowledge.presenter;
 
 
+import com.ayvytr.commonlibrary.BaseObserver;
 import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.contract.AndroidContract;
 import com.ayvytr.knowledge.model.AndroidModel;
-import com.ayvytr.mvp.BasePresenter;
-import com.ayvytr.mvp.RxUtils;
-import com.ayvytr.commonlibrary.BaseObserver;
+import com.ayvytr.mvpbase.BasePresenter;
+import com.ayvytr.mvprxlifecycle.RxUtils;
 
 /**
  * @author admin

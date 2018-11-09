@@ -19,7 +19,7 @@ import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.adapter.AndroidAdapter;
 import com.ayvytr.knowledge.contract.AndroidContract;
 import com.ayvytr.knowledge.presenter.AndroidPresenter;
-import com.ayvytr.mvp.BaseListFragment;
+import com.ayvytr.mvpbaselist.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 /**

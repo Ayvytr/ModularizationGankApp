@@ -5,8 +5,8 @@ import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.girl.R;
 import com.ayvytr.girl.contract.GirlsContract;
 import com.ayvytr.girl.model.GirlsModel;
-import com.ayvytr.mvp.BasePresenter;
-import com.ayvytr.mvp.RxUtils;
+import com.ayvytr.mvpbase.BasePresenter;
+import com.ayvytr.mvprxlifecycle.RxUtils;
 
 /**
  * @author admin

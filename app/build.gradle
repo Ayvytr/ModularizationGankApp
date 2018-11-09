@@ -25,7 +25,7 @@ android {
 
     sourceSets {
         main {
-            if (!isComponentLib) {
+            if (!isLib) {
                 manifest.srcFile 'src/debug/AndroidManifest.xml'
                 // 合并 debug和main中的res
                 res.srcDirs = ['src/debug/res', 'src/main/res']
@@ -56,6 +56,7 @@ dependencies {
         implementation project(':settings')
         implementation project(':girl')
     }
+
     implementation rootProject.ext.support.constraint
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
 

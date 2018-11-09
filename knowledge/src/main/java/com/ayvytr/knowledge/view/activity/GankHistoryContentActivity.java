@@ -23,6 +23,7 @@ import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.commonlibrary.bean.GankHistoryContent;
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant;
 import com.ayvytr.commonlibrary.constant.WebConstant;
+import com.ayvytr.customview.loading.StatusView;
 import com.ayvytr.easykotlin.context.ScreenKt;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.R2;
@@ -30,8 +31,8 @@ import com.ayvytr.knowledge.adapter.GankHistoryContentAdapter;
 import com.ayvytr.knowledge.contract.GankHistoryContentContract;
 import com.ayvytr.knowledge.presenter.GankHistoryContentPresenter;
 import com.ayvytr.logger.L;
-import com.ayvytr.mvp.BaseMvpActivity;
-import com.ayvytr.mvp.RxUtils;
+import com.ayvytr.mvprxlifecycle.BaseMvpActivity;
+import com.ayvytr.mvprxlifecycle.RxUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -44,6 +45,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -53,6 +55,8 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
         implements GankHistoryContentContract.View {
 
 
+    @BindView(R2.id.status_view)
+    StatusView mStatusView;
     @BindView(R2.id.iv_header)
     ImageView mIvHeader;
     @BindView(R2.id.toolbar)
@@ -79,6 +83,7 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+        ButterKnife.bind(this);
         if(Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -124,11 +129,6 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
         mRvList.setAdapter(mContentAdapter);
 
         mStatusView.showLoading();
-    }
-
-    @Override
-    public boolean useStatusView() {
-        return true;
     }
 
     @Override

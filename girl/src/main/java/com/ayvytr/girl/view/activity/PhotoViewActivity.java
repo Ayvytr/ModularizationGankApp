@@ -27,7 +27,7 @@ import com.ayvytr.girl.R;
 import com.ayvytr.girl.R2;
 import com.ayvytr.girl.contract.PhotoViewContract;
 import com.ayvytr.girl.presenter.PhotoViewPresenter;
-import com.ayvytr.mvp.BaseMvpActivity;
+import com.ayvytr.mvprxlifecycle.BaseMvpActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 图片浏览Activity.
@@ -83,6 +84,7 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+        ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         mToolbar.setTitle(GankType.GIRLS.toString());
         if(mList == null) {

@@ -1,2 +1,11 @@
 include ':app', ':commonlibrary', ':web', ':girl', ':knowledge', ':settings'
 
+//include ':mvpbase'
+//project(':mvpbase').projectDir = new File("../ModularizationComponent/mvpbase")
+//
+//include ':mvp-rxlifecycle'
+//project(':mvp-rxlifecycle').projectDir = new File("../ModularizationComponent/mvp-rxlifecycle")
+//
+//include ':base-adapter'
+//project(':base-adapter').projectDir= new File("../ModularizationComponent/base-adapter")
+

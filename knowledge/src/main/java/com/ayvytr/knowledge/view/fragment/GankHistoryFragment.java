@@ -15,7 +15,7 @@ import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.adapter.GankHistoryAdapter;
 import com.ayvytr.knowledge.contract.GankHistoryContract;
 import com.ayvytr.knowledge.presenter.GankHistoryPresenter;
-import com.ayvytr.mvp.BaseListFragment;
+import com.ayvytr.mvpbaselist.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.List;

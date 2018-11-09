@@ -23,12 +23,13 @@ import com.ayvytr.knowledge.R2;
 import com.ayvytr.knowledge.adapter.AndroidAdapter;
 import com.ayvytr.knowledge.contract.SearchContract;
 import com.ayvytr.knowledge.presenter.SearchPresenter;
-import com.ayvytr.mvp.BaseListActivity;
+import com.ayvytr.mvpbaselist.BaseListActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 @Route(path = KnowledgeConstant.SEARCH)
 public class SearchActivity extends BaseListActivity<SearchPresenter, Gank> implements SearchContract.View {
@@ -60,6 +61,7 @@ public class SearchActivity extends BaseListActivity<SearchPresenter, Gank> impl
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

@@ -5,8 +5,8 @@ import com.ayvytr.commonlibrary.bean.GankHistoryContent;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.contract.GankHistoryContentContract;
 import com.ayvytr.knowledge.model.GankHistoryContentModel;
-import com.ayvytr.mvp.BasePresenter;
-import com.ayvytr.mvp.RxUtils;
+import com.ayvytr.mvpbase.BasePresenter;
+import com.ayvytr.mvprxlifecycle.RxUtils;
 
 /**
  * @author admin

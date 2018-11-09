@@ -5,8 +5,8 @@ import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.contract.SearchContract;
 import com.ayvytr.knowledge.model.SearchModel;
-import com.ayvytr.mvp.BasePresenter;
-import com.ayvytr.mvp.RxUtils;
+import com.ayvytr.mvpbase.BasePresenter;
+import com.ayvytr.mvprxlifecycle.RxUtils;
 
 
 /**

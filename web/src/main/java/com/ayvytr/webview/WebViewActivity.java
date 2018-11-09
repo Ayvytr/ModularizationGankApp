@@ -14,11 +14,12 @@ import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ayvytr.commonlibrary.constant.WebConstant;
-import com.ayvytr.mvp.BaseMvpActivity;
-import com.ayvytr.mvp.IPresenter;
+import com.ayvytr.mvpbase.IPresenter;
+import com.ayvytr.mvprxlifecycle.BaseMvpActivity;
 import com.just.agentweb.AgentWeb;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 @Route(path = WebConstant.WEBVIEW)
 public class WebViewActivity extends BaseMvpActivity {
@@ -90,6 +91,7 @@ public class WebViewActivity extends BaseMvpActivity {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+        ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         initAgentWeb();
         if(!mUseWebTitle) {

@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.ayvytr.mvp.BaseMvpActivity;
-import com.ayvytr.mvp.IPresenter;
-import com.ayvytr.mvp.RxUtils;
+import com.ayvytr.mvpbase.IPresenter;
+import com.ayvytr.mvprxlifecycle.BaseMvpActivity;
+import com.ayvytr.mvprxlifecycle.RxUtils;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 
 import java.util.concurrent.TimeUnit;

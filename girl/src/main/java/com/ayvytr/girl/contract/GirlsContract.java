@@ -1,8 +1,8 @@
 package com.ayvytr.girl.contract;
 
 import com.ayvytr.commonlibrary.bean.BaseGank;
-import com.ayvytr.mvp.IModel;
-import com.ayvytr.mvp.IView;
+import com.ayvytr.mvpbase.IModel;
+import com.ayvytr.mvpbase.IView;
 
 import io.reactivex.Observable;
 
