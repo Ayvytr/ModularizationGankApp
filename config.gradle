@@ -106,6 +106,8 @@ ext {
             network                   : 'com.ayvytr:network:1.0.2',
 
             jsr305Annotations         : 'com.google.code.findbugs:jsr305:3.0.2',
+
+            bugly                     : 'com.tencent.bugly:crashreport:2.6.6',
     ]
 
     ext.anko_version = '0.10.6'
