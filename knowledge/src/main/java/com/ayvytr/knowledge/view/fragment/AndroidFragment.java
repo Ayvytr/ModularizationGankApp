@@ -22,6 +22,8 @@ import com.ayvytr.knowledge.presenter.AndroidPresenter;
 import com.ayvytr.mvpbaselist.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
+import butterknife.ButterKnife;
+
 /**
  * @author admin
  */
@@ -50,6 +52,7 @@ public class AndroidFragment extends BaseListFragment<AndroidPresenter, Gank> im
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        ButterKnife.bind(this, mContentView);
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new AndroidAdapter(getContext());
         mRvList.setAdapter(mAdapter);

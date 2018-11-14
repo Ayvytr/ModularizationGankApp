@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author admin
@@ -42,6 +43,7 @@ public class ClassifyGankFragment extends BaseMvpFragment {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+        ButterKnife.bind(this, mContentView);
         mFragments = new ArrayList<>();
         mTitles = new ArrayList<>();
 

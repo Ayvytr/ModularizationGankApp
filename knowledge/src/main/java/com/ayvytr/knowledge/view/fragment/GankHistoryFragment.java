@@ -20,6 +20,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * @author admin
  */
@@ -37,6 +39,7 @@ public class GankHistoryFragment extends BaseListFragment<GankHistoryPresenter, 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        ButterKnife.bind(this, mContentView);
         mRvList.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvList.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mAdapter = new GankHistoryAdapter(getContext());
