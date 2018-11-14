@@ -12,6 +12,7 @@ import com.maning.librarycrashmonitor.MCrashMonitor;
 import com.maning.librarycrashmonitor.listener.MCrashCallBack;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.io.File;
 
@@ -22,6 +23,8 @@ public class GankApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        CrashReport.initCrashReport(getApplicationContext(), "1107970668", false);
+
         BlockCanary.install(this, new BlockCanaryContext()).start();
 
         if(LeakCanary.isInAnalyzerProcess(this)) {
