@@ -76,4 +76,7 @@ dependencies {
     api rootProject.ext.dependencies.mvp_baselist
 //    api project(":mvp-rxlifecycle")
 //    api project(":base-adapter")
+
+    debugImplementation rootProject.ext.dependencies.blockcanary_debug
+    releaseImplementation rootProject.ext.dependencies.blockcanary_release
 }

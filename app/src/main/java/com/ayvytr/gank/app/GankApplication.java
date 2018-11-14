@@ -7,6 +7,7 @@ import com.ayvytr.commonlibrary.Env;
 import com.ayvytr.logger.L;
 import com.ayvytr.network.ApiClient;
 import com.github.moduth.blockcanary.BlockCanary;
+import com.github.moduth.blockcanary.BlockCanaryContext;
 import com.maning.librarycrashmonitor.MCrashMonitor;
 import com.maning.librarycrashmonitor.listener.MCrashCallBack;
 import com.readystatesoftware.chuck.ChuckInterceptor;
@@ -21,6 +22,8 @@ public class GankApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        BlockCanary.install(this, new BlockCanaryContext()).start();
+
         if(LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
@@ -28,7 +31,7 @@ public class GankApplication extends MultiDexApplication {
         }
         LeakCanary.install(this);
 
-        BlockCanary.install(this, new AppBlockCanaryContext()).start();
+//        BlockCanary.install(this, new AppBlockCanaryContext()).start();
 
         Env.setDebug(true);
         MCrashMonitor.init(this, Env.isDebug(), new MCrashCallBack() {

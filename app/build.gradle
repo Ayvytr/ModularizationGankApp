@@ -63,7 +63,9 @@ dependencies {
     debugImplementation rootProject.ext.dependencies.leakcanary
     releaseImplementation rootProject.ext.dependencies.leakcanary_release
     debugImplementation rootProject.ext.dependencies.leakcanary_fragment
-    implementation rootProject.ext.dependencies.blockcanary
+
+    debugImplementation rootProject.ext.dependencies.blockcanary_debug
+    releaseImplementation rootProject.ext.dependencies.blockcanary_release
 
     debugImplementation rootProject.ext.dependencies.okhttp_chuck_debug
     releaseImplementation rootProject.ext.dependencies.okhttp_chuck_release
