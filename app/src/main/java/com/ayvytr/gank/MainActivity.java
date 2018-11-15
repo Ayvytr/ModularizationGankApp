@@ -29,7 +29,6 @@ import com.ayvytr.knowledge.view.fragment.GankHistoryFragment;
 import com.ayvytr.mvpbase.IPresenter;
 import com.ayvytr.mvprxlifecycle.BaseMvpActivity;
 import com.ayvytr.settings.SettingsFragment;
-import com.trello.rxlifecycle2.LifecycleProvider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,8 +69,6 @@ public class MainActivity extends BaseMvpActivity
         } else {
             super.onBackPressed();
         }
-
-        LifecycleProvider l ;
     }
 
     @Override
