@@ -82,10 +82,10 @@ ext {
 
             smartrefresh              : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14",
 
-            leakcanary                : "com.squareup.leakcanary:leakcanary-android:1.6.1",
-            leakcanary_release        : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.1",
+            leakcanary                : "com.squareup.leakcanary:leakcanary-android:1.6.2",
+            leakcanary_release        : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.2",
             // Optional, if you use support library fragments:
-            leakcanary_fragment       : "com.squareup.leakcanary:leakcanary-support-fragment:1.6.1",
+            leakcanary_fragment       : "com.squareup.leakcanary:leakcanary-support-fragment:1.6.2",
 
             blockcanary_debug         : 'com.github.markzhai:blockcanary-android:1.5.0',
             blockcanary_release       : 'com.github.markzhai:blockcanary-no-op:1.5.0',
