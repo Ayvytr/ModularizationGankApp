@@ -6,23 +6,22 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.commonlibrary.constant.GirlsConstant;
-import com.ayvytr.easykotlin.context.ContextKt;
 import com.ayvytr.easykotlin.context.ManagerKt;
-import com.ayvytr.easykotlin.ui.ViewKt;
+import com.ayvytr.easykotlin.ui.ActivityKt;
 import com.ayvytr.girl.R;
 import com.ayvytr.girl.R2;
 import com.ayvytr.girl.contract.PhotoViewContract;
@@ -54,19 +53,8 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
     Toolbar mToolbar;
     @BindView(R2.id.vp)
     ViewPager mVp;
-    @BindView(R2.id.btnMoreOptions)
-    Button mBtnMoreOptions;
-    @BindView(R2.id.btnSavePhoto)
-    Button mBtnSavePhoto;
-    @BindView(R2.id.btnSetToDesktopBg)
-    Button mBtnSetToDesktopBg;
-    @BindView(R2.id.btnShare)
-    Button mBtnShare;
-    @BindView(R2.id.nsv)
-    NestedScrollView mNsv;
 
     private List<Gank> mList;
-    private BottomSheetBehavior<View> mBottomSheetBehavior;
 
     private int mPosition;
     private Bitmap mBitmap;
@@ -99,6 +87,37 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
             }
         });
 
+        initViewPager();
+
+        ActivityKt.hideActionBar(getActivity());
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    }
+
+    private void setToDesktop() {
+        if(!AndPermission.hasPermissions(getContext(), Permission.WRITE_EXTERNAL_STORAGE)) {
+            requestStoragePermission(true);
+        } else {
+            mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName(), true);
+        }
+    }
+
+    private void sharePhoto() {
+        mPresenter.getShareIntent(mList.get(mPosition).getUrl(), getPackageName(), getContext());
+    }
+
+    private void savePhoto() {
+        if(mBitmap == null) {
+            showError(R.string.no_photo_loaded);
+            return;
+        }
+        if(!AndPermission.hasPermissions(getContext(), Permission.WRITE_EXTERNAL_STORAGE)) {
+            requestStoragePermission(false);
+        } else {
+            mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName(), false);
+        }
+    }
+
+    private void initViewPager() {
         mVp.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -117,15 +136,19 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
                 photoView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        if(getSupportActionBar().isShowing()) {
+                            ActivityKt.hideActionBar(getActivity());
+                            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                        } else {
+                            ActivityKt.showActionBar(getActivity());
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                         }
                     }
                 });
                 photoView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        mBtnMoreOptions.performClick();
+                        openContextMenu(v);
                         return true;
                     }
                 });
@@ -165,72 +188,7 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
             public void onPageScrollStateChanged(int state) {
             }
         });
-
-        mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.nsv));
-        mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                switch(newState) {
-                    case BottomSheetBehavior.STATE_COLLAPSED:
-                        break;
-                    case BottomSheetBehavior.STATE_EXPANDED:
-                        mBottomSheetBehavior.setPeekHeight(ContextKt.dp2px(getContext(), 10));
-                        ViewKt.hide(mBtnMoreOptions);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-            }
-        });
-
-        mBtnMoreOptions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mBottomSheetBehavior.setPeekHeight(ContextKt.dp2px(getContext(), 10));
-                ViewKt.hide(mBtnMoreOptions);
-                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            }
-        });
-
-        mBtnSavePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                if(mBitmap == null) {
-                    showError(R.string.no_photo_loaded);
-                    return;
-                }
-                if(!AndPermission.hasPermissions(getContext(), Permission.WRITE_EXTERNAL_STORAGE)) {
-                    requestStoragePermission(false);
-                } else {
-                    mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName(), false);
-                }
-            }
-        });
-
-        mBtnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                mPresenter.getShareIntent(mList.get(mPosition).getUrl(), getPackageName(), getContext());
-            }
-        });
-
-        mBtnSetToDesktopBg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                if(!AndPermission.hasPermissions(getContext(), Permission.WRITE_EXTERNAL_STORAGE)) {
-                    requestStoragePermission(true);
-                } else {
-                    mPresenter.savePhoto(mList.get(mPosition).getUrl(), getPackageName(), true);
-                }
-            }
-        });
+        registerForContextMenu(mVp);
     }
 
     @Override
@@ -280,12 +238,38 @@ public class PhotoViewActivity extends BaseMvpActivity<PhotoViewPresenter> imple
     }
 
     @Override
-    public void onBackPressed() {
-        if(mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            return;
-        }
+    protected void onDestroy() {
+        super.onDestroy();
+        mVp.setAdapter(null);
+        mList.clear();
+        mList = null;
+    }
 
-        super.onBackPressed();
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle(R.string.you_want_dot);
+        menu.setHeaderIcon(android.R.drawable.ic_menu_send);
+        menu.add(0, 1, 0, R.string.save_photo);
+        menu.add(0, 2, 0, R.string.set_to_desktop_background);
+        menu.add(0, 3, 0, R.string.share_to);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case 1:
+                savePhoto();
+                return true;
+            case 2:
+                setToDesktop();
+                return true;
+            case 3:
+                sharePhoto();
+                return true;
+            default:
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 }

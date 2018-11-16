@@ -18,4 +18,6 @@
     <string name="cannot_get_storage_permission">未获取到存储权限</string>
     <string name="wallpaper_changed">桌面壁纸已更改</string>
     <string name="no_data">没有获取到数据...</string>
+    <string name="trans_photo_name">trans_photo</string>
+    <string name="you_want_dot">您想...</string>
 </resources>
