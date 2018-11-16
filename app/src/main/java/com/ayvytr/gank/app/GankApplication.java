@@ -6,8 +6,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.ayvytr.commonlibrary.Env;
 import com.ayvytr.logger.L;
 import com.ayvytr.network.ApiClient;
-import com.github.moduth.blockcanary.BlockCanary;
-import com.github.moduth.blockcanary.BlockCanaryContext;
 import com.maning.librarycrashmonitor.MCrashMonitor;
 import com.maning.librarycrashmonitor.listener.MCrashCallBack;
 import com.readystatesoftware.chuck.ChuckInterceptor;
@@ -25,8 +23,6 @@ public class GankApplication extends MultiDexApplication {
         super.onCreate();
         CrashReport.initCrashReport(getApplicationContext(), "1107970668", false);
 
-        BlockCanary.install(this, new BlockCanaryContext()).start();
-
         if(LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
@@ -37,18 +33,23 @@ public class GankApplication extends MultiDexApplication {
 //        BlockCanary.install(this, new AppBlockCanaryContext()).start();
 
         Env.setDebug(true);
-        MCrashMonitor.init(this, Env.isDebug(), new MCrashCallBack() {
-            @Override
-            public void onCrash(File file) {
-                //可以在这里保存标识，下次再次进入把日志发送给服务器
-            }
-        });
+
+        initCrashMonitor();
 
         initArouter();
         L.settings().showLog(Env.isDebug());
 
         ApiClient.getInstance()
                  .init(getApplicationContext(), Env.BASE_URL, new ChuckInterceptor(getApplicationContext()));
+    }
+
+    private void initCrashMonitor() {
+        MCrashMonitor.init(this, Env.isDebug(), new MCrashCallBack() {
+            @Override
+            public void onCrash(File file) {
+                //可以在这里保存标识，下次再次进入把日志发送给服务器
+            }
+        });
     }
 
     private void initArouter() {
