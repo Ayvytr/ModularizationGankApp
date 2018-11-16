@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -73,3 +71,5 @@ dependencies {
 
     implementation rootProject.ext.dependencies.bugly
 }
+
+apply from: "../andresguard.gradle"
