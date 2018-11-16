@@ -64,7 +64,6 @@ dependencies {
     api rootProject.ext.dependencies.customviews
     api rootProject.ext.dependencies.statusbar
 
-
     api rootProject.ext.dependencies.okhttp3
     api rootProject.ext.dependencies.retrofit
     api rootProject.ext.dependencies.retrofit_adapter_rxjava2
@@ -77,6 +76,6 @@ dependencies {
 //    api project(":mvp-rxlifecycle")
 //    api project(":base-adapter")
 
-    debugImplementation rootProject.ext.dependencies.blockcanary_debug
-    releaseImplementation rootProject.ext.dependencies.blockcanary_release
+//    debugImplementation rootProject.ext.dependencies.blockcanary_debug
+//    releaseImplementation rootProject.ext.dependencies.blockcanary_release
 }
