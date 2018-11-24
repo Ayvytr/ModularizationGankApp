@@ -2,10 +2,6 @@ ext {
     //module 作为组件/application存在
     isLib = true
 //    isLib = false
-//    component 工程中module是否为library
-    isComponentLib = true
-//    isComponentLib = false
-//    enableMavenPush = false
 
     applicationId = "com.ayvytr.gank"
 
@@ -17,8 +13,6 @@ ext {
     versionName = "1.0.0"
 
     supportLibraryVersion = "27.1.1"
-
-    kotlin_version = '1.2.71'
 
     version = [
             constraint: "1.1.3",
@@ -112,9 +106,11 @@ ext {
 
     ext.anko_version = '0.10.6'
     kotlin = [
-            kotlin_jdk7 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-            anko        : "org.jetbrains.anko:anko:$anko_version",
-            anko_commons: "org.jetbrains.anko:anko-commons:$anko_version",
-            easykotlin  : "com.ayvytr:EasyKotlin:2.0.0",
+            kotlin_jdk7        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            anko               : "org.jetbrains.anko:anko:$anko_version",
+            anko_commons       : "org.jetbrains.anko:anko-commons:$anko_version",
+            easykotlin         : "com.ayvytr:EasyKotlin:2.0.0",
+
+            rxlifecycle_android: 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.2.2',
     ]
 }
