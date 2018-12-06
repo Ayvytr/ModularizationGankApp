@@ -12,8 +12,8 @@ import com.ayvytr.commonlibrary.BaseObserver;
 import com.ayvytr.commonlibrary.IntentUtil;
 import com.ayvytr.girl.contract.PhotoViewContract;
 import com.ayvytr.girl.model.PhotoViewModel;
-import com.ayvytr.mvpbase.BasePresenter;
-import com.ayvytr.mvprxlifecycle.RxUtils;
+import com.ayvytr.mvp.BasePresenter;
+import com.ayvytr.rxlifecycle.RxUtils;
 import com.yanzhenjie.permission.AndPermission;
 
 import java.io.File;
@@ -34,7 +34,7 @@ public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, P
 
     public void savePhoto(final String url, final String packageName, final boolean isSettingWallpaper) {
         mModel.getImage(url)
-              .compose(RxUtils.<ResponseBody>subscribeIo(mView))
+              .compose(RxUtils.<ResponseBody>ofDefault(mView))
               .compose(RxUtils.<ResponseBody>bindToLifecycle(mView))
               .subscribe(new BaseObserver<ResponseBody>() {
                   @Override
@@ -48,7 +48,7 @@ public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, P
                                   final boolean isSettingWallpaper) {
         final File path = getPhotoSavePath(packageName);
         Observable.just(path)
-                  .compose(RxUtils.<File>subscribeIo(mView))
+                  .compose(RxUtils.<File>ofDefault(mView))
                   .compose(RxUtils.<File>bindToLifecycle(mView))
                   .map(new Function<File, File>() {
                       @Override
@@ -118,7 +118,7 @@ public class PhotoViewPresenter extends BasePresenter<PhotoViewContract.Model, P
     public void getShareIntent(final String url, String packageName, final Context context) {
         File photoFile = getPhotoFile(url, packageName);
         Observable.just(photoFile)
-                  .compose(RxUtils.<File>subscribeIo(mView))
+                  .compose(RxUtils.<File>ofDefault(mView))
                   .compose(RxUtils.<File>bindToLifecycle(mView))
                   .map(new Function<File, Intent>() {
                       @Override

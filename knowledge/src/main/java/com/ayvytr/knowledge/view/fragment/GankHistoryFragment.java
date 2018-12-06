@@ -10,12 +10,12 @@ import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ayvytr.baseadapter.MultiItemTypeAdapter;
+import com.ayvytr.baselist.BaseListFragment;
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.adapter.GankHistoryAdapter;
 import com.ayvytr.knowledge.contract.GankHistoryContract;
 import com.ayvytr.knowledge.presenter.GankHistoryPresenter;
-import com.ayvytr.mvpbaselist.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.List;

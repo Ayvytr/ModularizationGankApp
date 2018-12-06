@@ -1,7 +1,7 @@
 package com.ayvytr.commonlibrary;
 
 
-import com.ayvytr.mvpbase.BasePresenter;
+import com.ayvytr.mvp.BasePresenter;
 
 import java.net.ConnectException;
 import java.net.SocketException;

@@ -6,15 +6,16 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ayvytr.baseadapter.MultiItemTypeAdapter;
+import com.ayvytr.baselist.BaseListActivity;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant;
 import com.ayvytr.commonlibrary.constant.WebConstant;
@@ -23,7 +24,6 @@ import com.ayvytr.knowledge.R2;
 import com.ayvytr.knowledge.adapter.AndroidAdapter;
 import com.ayvytr.knowledge.contract.SearchContract;
 import com.ayvytr.knowledge.presenter.SearchPresenter;
-import com.ayvytr.mvpbaselist.BaseListActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.List;

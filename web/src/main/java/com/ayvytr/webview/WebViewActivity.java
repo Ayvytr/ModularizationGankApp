@@ -14,8 +14,8 @@ import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ayvytr.commonlibrary.constant.WebConstant;
-import com.ayvytr.mvpbase.IPresenter;
-import com.ayvytr.mvprxlifecycle.BaseMvpActivity;
+import com.ayvytr.mvp.IPresenter;
+import com.ayvytr.rxlifecycle.BaseMvpActivity;
 import com.just.agentweb.AgentWeb;
 
 import butterknife.BindView;

@@ -10,8 +10,8 @@ import android.support.v4.view.ViewPager;
 import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.R2;
-import com.ayvytr.mvpbase.IPresenter;
-import com.ayvytr.mvprxlifecycle.BaseMvpFragment;
+import com.ayvytr.mvp.IPresenter;
+import com.ayvytr.rxlifecycle.BaseMvpFragment;
 
 import java.util.ArrayList;
 import java.util.List;

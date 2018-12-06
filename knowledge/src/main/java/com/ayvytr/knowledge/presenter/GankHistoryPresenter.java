@@ -5,8 +5,8 @@ import com.ayvytr.commonlibrary.bean.GankHistory;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.contract.GankHistoryContract;
 import com.ayvytr.knowledge.model.GankHistoryModel;
-import com.ayvytr.mvpbase.BasePresenter;
-import com.ayvytr.mvprxlifecycle.RxUtils;
+import com.ayvytr.mvp.BasePresenter;
+import com.ayvytr.rxlifecycle.RxUtils;
 
 /**
  * @author admin
@@ -19,7 +19,7 @@ public class GankHistoryPresenter extends BasePresenter<GankHistoryContract.Mode
     public void requestGankHistory() {
         mModel.getGankHistory()
               .compose(RxUtils.<GankHistory>bindToLifecycle(mView))
-              .compose(RxUtils.<GankHistory>subscribeIo(mView))
+              .compose(RxUtils.<GankHistory>ofDefault(mView))
               .subscribe(new BaseObserver<GankHistory>() {
                   @Override
                   public void onNext(GankHistory gankHistory) {

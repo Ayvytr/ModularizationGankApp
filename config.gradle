@@ -95,9 +95,9 @@ ext {
 
             crashMonitor              : 'com.github.maning0303:MNCrashMonitor:V1.0.9',
 
-            baseadapter               : 'com.ayvytr:base-adapter:1.0.2',
-            mvp_baselist              : 'com.ayvytr:mvp-baselist:1.0.2',
-            network                   : 'com.ayvytr:network:1.0.2',
+            baseadapter               : 'com.ayvytr:base-adapter:1.2.6',
+            mvp_baselist              : 'com.ayvytr:mvp-baselist:1.2.6',
+            network                   : 'com.ayvytr:network:1.2.6',
 
             jsr305Annotations         : 'com.google.code.findbugs:jsr305:3.0.2',
 

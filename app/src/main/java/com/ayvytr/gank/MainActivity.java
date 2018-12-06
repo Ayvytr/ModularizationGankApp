@@ -26,8 +26,8 @@ import com.ayvytr.girl.view.fragment.GirlsFragment;
 import com.ayvytr.knowledge.view.fragment.AndroidFragment;
 import com.ayvytr.knowledge.view.fragment.ClassifyGankFragment;
 import com.ayvytr.knowledge.view.fragment.GankHistoryFragment;
-import com.ayvytr.mvpbase.IPresenter;
-import com.ayvytr.mvprxlifecycle.BaseMvpActivity;
+import com.ayvytr.mvp.IPresenter;
+import com.ayvytr.rxlifecycle.BaseMvpActivity;
 import com.ayvytr.settings.SettingsFragment;
 
 import butterknife.BindView;

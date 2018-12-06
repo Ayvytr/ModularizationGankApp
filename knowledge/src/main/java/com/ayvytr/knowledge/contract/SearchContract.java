@@ -2,8 +2,8 @@ package com.ayvytr.knowledge.contract;
 
 import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.commonlibrary.bean.Gank;
-import com.ayvytr.mvpbase.IModel;
-import com.ayvytr.mvpbase.IView;
+import com.ayvytr.mvp.IModel;
+import com.ayvytr.mvp.IView;
 
 import java.util.List;
 

@@ -5,8 +5,8 @@ import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.contract.SearchContract;
 import com.ayvytr.knowledge.model.SearchModel;
-import com.ayvytr.mvpbase.BasePresenter;
-import com.ayvytr.mvprxlifecycle.RxUtils;
+import com.ayvytr.mvp.BasePresenter;
+import com.ayvytr.rxlifecycle.RxUtils;
 
 
 /**
@@ -19,7 +19,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.Model, SearchC
 
     public void search(String key, int currentPage, int pageSize) {
         mModel.search(key, currentPage, pageSize)
-              .compose(RxUtils.<BaseGank>subscribeIo(mView))
+              .compose(RxUtils.<BaseGank>ofDefault(mView))
               .compose(RxUtils.<BaseGank>bindToLifecycle(mView))
               .subscribe(new BaseObserver<BaseGank>() {
                   @Override

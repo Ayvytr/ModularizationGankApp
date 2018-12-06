@@ -5,8 +5,8 @@ import com.ayvytr.commonlibrary.bean.GankHistoryContent;
 import com.ayvytr.knowledge.R;
 import com.ayvytr.knowledge.contract.GankHistoryContentContract;
 import com.ayvytr.knowledge.model.GankHistoryContentModel;
-import com.ayvytr.mvpbase.BasePresenter;
-import com.ayvytr.mvprxlifecycle.RxUtils;
+import com.ayvytr.mvp.BasePresenter;
+import com.ayvytr.rxlifecycle.RxUtils;
 
 /**
  * @author admin
@@ -20,7 +20,7 @@ public class GankHistoryContentPresenter
     public void requestGankByDate(String date) {
         String[] split = date.split("-");
         mModel.getGankByDate(split[0], split[1], split[2])
-              .compose(RxUtils.<GankHistoryContent>subscribeIo(mView))
+              .compose(RxUtils.<GankHistoryContent>ofDefault(mView))
               .compose(RxUtils.<GankHistoryContent>bindToLifecycle(mView))
               .subscribe(new BaseObserver<GankHistoryContent>() {
                   @Override

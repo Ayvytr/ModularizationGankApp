@@ -5,8 +5,8 @@ import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.girl.R;
 import com.ayvytr.girl.contract.GirlsContract;
 import com.ayvytr.girl.model.GirlsModel;
-import com.ayvytr.mvpbase.BasePresenter;
-import com.ayvytr.mvprxlifecycle.RxUtils;
+import com.ayvytr.mvp.BasePresenter;
+import com.ayvytr.rxlifecycle.RxUtils;
 
 /**
  * @author admin
@@ -28,7 +28,7 @@ public class GirlsPresenter extends BasePresenter<GirlsContract.Model, GirlsCont
 
     public void requestGankMm(int pageSize, int currentPage) {
         mModel.getGankMm(pageSize, currentPage)
-              .compose(RxUtils.<BaseGank>subscribeIo(mView))
+              .compose(RxUtils.<BaseGank>ofDefault(mView))
               .compose(RxUtils.<BaseGank>bindToLifecycle(mView))
               .subscribe(new BaseObserver<BaseGank>(this) {
                   @Override

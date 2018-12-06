@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ayvytr.baseadapter.MultiItemTypeAdapter;
+import com.ayvytr.baselist.BaseListFragment;
 import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.commonlibrary.bean.Gank;
 import com.ayvytr.commonlibrary.constant.GirlsConstant;
@@ -17,12 +18,12 @@ import com.ayvytr.girl.R;
 import com.ayvytr.girl.adapter.GirlsAdapter;
 import com.ayvytr.girl.contract.GirlsContract;
 import com.ayvytr.girl.presenter.GirlsPresenter;
-import com.ayvytr.mvpbaselist.BaseListFragment;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
+
 
 /**
  * @author admin

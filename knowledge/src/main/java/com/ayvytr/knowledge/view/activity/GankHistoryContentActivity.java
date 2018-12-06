@@ -31,8 +31,8 @@ import com.ayvytr.knowledge.adapter.GankHistoryContentAdapter;
 import com.ayvytr.knowledge.contract.GankHistoryContentContract;
 import com.ayvytr.knowledge.presenter.GankHistoryContentPresenter;
 import com.ayvytr.logger.L;
-import com.ayvytr.mvprxlifecycle.BaseMvpActivity;
-import com.ayvytr.mvprxlifecycle.RxUtils;
+import com.ayvytr.rxlifecycle.BaseMvpActivity;
+import com.ayvytr.rxlifecycle.RxUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -157,7 +157,7 @@ public class GankHistoryContentActivity extends BaseMvpActivity<GankHistoryConte
 
     private void showContent(HashMap<String, List<Gank>> results) {
         Observable.just(results)
-                  .compose(RxUtils.<HashMap<String, List<Gank>>>subscribeIo(this))
+                  .compose(RxUtils.<HashMap<String, List<Gank>>>ofDefault(this))
                   .compose(RxUtils.<HashMap<String, List<Gank>>>bindToLifecycle(this))
                   .map(new Function<HashMap<String, List<Gank>>, List<Gank>>() {
                       @Override
