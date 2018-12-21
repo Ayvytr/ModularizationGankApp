@@ -4,6 +4,8 @@ if (isLib) {
 } else {
     apply plugin: 'com.android.application'
 }
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -52,9 +54,6 @@ dependencies {
     api rootProject.ext.dependencies.junit
     api rootProject.ext.dependencies.testRunner
     api rootProject.ext.dependencies.espresso
-
-    api rootProject.ext.dependencies.butterknife
-    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
 
     api rootProject.ext.dependencies.agentweb
     api rootProject.ext.dependencies.arouter

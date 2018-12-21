@@ -4,7 +4,15 @@ if (isLib) {
 } else {
     apply plugin: 'com.android.application'
 }
-apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -57,6 +65,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(":commonlibrary")
-    annotationProcessor rootProject.ext.dependencies.arouter_compiler
-    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+    kapt  rootProject.ext.dependencies.arouter_compiler
 }
