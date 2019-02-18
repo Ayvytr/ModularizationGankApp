@@ -81,12 +81,7 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
             val ft = supportFragmentManager.beginTransaction()
             ft.replace(R.id.flContainer, ClassifyGankFragment())
             ft.commit()
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_more) {
         }
 
         drawer_layout!!.closeDrawer(GravityCompat.START)
