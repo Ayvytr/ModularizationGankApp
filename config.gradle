@@ -109,6 +109,7 @@ ext {
             anko               : "org.jetbrains.anko:anko:$anko_version",
             anko_commons       : "org.jetbrains.anko:anko-commons:$anko_version",
             easykotlin         : "com.ayvytr:EasyKotlin:2.0.0",
+            anko_constraint    : "org.jetbrains.anko:anko-constraint-layout:$anko_version",
 
             rxlifecycle_android: 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.2.2',
     ]

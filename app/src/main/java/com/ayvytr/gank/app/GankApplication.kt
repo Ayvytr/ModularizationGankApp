@@ -3,9 +3,11 @@ package com.ayvytr.gank.app
 import android.support.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.commonlibrary.Env
+import com.ayvytr.commonlibrary.client.MobClient
 import com.ayvytr.logger.L
 import com.ayvytr.network.ApiClient
 import com.maning.librarycrashmonitor.MCrashMonitor
+import com.mob.MobSDK
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.squareup.leakcanary.LeakCanary
 import com.tencent.bugly.crashreport.CrashReport
@@ -16,6 +18,10 @@ import com.tencent.bugly.crashreport.CrashReport
 class GankApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
+        init()
+    }
+
+    private fun init() {
         CrashReport.initCrashReport(applicationContext, "1107970668", false)
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
@@ -27,8 +33,6 @@ class GankApplication : MultiDexApplication() {
 
         //        BlockCanary.install(this, new AppBlockCanaryContext()).start();
 
-        Env.isDebug = true
-
         initCrashMonitor()
 
         initArouter()
@@ -36,6 +40,10 @@ class GankApplication : MultiDexApplication() {
 
         ApiClient.getInstance()
             .init(applicationContext, Env.BASE_URL, ChuckInterceptor(applicationContext))
+
+        MobClient.getInstance()
+            .init(applicationContext, Env.MOB_BASE_URL, ChuckInterceptor(applicationContext))
+        MobSDK.init(this)
     }
 
     private fun initCrashMonitor() {

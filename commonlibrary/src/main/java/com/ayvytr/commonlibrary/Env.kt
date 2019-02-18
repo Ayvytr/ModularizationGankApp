@@ -4,7 +4,9 @@ package com.ayvytr.commonlibrary
  * @author admin
  */
 object Env {
-    var isDebug = true
+    var isDebug = BuildConfig.DEBUG
 
-    val BASE_URL = "http://gank.io/api/"
+    const val BASE_URL = "http://gank.io/api/"
+
+    const val MOB_BASE_URL = "http://apicloud.mob.com/"
 }
