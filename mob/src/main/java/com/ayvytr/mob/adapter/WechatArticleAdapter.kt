@@ -1,0 +1,24 @@
+package com.ayvytr.mob.adapter
+
+import android.content.Context
+import com.ayvytr.baseadapter.ViewHolder
+import com.ayvytr.baseadapter.wrapper.EmptyWrapperAdapter
+import com.ayvytr.commonlibrary.bean.WechatArticle
+import com.ayvytr.mob.R
+import com.bumptech.glide.Glide
+
+/**
+ * @author Do
+ */
+class WechatArticleAdapter(context: Context) : EmptyWrapperAdapter<WechatArticle.ResultBean.ListBean>(
+    context, R.layout.item_wechat_article) {
+
+    override fun convert(holder: ViewHolder, t: WechatArticle.ResultBean.ListBean, position: Int) {
+        holder.setText(R.id.tvTitle, t.title)
+        holder.setText(R.id.tvTime, t.pubTime)
+        Glide.with(mContext)
+            .load(t.thumbnails)
+            .into(holder.getView(R.id.iv))
+    }
+
+}

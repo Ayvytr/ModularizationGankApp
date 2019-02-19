@@ -2,8 +2,11 @@ package com.ayvytr.mob.view.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.baselist.BaseListFragment
 import com.ayvytr.commonlibrary.bean.WechatCategory
+import com.ayvytr.commonlibrary.constant.IntentConstant
+import com.ayvytr.commonlibrary.constant.MobConstant
 import com.ayvytr.mob.R
 import com.ayvytr.mob.adapter.WechatCategoryAdapter
 import com.ayvytr.mob.contract.WechatCategoryContract
@@ -40,6 +43,11 @@ class WechatCategoryFragment : BaseListFragment<WechatCategoryPresenter, WechatC
         mRvList.layoutManager = LinearLayoutManager(context)
         mAdapter = WechatCategoryAdapter(context!!)
         mRvList.adapter = mAdapter
+        mAdapter.setOnItemClickListener { view, holder, position ->
+            ARouter.getInstance().build(MobConstant.WECHAT_ARTICLE)
+                .withString(IntentConstant.EXTRA_WECHAT_CID, mAdapter.getItemAt(position).cid)
+                .navigation(context)
+        }
     }
 
     override fun initData(savedInstanceState: Bundle?) {
