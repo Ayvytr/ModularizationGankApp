@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/classify_gank"/>
         <item
+            android:id="@+id/nav_today_in_history"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/today_in_history"/>
+        <item
             android:id="@+id/nav_wechat_selected"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/wechat_selected"/>

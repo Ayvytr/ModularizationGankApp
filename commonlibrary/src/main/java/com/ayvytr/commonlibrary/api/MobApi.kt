@@ -3,7 +3,7 @@ package com.ayvytr.commonlibrary.api
 import com.ayvytr.commonlibrary.bean.Weather
 import com.ayvytr.commonlibrary.bean.WechatArticle
 import com.ayvytr.commonlibrary.bean.WechatCategory
-import com.ayvytr.mob.TodayOfHistory
+import com.ayvytr.mob.TodayInHistory
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -22,7 +22,7 @@ interface MobApi {
      * @param day 日期(格式:MMdd)
      */
     @GET("appstore/history/query")
-    fun todayOfHistory(@Query("key") key: String, @Query("day") day: String): Observable<TodayOfHistory>
+    fun todayOfHistory(@Query("key") key: String, @Query("day") day: String): Observable<TodayInHistory>
 
     /**
      * 健康知识查询接口

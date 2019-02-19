@@ -1,9 +1,11 @@
 package com.ayvytr.mob
 
+import com.ayvytr.commonlibrary.bean.BaseMob
+
 /**
  * @author Do
  */
-class TodayOfHistory {
+class TodayInHistory: BaseMob() {
 
     /**
      * msg : success
@@ -14,8 +16,6 @@ class TodayOfHistory {
     //        retCode	string	是	返回码
     //        msg	string	是	返回说明
     //        result	string	是	返回结果集
-    var msg: String? = null
-    var retCode: String? = null
     var result: List<ResultBean>? = null
 
     class ResultBean {

@@ -19,6 +19,7 @@ import com.ayvytr.girl.view.fragment.GirlsFragment
 import com.ayvytr.knowledge.view.fragment.AndroidFragment
 import com.ayvytr.knowledge.view.fragment.ClassifyGankFragment
 import com.ayvytr.knowledge.view.fragment.GankHistoryFragment
+import com.ayvytr.mob.view.fragment.TodayInHistoryFragment
 import com.ayvytr.mob.view.fragment.WechatCategoryFragment
 import com.ayvytr.mvp.IPresenter
 import com.ayvytr.rxlifecycle.BaseMvpActivity
@@ -81,6 +82,10 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
         } else if (id == R.id.nav_gank_of_type) {
             val ft = supportFragmentManager.beginTransaction()
             ft.replace(R.id.flContainer, ClassifyGankFragment())
+            ft.commit()
+        } else if (id == R.id.nav_today_in_history) {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.flContainer, TodayInHistoryFragment())
             ft.commit()
         } else if (id == R.id.nav_wechat_selected) {
             val ft = supportFragmentManager.beginTransaction()
