@@ -105,12 +105,13 @@ ext {
     ]
 
     kotlin = [
-            kotlin_jdk7        : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-            anko               : "org.jetbrains.anko:anko:$anko_version",
-            anko_commons       : "org.jetbrains.anko:anko-commons:$anko_version",
-            easykotlin         : "com.ayvytr:EasyKotlin:2.0.0",
-            anko_constraint    : "org.jetbrains.anko:anko-constraint-layout:$anko_version",
+            kotlin_jdk7           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            anko                  : "org.jetbrains.anko:anko:$anko_version",
+            anko_commons          : "org.jetbrains.anko:anko-commons:$anko_version",
+            easykotlin            : "com.ayvytr:EasyKotlin:2.0.0",
+            anko_constraint       : "org.jetbrains.anko:anko-constraint-layout:$anko_version",
 
-            rxlifecycle_android: 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.2.2',
+            mvp_rxlifecycle_kotlin:'com.ayvytr:mvp-rxlifecycle-kotlin:1.3.0',
+
     ]
 }

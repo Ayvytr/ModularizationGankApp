@@ -20,4 +20,5 @@
     <string name="no_data">没有获取到数据...</string>
     <string name="trans_photo_name">trans_photo</string>
     <string name="you_want_dot">您想...</string>
+    <string name="wechat_selected">微信精选</string>
 </resources>

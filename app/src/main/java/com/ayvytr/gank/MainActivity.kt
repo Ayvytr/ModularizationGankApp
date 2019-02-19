@@ -19,6 +19,7 @@ import com.ayvytr.girl.view.fragment.GirlsFragment
 import com.ayvytr.knowledge.view.fragment.AndroidFragment
 import com.ayvytr.knowledge.view.fragment.ClassifyGankFragment
 import com.ayvytr.knowledge.view.fragment.GankHistoryFragment
+import com.ayvytr.mob.view.fragment.WechatCategoryFragment
 import com.ayvytr.mvp.IPresenter
 import com.ayvytr.rxlifecycle.BaseMvpActivity
 import com.ayvytr.settings.SettingsFragment
@@ -81,7 +82,10 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
             val ft = supportFragmentManager.beginTransaction()
             ft.replace(R.id.flContainer, ClassifyGankFragment())
             ft.commit()
-        } else if (id == R.id.nav_more) {
+        } else if (id == R.id.nav_wechat_selected) {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.flContainer, WechatCategoryFragment())
+            ft.commit()
         }
 
         drawer_layout!!.closeDrawer(GravityCompat.START)

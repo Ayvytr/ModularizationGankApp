@@ -72,6 +72,13 @@ dependencies {
     api rootProject.ext.dependencies.network
     api rootProject.ext.dependencies.baseadapter
     api rootProject.ext.dependencies.mvp_baselist
+
+    api(rootProject.ext.kotlin.mvp_rxlifecycle_kotlin) {
+        exclude group:'com.ayvytr.rxlifecycle', module: 'mvp-rxlifecycle'
+        exclude group:'com.ayvytr.mvp', module: 'mvp-base'
+        exclude group:'com.tretto', module: 'rxlifecycle-components'
+        exclude group:'android.arch.lifecycle', module: 'runtime'
+    }
 //    api project(":mvp-rxlifecycle")
 //    api project(":base-adapter")
 

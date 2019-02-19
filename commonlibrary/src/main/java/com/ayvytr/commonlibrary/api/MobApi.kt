@@ -12,6 +12,10 @@ import retrofit2.http.Query
  * @author Do
  */
 interface MobApi {
+    companion object {
+        const val API_KEY = "29691dbe38854"
+    }
+
     /**
      * 历史上的今天
      * @param key Mob appkey

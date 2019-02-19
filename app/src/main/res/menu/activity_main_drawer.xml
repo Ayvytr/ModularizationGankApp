@@ -17,9 +17,9 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/classify_gank"/>
         <item
-            android:id="@+id/nav_more"
+            android:id="@+id/nav_wechat_selected"
             android:icon="@drawable/ic_menu_manage"
-            android:title="更多…"/>
+            android:title="@string/wechat_selected"/>
     </group>
 
     <item android:title="@string/more">

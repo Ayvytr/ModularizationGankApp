@@ -67,6 +67,7 @@ dependencies {
         implementation project(':knowledge')
         implementation project(':settings')
         implementation project(':girl')
+        implementation project(':mob')
     }
 
     implementation rootProject.ext.support.constraint
