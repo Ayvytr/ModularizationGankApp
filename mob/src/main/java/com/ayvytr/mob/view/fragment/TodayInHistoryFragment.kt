@@ -38,8 +38,8 @@ class TodayInHistoryFragment : BaseListFragment<TodayInHistoryPresenter, TodayIn
         return R.layout.layout_list
     }
 
-    override fun showTodayInHistory(t: TodayInHistory) {
-        updateList(t.result)
+    override fun showTodayInHistory(t: List<TodayInHistory.ResultBean>) {
+        updateList(t)
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {

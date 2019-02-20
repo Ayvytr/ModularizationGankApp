@@ -11,6 +11,6 @@ class TodayInHistoryContract {
     }
 
     interface View : IView {
-        abstract fun showTodayInHistory(t: TodayInHistory)
+        abstract fun showTodayInHistory(t: List<TodayInHistory.ResultBean>)
     }
 }

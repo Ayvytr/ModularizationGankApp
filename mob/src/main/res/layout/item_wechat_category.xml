@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textColor="@color/pink"
         android:textSize="@dimen/_20sp"/>
 
 </android.support.constraint.ConstraintLayout>
