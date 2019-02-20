@@ -53,6 +53,7 @@ class WechatArticleActivity : BaseListActivity<WechatArticlePresenter, WechatArt
     }
 
     override fun showWechatArticle(t: WechatArticle) {
+        currentPage = t.result?.curPage ?: 1
         updateList(t.result!!.list)
     }
 
