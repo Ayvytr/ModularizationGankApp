@@ -14,8 +14,7 @@ class WechatArticleAdapter(context: Context) : EmptyWrapperAdapter<WechatArticle
     context, R.layout.item_wechat_article) {
 
     override fun convert(holder: ViewHolder, t: WechatArticle.ResultBean.ListBean, position: Int) {
-        holder.setText(R.id.tvTitle, t.title)
-        holder.setText(R.id.tvTime, t.pubTime)
+        holder.setText(R.id.tvTitle, "${t.pubTime}  ${t.title}")
         Glide.with(mContext)
             .load(t.thumbnails)
             .into(holder.getView(R.id.iv))
