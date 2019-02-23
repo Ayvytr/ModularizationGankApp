@@ -24,6 +24,8 @@ import com.ayvytr.mob.view.fragment.WechatCategoryFragment
 import com.ayvytr.mvp.IPresenter
 import com.ayvytr.rxlifecycle.BaseMvpActivity
 import com.ayvytr.settings.SettingsFragment
+import com.yanzhenjie.permission.AndPermission
+import com.yanzhenjie.permission.Permission
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -160,6 +162,14 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
 //                .withString(WebConstant.EXTRA_URL, getString(R.string.author_ayvytr_github_url))
 //                .navigation(getContext())
 //        }
+        requestStoragePermission()
+    }
+
+    private fun requestStoragePermission() {
+        AndPermission.with(context)
+            .runtime()
+            .permission(Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE)
+            .start()
     }
 
     override fun initData(savedInstanceState: Bundle?) {
