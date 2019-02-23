@@ -1,6 +1,7 @@
 package com.ayvytr.mob.view.fragment
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.ayvytr.baselist.BaseListFragment
 import com.ayvytr.mob.R
@@ -27,6 +28,7 @@ class TodayInHistoryFragment : BaseListFragment<TodayInHistoryPresenter, TodayIn
         mSmartRefreshLayout.setEnableAutoLoadMore(false)
         mRvList.layoutManager = LinearLayoutManager(context)
         mAdapter = TodayInHistoryAdapter(context!!)
+        mRvList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         mRvList.adapter = mAdapter
     }
 
