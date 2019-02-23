@@ -10,9 +10,12 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import cn.sharesdk.onekeyshare.OnekeyShare
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.commonlibrary.GankType
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant
+import com.ayvytr.easykotlin.bitmap.toBitmap
+import com.ayvytr.easykotlin.context.getDrawable2
 import com.ayvytr.easykotlin.ui.hide
 import com.ayvytr.easykotlin.ui.show
 import com.ayvytr.girl.view.fragment.GirlsFragment
@@ -94,7 +97,16 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
             ft.replace(R.id.flContainer, WechatCategoryFragment())
             ft.commit()
         } else if (id == R.id.nav_share) {
-            //TODO 分享
+            val oks = OnekeyShare()
+            oks.disableSSOWhenAuthorize()
+            // title标题，微信、QQ和QQ空间等平台使用
+            oks.setTitle(getString(R.string.share_app))
+            // titleUrl QQ和QQ空间跳转链接
+//            oks.setTitleUrl();
+            oks.setImageData(getDrawable2(R.mipmap.ic_launcher)?.toBitmap())
+            oks.text = getString(R.string.share_app)
+            oks.setUrl(getString(R.string.author_ayvytr_github_url))
+            oks.show(getContext())
         }
 
         drawer_layout!!.closeDrawer(GravityCompat.START)
