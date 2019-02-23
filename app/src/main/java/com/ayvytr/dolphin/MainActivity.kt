@@ -1,4 +1,4 @@
-package com.ayvytr.gank
+package com.ayvytr.dolphin
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -91,6 +91,8 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
             val ft = supportFragmentManager.beginTransaction()
             ft.replace(R.id.flContainer, WechatCategoryFragment())
             ft.commit()
+        } else if (id == R.id.nav_share) {
+
         }
 
         drawer_layout!!.closeDrawer(GravityCompat.START)

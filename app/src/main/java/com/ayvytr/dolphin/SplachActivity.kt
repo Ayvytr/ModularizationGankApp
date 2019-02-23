@@ -1,4 +1,4 @@
-package com.ayvytr.gank
+package com.ayvytr.dolphin
 
 import android.content.Intent
 import android.os.Bundle

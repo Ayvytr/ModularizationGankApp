@@ -1,4 +1,4 @@
-package com.ayvytr.gank.app
+package com.ayvytr.dolphin.app
 
 import android.support.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter

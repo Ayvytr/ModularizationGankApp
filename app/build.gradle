@@ -89,23 +89,20 @@ dependencies {
 MobSDK {
     appKey "29691dbe38854"
     appSecret "d9bd21f7d31fc58fb75543fa0ad48cee"
-    MobAPI {}
     ShareSDK {
         devInfo {
-            Email {}
-            ShortMessage {}
 //            Wechat {
 //                appId "wx4868b35061f87885"
 //                appSecret "64020361b8ec4c99936c0e3999a9f249"
-//                userName "gh_afb25ac019c9"
-//                path "pages/index/index.html?id=1"
+////                userName "gh_afb25ac019c9"
+////                path "pages/index/index.html?id=1"
 //                withShareTicket true
-//                miniprogramType 2
+//                miniprogramType 1
 //            }
-//            QQ {
-//                appId "100371282"
-//                appKey "aed9b0303e3ed1e27bae87c33761161d"
-//            }
+            QQ {
+                appId "1107970668"
+                appKey "KEYNgb4yLRlN1Fz20ru"
+            }
 //            WechatMoments {
 //                appId "wx4868b35061f87885"
 //                appSecret "64020361b8ec4c99936c0e3999a9f249"
@@ -116,6 +113,29 @@ MobSDK {
 //            }
         }
     }
+    MobAPI {}
+//    MobPush {
+//        devInfo {
+//            HUAWEI {
+//                appId "100215127"
+//            }
+//            MEIZU {
+//                appId "112481"
+//                appKey "03dd70b9be434446a7255c8586e1725a"
+//            }
+//            XIAOMI {
+//                appId "5671772162670"
+//                appKey "2882303761517721670"
+//            }
+//            FCM {
+//                iconRes "@mipmap/default_ic_launcher"
+//            }
+//            OPPO {
+//                appKey "OPPO的appkey"
+//                appSecret "OPPO的appsecret"
+//            }
+//        }
+//    }
 }
 
 apply from: "../andresguard.gradle"

@@ -1,4 +1,4 @@
-package com.ayvytr.gank.app
+package com.ayvytr.dolphin.app
 
 class AppBlockCanaryContext
 //public class AppBlockCanaryContext extends BlockCanaryContext {

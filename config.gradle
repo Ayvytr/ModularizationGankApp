@@ -3,13 +3,13 @@ ext {
     isLib = true
 //    isLib = false
 
-    applicationId = "com.ayvytr.gank"
+    applicationId = "com.ayvytr.dolphin"
 
     compileSdkVersion = 27
     buildToolsVersion = "27.0.3"
     minSdkVersion = 16
     targetSdkVersion = 23
-    versionCode = 1
+    versionCode = 20190201
     versionName = "1.0.0"
 
     supportLibraryVersion = "27.1.1"
