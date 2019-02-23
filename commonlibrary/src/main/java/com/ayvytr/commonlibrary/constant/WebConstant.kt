@@ -10,5 +10,5 @@ object WebConstant {
 
     private const val ROUTER = "/web/"
 
-    const val WEBVIEW = ROUTER + "webview"
+    const val WEB = ROUTER + "webview"
 }

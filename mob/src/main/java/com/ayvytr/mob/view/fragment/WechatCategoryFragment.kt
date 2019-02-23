@@ -46,6 +46,7 @@ class WechatCategoryFragment : BaseListFragment<WechatCategoryPresenter, WechatC
         mAdapter.setOnItemClickListener { view, holder, position ->
             ARouter.getInstance().build(MobConstant.WECHAT_ARTICLE)
                 .withString(IntentConstant.EXTRA_WECHAT_CID, mAdapter.getItemAt(position).cid)
+                .withString(IntentConstant.EXTRA_TITLE, mAdapter.getItemAt(position).name)
                 .navigation(context)
         }
     }

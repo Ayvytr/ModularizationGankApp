@@ -23,4 +23,6 @@
     <string name="wechat_selected">微信精选</string>
     <string name="today_in_history">历史上的今天</string>
     <string name="share_app">分享App</string>
+    <string name="author_ayvytr_github">Ayvytr的GitHub主页</string>
+    <string name="author_ayvytr_github_url">https://github.com/ayvytr</string>
 </resources>

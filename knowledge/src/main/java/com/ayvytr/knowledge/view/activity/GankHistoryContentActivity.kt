@@ -80,7 +80,7 @@ class GankHistoryContentActivity : BaseMvpActivity<GankHistoryContentPresenter>(
                 return@OnItemClickListener
             }
 
-            ARouter.getInstance().build(WebConstant.WEBVIEW)
+            ARouter.getInstance().build(WebConstant.WEB)
                 .withString(WebConstant.EXTRA_URL, gank.url)
                 .withString(WebConstant.EXTRA_TITLE, gank.desc)
                 .navigation(context)

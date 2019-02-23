@@ -40,7 +40,7 @@ class AndroidFragment : BaseListFragment<AndroidPresenter, Gank>(), AndroidContr
         mRvList.addItemDecoration(DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL))
         mAdapter.setOnItemClickListener { view, holder, position ->
             val gank = mAdapter.getItemAt(position)
-            ARouter.getInstance().build(WebConstant.WEBVIEW)
+            ARouter.getInstance().build(WebConstant.WEB)
                 .withString(WebConstant.EXTRA_TITLE, gank.desc)
                 .withString(WebConstant.EXTRA_URL, gank.url)
                 .navigation(context)

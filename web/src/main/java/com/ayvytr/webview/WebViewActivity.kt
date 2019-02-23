@@ -15,7 +15,7 @@ import com.ayvytr.rxlifecycle.BaseMvpActivity
 import com.just.agentweb.AgentWeb
 import kotlinx.android.synthetic.main.activity_web_view.*
 
-@Route(path = WebConstant.WEBVIEW)
+@Route(path = WebConstant.WEB)
 class WebViewActivity : BaseMvpActivity<IPresenter>() {
 
     private lateinit var mAgentWeb: AgentWeb

@@ -2,6 +2,7 @@ package com.ayvytr.mob.view.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.baselist.BaseListActivity
@@ -20,9 +21,12 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 class WechatArticleActivity : BaseListActivity<WechatArticlePresenter, WechatArticle.ResultBean.ListBean>(),
     WechatArticleContract.View {
     private lateinit var mCid: String
+    private lateinit var mTitle: String
+
+    private lateinit var toolbar:Toolbar
 
     override fun getContentViewRes(): Int {
-        return R.layout.layout_list
+        return R.layout.activity_wechat_article
     }
 
     override fun initData(savedInstanceState: Bundle?) {
@@ -35,17 +39,28 @@ class WechatArticleActivity : BaseListActivity<WechatArticlePresenter, WechatArt
 
     override fun initExtra() {
         mCid = intent.getStringExtra(IntentConstant.EXTRA_WECHAT_CID)
+        mTitle = intent.getStringExtra(IntentConstant.EXTRA_TITLE)
     }
+
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationIcon(R.drawable.ic_back_white)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+
+        toolbar.title = mTitle
+
         mSmartRefreshLayout.setEnableAutoLoadMore(false)
         mRvList.layoutManager = LinearLayoutManager(getContext())
         mAdapter = WechatArticleAdapter(context)
         mRvList.adapter = mAdapter
         mAdapter.setOnItemClickListener { view, holder, position ->
             val bean = mAdapter.getItemAt(position)
-            ARouter.getInstance().build(WebConstant.WEBVIEW)
+            ARouter.getInstance().build(WebConstant.WEB)
                 .withString(WebConstant.EXTRA_TITLE, bean.title)
                 .withString(WebConstant.EXTRA_URL, bean.sourceUrl)
                 .navigation(getContext())

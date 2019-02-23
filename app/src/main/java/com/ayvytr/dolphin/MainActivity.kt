@@ -31,7 +31,7 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
 
     private var mFragments: Array<Fragment>? = arrayOf(AndroidFragment.newInstance(GankType.ANDROID), GirlsFragment(), SettingsFragment())
 
-    private lateinit var toolbar:Toolbar
+    private lateinit var toolbar: Toolbar
 
     override fun getPresenter(): IPresenter? {
         return null
@@ -92,7 +92,7 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
             ft.replace(R.id.flContainer, WechatCategoryFragment())
             ft.commit()
         } else if (id == R.id.nav_share) {
-
+            //TODO 分享
         }
 
         drawer_layout!!.closeDrawer(GravityCompat.START)
@@ -152,6 +152,14 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
+
+//        llHeader = findViewById(R.id.llHeader)
+//        llHeader.setOnClickListener {
+//            ARouter.getInstance().build(WebConstant.WEB)
+//                .withString(WebConstant.EXTRA_TITLE, getString(R.string.author_ayvytr_github))
+//                .withString(WebConstant.EXTRA_URL, getString(R.string.author_ayvytr_github_url))
+//                .navigation(getContext())
+//        }
     }
 
     override fun initData(savedInstanceState: Bundle?) {
