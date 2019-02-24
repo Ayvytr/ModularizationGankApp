@@ -11,6 +11,28 @@ kapt {
 }
 
 android {
+    signingConfigs {
+        Properties properties = new Properties()
+// local.properties file in the root director
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def keystoreFilepath = properties.getProperty("keystore.path")
+        def keystorePwd = properties.getProperty("keystore.password")
+        def keystoreAlias = properties.getProperty("keystore.alias")
+        def keystoreAliasPwd = properties.getProperty("keystore.alias_password")
+        def keyfile = file(keystoreFilepath)
+        debug {
+            keyAlias keystoreAlias
+            keyPassword keystorePwd
+            storeFile keyfile
+            storePassword keystoreAliasPwd
+        }
+        release {
+            keyAlias keystoreAlias
+            keyPassword keystorePwd
+            storeFile keyfile
+            storePassword keystoreAliasPwd
+        }
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId rootProject.ext.applicationId
@@ -23,12 +45,15 @@ android {
         multiDexEnabled true
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     sourceSets {
         main {
             if (!isLib) {
@@ -50,6 +75,10 @@ android {
             }
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 repositories {
@@ -59,8 +88,7 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     if (isLib) {
         implementation project(":commonlibrary")
         implementation project(':web')
@@ -69,20 +97,15 @@ dependencies {
         implementation project(':girl')
         implementation project(':mob')
     }
-
     implementation rootProject.ext.support.constraint
-
     debugImplementation rootProject.ext.dependencies.leakcanary
     releaseImplementation rootProject.ext.dependencies.leakcanary_release
     debugImplementation rootProject.ext.dependencies.leakcanary_fragment
-
     debugImplementation rootProject.ext.dependencies.blockcanary_debug
     releaseImplementation rootProject.ext.dependencies.blockcanary_release
-
     debugImplementation rootProject.ext.dependencies.okhttp_chuck_debug
     releaseImplementation rootProject.ext.dependencies.okhttp_chuck_release
     implementation rootProject.ext.dependencies.crashMonitor
-
     implementation rootProject.ext.dependencies.bugly
 }
 
