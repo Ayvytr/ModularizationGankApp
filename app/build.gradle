@@ -11,28 +11,7 @@ kapt {
 }
 
 android {
-    signingConfigs {
-        Properties properties = new Properties()
-// local.properties file in the root director
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        def keystoreFilepath = properties.getProperty("keystore.path")
-        def keystorePwd = properties.getProperty("keystore.password")
-        def keystoreAlias = properties.getProperty("keystore.alias")
-        def keystoreAliasPwd = properties.getProperty("keystore.alias_password")
-        def keyfile = file(keystoreFilepath)
-        debug {
-            keyAlias keystoreAlias
-            keyPassword keystorePwd
-            storeFile keyfile
-            storePassword keystoreAliasPwd
-        }
-        release {
-            keyAlias keystoreAlias
-            keyPassword keystorePwd
-            storeFile keyfile
-            storePassword keystoreAliasPwd
-        }
-    }
+
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId rootProject.ext.applicationId
@@ -44,35 +23,36 @@ android {
 
         multiDexEnabled true
     }
+//    signingConfigs {
+//        Properties properties = new Properties()
+//// local.properties file in the root director
+//        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//        def keystorePwd = properties.getProperty("keystore.password")
+//        def keystoreAlias = properties.getProperty("keystore.alias")
+//        def keystoreAliasPwd = properties.getProperty("keystore.alias_password")
+//        debug {
+//            storeFile file("../ayvytr.jks")
+//            storePassword 'xinruzhishui.'
+//            keyAlias 'Ayvytr'
+//            keyPassword 'never,giveup'
+//        }
+//        release {
+//            storeFile file("../ayvytr.jks")
+//            storePassword 'xinruzhishui.'
+//            keyAlias 'Ayvytr'
+//            keyPassword 'never,giveup'
+//        }
+//    }
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    sourceSets {
-        main {
-            if (!isLib) {
-                manifest.srcFile 'src/debug/AndroidManifest.xml'
-                // 合并 debug和main中的res
-                res.srcDirs = ['src/debug/res', 'src/main/res']
-                java.srcDirs = ['src/debug/java', 'src/main/java']
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-                res.srcDirs = ['src/main/res']
-                java {
-                    //排除java/demo文件夹下的所有文件
-                    exclude 'src/debug/**'
-                }
-
-                resources {
-                    exclude 'src/debug/*'
-                }
-            }
+//            signingConfig signingConfigs.release
         }
     }
     compileOptions {

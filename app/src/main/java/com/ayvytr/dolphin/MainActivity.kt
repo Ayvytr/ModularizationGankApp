@@ -26,7 +26,6 @@ import com.ayvytr.mob.view.fragment.TodayInHistoryFragment
 import com.ayvytr.mob.view.fragment.WechatCategoryFragment
 import com.ayvytr.mvp.IPresenter
 import com.ayvytr.rxlifecycle.BaseMvpActivity
-import com.ayvytr.settings.SettingsFragment
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.Permission
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,7 +33,7 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationItemSelectedListener {
 
-    private var mFragments: Array<Fragment>? = arrayOf(AndroidFragment.newInstance(GankType.ANDROID), GirlsFragment(), SettingsFragment())
+    private var mFragments: Array<Fragment>? = arrayOf(AndroidFragment.newInstance(GankType.ANDROID), GirlsFragment())
 
     private lateinit var toolbar: Toolbar
 
@@ -146,10 +145,10 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
                     vp!!.currentItem = 1
                     true
                 }
-                R.id.nv_settings -> {
-                    vp!!.currentItem = 2
-                    true
-                }
+//                R.id.nv_settings -> {
+//                    vp!!.currentItem = 2
+//                    true
+//                }
                 else             -> false
             }
         }
@@ -160,12 +159,13 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
                 when (position) {
                     0    -> bottom_navigation!!.selectedItemId = R.id.nv_android
                     1    -> bottom_navigation!!.selectedItemId = R.id.nv_girls
-                    else -> bottom_navigation!!.selectedItemId = R.id.nv_settings
+//                    else -> bottom_navigation!!.selectedItemId = R.id.nv_settings
                 }
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
+        vp.offscreenPageLimit = mFragments!!.size
 
 //        llHeader = findViewById(R.id.llHeader)
 //        llHeader.setOnClickListener {

@@ -6,7 +6,7 @@
     <item android:id="@+id/nv_girls"
           android:icon="@android:drawable/ic_menu_search"
           android:title="@string/girls"/>
-    <item android:id="@+id/nv_settings"
-          android:icon="@android:drawable/ic_menu_search"
-          android:title="@string/settings"/>
+    <!--<item android:id="@+id/nv_settings"-->
+          <!--android:icon="@android:drawable/ic_menu_search"-->
+          <!--android:title="@string/settings"/>-->
 </menu>
