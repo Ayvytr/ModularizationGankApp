@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nv_android"
-          android:icon="@drawable/ic_clear"
+          android:icon="@drawable/android"
           android:title="@string/android"/>
     <item android:id="@+id/nv_girls"
-          android:icon="@android:drawable/ic_menu_search"
+          android:icon="@drawable/girls"
           android:title="@string/girls"/>
     <!--<item android:id="@+id/nv_settings"-->
           <!--android:icon="@android:drawable/ic_menu_search"-->

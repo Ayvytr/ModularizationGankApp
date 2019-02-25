@@ -6,23 +6,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/home"
             android:title="@string/home_page"/>
         <item
             android:id="@+id/nav_gank_history"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/history"
             android:title="@string/history_date"/>
         <item
             android:id="@+id/nav_gank_of_type"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/category"
             android:title="@string/classify_gank"/>
         <item
             android:id="@+id/nav_today_in_history"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/today"
             android:title="@string/today_in_history"/>
         <item
             android:id="@+id/nav_wechat_selected"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/wechat"
             android:title="@string/wechat_selected"/>
     </group>
 
