@@ -38,7 +38,7 @@ class PhotoViewActivity : BaseMvpActivity<PhotoViewPresenter>(), PhotoViewContra
 
     internal lateinit var toolbar: Toolbar
 
-    private lateinit var vpadapter: PagerAdapter
+    private lateinit var vpAdapter: PagerAdapter
 
     private var mList: MutableList<Gank>? = null
 
@@ -97,7 +97,7 @@ class PhotoViewActivity : BaseMvpActivity<PhotoViewPresenter>(), PhotoViewContra
 
 
     private fun initViewPager() {
-        vpadapter = object : PagerAdapter() {
+        vpAdapter = object : PagerAdapter() {
             override fun getCount(): Int {
                 return mList!!.size
             }
@@ -140,6 +140,7 @@ class PhotoViewActivity : BaseMvpActivity<PhotoViewPresenter>(), PhotoViewContra
                 container.removeView(`object` as View)
             }
         }
+        vp.adapter = vpAdapter
         vp.currentItem = mPosition
         vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
@@ -194,12 +195,12 @@ class PhotoViewActivity : BaseMvpActivity<PhotoViewPresenter>(), PhotoViewContra
         mList = null
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
-        menu.setHeaderTitle(R.string.you_want_dot)
-        menu.setHeaderIcon(android.R.drawable.ic_menu_send)
-        menu.add(0, 1, 0, R.string.save_photo)
-        menu.add(0, 2, 0, R.string.set_to_desktop_background)
-        menu.add(0, 3, 0, R.string.share_to)
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        menu?.setHeaderTitle(R.string.you_want_dot)
+        menu?.setHeaderIcon(android.R.drawable.ic_menu_send)
+        menu?.add(0, 1, 0, R.string.save_photo)
+        menu?.add(0, 2, 0, R.string.set_to_desktop_background)
+        menu?.add(0, 3, 0, R.string.share_to)
         super.onCreateContextMenu(menu, v, menuInfo)
     }
 
