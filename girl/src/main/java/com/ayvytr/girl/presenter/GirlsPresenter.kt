@@ -31,7 +31,7 @@ class GirlsPresenter(view: GirlsContract.View) :
                     if (gank.isError) {
                         mView.showError(R.string.request_data_error)
                     } else {
-                        mView.showGankMm(gank)
+                        mView.showGankMm(gank, currentPage)
                     }
                 }
             })

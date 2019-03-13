@@ -74,14 +74,19 @@ dependencies {
     api rootProject.ext.dependencies.okhttploginterceptor
 
     api rootProject.ext.dependencies.network
-    api rootProject.ext.dependencies.baseadapter
-    api rootProject.ext.dependencies.mvp_baselist
+//    api rootProject.ext.dependencies.baseadapter
+//    api rootProject.ext.dependencies.mvp_baselist
 
-    api(rootProject.ext.kotlin.mvp_rxlifecycle_kotlin) {
-        exclude group:'android.arch.lifecycle', module: 'runtime'
+//    api(rootProject.ext.kotlin.mvp_rxlifecycle_kotlin) {
+//        exclude group:'android.arch.lifecycle', module: 'runtime'
+//    }
+    api project(":mvp-base")
+    api project(":mvp-baselist")
+    api project(":base-adapter")
+    api project(":mvp-rxlifecycle")
+    api (project(":mvp-rxlifecycle-kotlin")) {
+        exclude group: 'android.arch.lifecycle', module: 'runtime'
     }
-//    api project(":mvp-rxlifecycle")
-//    api project(":base-adapter")
 
 //    debugImplementation rootProject.ext.dependencies.blockcanary_debug
 //    releaseImplementation rootProject.ext.dependencies.blockcanary_release

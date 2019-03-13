@@ -2,8 +2,8 @@ package com.ayvytr.knowledge.adapter
 
 import android.content.Context
 import android.view.View
+import com.ayvytr.baseadapter.CommonAdapter
 import com.ayvytr.baseadapter.ViewHolder
-import com.ayvytr.baseadapter.wrapper.EmptyWrapperAdapter
 import com.ayvytr.commonlibrary.bean.Gank
 import com.ayvytr.easykotlin.ui.show
 import com.ayvytr.knowledge.R
@@ -15,7 +15,7 @@ import java.util.*
  */
 class AndroidAdapter @JvmOverloads constructor(context: Context, layoutResId: Int = R.layout.layout_item_android,
                                                list: List<Gank> = ArrayList(0)) :
-    EmptyWrapperAdapter<Gank>(context, layoutResId, list) {
+    CommonAdapter<Gank>(context, layoutResId, list) {
 
     override fun convert(holder: ViewHolder, gank: Gank, position: Int) {
         val images = gank.images

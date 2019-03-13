@@ -1,11 +1,16 @@
 include ':app', ':commonlibrary', ':web', ':girl', ':knowledge', ':settings', ':mob'
 
-//include ':mvpbase'
-//project(':mvpbase').projectDir = new File("../ModularizationComponent/mvpbase")
-//
-//include ':mvp-rxlifecycle'
-//project(':mvp-rxlifecycle').projectDir = new File("../ModularizationComponent/mvp-rxlifecycle")
-//
-//include ':base-adapter'
-//project(':base-adapter').projectDir= new File("../ModularizationComponent/base-adapter")
+include ':mvp-base'
+project(':mvp-base').projectDir = new File("../ModularizationComponent/mvp-base")
 
+include ':mvp-rxlifecycle'
+project(':mvp-rxlifecycle').projectDir = new File("../ModularizationComponent/mvp-rxlifecycle")
+
+include ':base-adapter'
+project(':base-adapter').projectDir= new File("../ModularizationComponent/base-adapter")
+
+include ':mvp-baselist'
+project(':mvp-baselist').projectDir = new File("../ModularizationComponent/mvp-baselist")
+
+include ':mvp-rxlifecycle-kotlin'
+project(':mvp-rxlifecycle-kotlin').projectDir = new File("../ModularizationComponent/mvp-rxlifecycle-kotlin")

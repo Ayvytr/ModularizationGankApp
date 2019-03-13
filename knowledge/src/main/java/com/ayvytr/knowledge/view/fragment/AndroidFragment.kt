@@ -59,12 +59,12 @@ class AndroidFragment : BaseListFragment<AndroidPresenter, Gank>(), AndroidContr
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
         super.onRefresh(refreshLayout)
-        mPresenter.requestGankByType(gankType!!, pageSize, currentPage)
+        mPresenter.requestGankByType(gankType!!, mPageSize, mCurrentPage)
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
         super.onLoadMore(refreshLayout)
-        mPresenter.requestGankByType(gankType!!, pageSize, currentPage)
+        mPresenter.requestGankByType(gankType!!, mPageSize, mCurrentPage)
     }
 
     override fun showGank(baseGank: BaseGank) {

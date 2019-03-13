@@ -1,8 +1,8 @@
 package com.ayvytr.mob.adapter
 
 import android.content.Context
+import com.ayvytr.baseadapter.CommonAdapter
 import com.ayvytr.baseadapter.ViewHolder
-import com.ayvytr.baseadapter.wrapper.EmptyWrapperAdapter
 import com.ayvytr.mob.R
 import com.ayvytr.mob.TodayInHistory
 import java.text.SimpleDateFormat
@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
  * @author Do
  */
 class TodayInHistoryAdapter(context: Context) :
-    EmptyWrapperAdapter<TodayInHistory.ResultBean>(context, R.layout.item_today_in_history) {
+    CommonAdapter<TodayInHistory.ResultBean>(context, R.layout.item_today_in_history) {
 
     override fun convert(holder: ViewHolder, t: TodayInHistory.ResultBean, position: Int) {
         val date = SimpleDateFormat("yyyyMMdd").parse(t.date)

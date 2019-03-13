@@ -3,8 +3,8 @@ package com.ayvytr.girl.adapter
 import android.content.Context
 import android.graphics.Bitmap
 import android.widget.ImageView
+import com.ayvytr.baseadapter.CommonAdapter
 import com.ayvytr.baseadapter.ViewHolder
-import com.ayvytr.baseadapter.wrapper.EmptyWrapperAdapter
 import com.ayvytr.commonlibrary.bean.Gank
 import com.ayvytr.easykotlin.context.getScreenWidth
 import com.ayvytr.girl.R
@@ -12,19 +12,23 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import java.util.*
 
 /**
  * @author admin
  */
-class GirlsAdapter(context: Context, layoutResId: Int) : EmptyWrapperAdapter<Gank>(context, layoutResId) {
+class GirlsAdapter(context: Context, layoutResId: Int) : CommonAdapter<Gank>(context, layoutResId) {
     private val halfScreenWidth: Int
 
     private val mPhotoSizeMap = LinkedHashMap<String, Int>()
 
+    val options = RequestOptions()
+
     init {
         halfScreenWidth = context.getScreenWidth() / 2
+        options.error(R.drawable.ic_launcher)
     }
 
     override fun convert(holder: ViewHolder, gank: Gank, position: Int) {
@@ -32,6 +36,7 @@ class GirlsAdapter(context: Context, layoutResId: Int) : EmptyWrapperAdapter<Gan
         Glide.with(mContext)
             .asBitmap()
             .load(gank.url)
+            .apply(options)
             .listener(object : RequestListener<Bitmap> {
                 override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Bitmap>,
                                           isFirstResource: Boolean): Boolean {

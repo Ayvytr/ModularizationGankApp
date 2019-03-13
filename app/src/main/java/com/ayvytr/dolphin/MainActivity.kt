@@ -102,7 +102,7 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
             oks.setTitle(getString(R.string.share_app))
             // titleUrl QQ和QQ空间跳转链接
 //            oks.setTitleUrl();
-            oks.setImageData(getDrawable2(R.mipmap.ic_launcher)?.toBitmap())
+            oks.setImageData(getDrawable2(R.drawable.ic_launcher)?.toBitmap())
             oks.text = getString(R.string.share_app)
             oks.setUrl(getString(R.string.author_ayvytr_github_url))
             oks.show(getContext())

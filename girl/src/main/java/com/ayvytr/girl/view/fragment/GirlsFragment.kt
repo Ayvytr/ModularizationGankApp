@@ -11,6 +11,7 @@ import com.ayvytr.commonlibrary.bean.Gank
 import com.ayvytr.commonlibrary.constant.GirlsConstant
 import com.ayvytr.girl.R
 import com.ayvytr.girl.adapter.GirlsAdapter
+import com.ayvytr.girl.adapter.callback.GirlsCallback
 import com.ayvytr.girl.contract.GirlsContract
 import com.ayvytr.girl.presenter.GirlsPresenter
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -49,7 +50,7 @@ class GirlsFragment : BaseListFragment<GirlsPresenter, Gank>(), GirlsContract.Vi
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        mPresenter.requestGankMm(pageSize, currentPage)
+        mPresenter.requestGankMm(mPageSize, mCurrentPage)
     }
 
     override fun getContentViewRes(): Int {
@@ -58,16 +59,17 @@ class GirlsFragment : BaseListFragment<GirlsPresenter, Gank>(), GirlsContract.Vi
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
         super.onLoadMore(refreshLayout)
-        mPresenter.requestGankMm(pageSize, currentPage)
+        mPresenter.requestGankMm(mPageSize, mCurrentPage + 1)
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
         super.onRefresh(refreshLayout)
-        mPresenter.requestGankMm(pageSize, currentPage)
+        mPresenter.requestGankMm(mPageSize, 1)
     }
 
-    override fun showGankMm(gank: BaseGank) {
-        updateList(gank.results)
+    override fun showGankMm(gank: BaseGank, currentPage: Int) {
+        mCurrentPage = currentPage
+        updateList(gank.results, GirlsCallback(mAdapter.datas, gank.results!!))
     }
 
     override fun onDestroyView() {

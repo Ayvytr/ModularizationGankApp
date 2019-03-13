@@ -15,6 +15,6 @@ class GirlsContract {
     }
 
     interface View : IView {
-        fun showGankMm(gank: BaseGank)
+        fun showGankMm(gank: BaseGank, currentPage: Int)
     }
 }

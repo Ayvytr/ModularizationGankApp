@@ -48,7 +48,7 @@ class SearchActivity : BaseListActivity<SearchPresenter, Gank>(), SearchContract
         mRvList!!.setLayoutManager(LinearLayoutManager(context))
         mAdapter = AndroidAdapter(context)
         mRvList!!.setAdapter(mAdapter)
-        mAdapter.showEmpty()
+//        mAdapter.showEmpty()
         mRvList!!.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         mAdapter.setOnItemClickListener { view, holder, position ->
             val gank = mAdapter.getItemAt(position)
@@ -93,8 +93,8 @@ class SearchActivity : BaseListActivity<SearchPresenter, Gank>(), SearchContract
     override fun showSearchResult(results: List<Gank>) {
         updateList(results)
 
-        if (results.isEmpty()) {
-            mAdapter.showEmpty()
-        }
+//        if (results.isEmpty()) {
+//            mAdapter.showEmpty()
+//        }
     }
 }
