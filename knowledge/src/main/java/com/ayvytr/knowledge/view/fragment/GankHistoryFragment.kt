@@ -28,7 +28,6 @@ class GankHistoryFragment : BaseListFragment<GankHistoryPresenter, String>(), Ga
         mRvList.layoutManager = LinearLayoutManager(context)
         mRvList.addItemDecoration(DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL))
         mAdapter = GankHistoryAdapter(context!!)
-        //        mAdapter.setEmptyView(R.layout.layout_empty);
         mRvList.adapter = mAdapter
         mAdapter.setOnItemClickListener { view, holder, position ->
             ARouter.getInstance()
@@ -37,6 +36,7 @@ class GankHistoryFragment : BaseListFragment<GankHistoryPresenter, String>(), Ga
                 .navigation(context)
         }
         mSmartRefreshLayout.setEnableLoadMore(false)
+        mStatusView?.showLoading()
     }
 
     override fun initData(savedInstanceState: Bundle?) {

@@ -47,6 +47,7 @@ class GirlsFragment : BaseListFragment<GirlsPresenter, Gank>(), GirlsContract.Vi
                 .navigation(context)
         }
         mRvList.adapter = mAdapter
+        mStatusView?.showLoading()
     }
 
     override fun initData(savedInstanceState: Bundle?) {
