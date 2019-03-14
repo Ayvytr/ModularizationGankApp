@@ -1,14 +1,13 @@
 package com.ayvytr.knowledge.adapter
 
 import android.content.Context
-
 import com.ayvytr.baseadapter.ItemViewDelegate
 import com.ayvytr.baseadapter.MultiItemTypeAdapter
 import com.ayvytr.baseadapter.ViewHolder
 import com.ayvytr.commonlibrary.bean.Gank
+import com.ayvytr.commonlibrary.util.toLocalTime
 import com.ayvytr.knowledge.R
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * @author admin
@@ -27,7 +26,7 @@ class GankHistoryContentAdapter(context: Context) : MultiItemTypeAdapter<Gank>(c
 
             override fun convert(holder: ViewHolder, gank: Gank, position: Int) {
                 holder.setText(R.id.tv_title, gank.desc)
-                holder.setText(R.id.tv_date, gank.publishedAt)
+                holder.setText(R.id.tv_date, gank.publishedAt.toLocalTime())
                 holder.setText(R.id.tv_who, gank.who)
             }
         })

@@ -5,6 +5,7 @@ import android.view.View
 import com.ayvytr.baseadapter.CommonAdapter
 import com.ayvytr.baseadapter.ViewHolder
 import com.ayvytr.commonlibrary.bean.Gank
+import com.ayvytr.commonlibrary.util.toLocalTime
 import com.ayvytr.easykotlin.ui.show
 import com.ayvytr.knowledge.R
 import com.bumptech.glide.Glide
@@ -28,7 +29,7 @@ class AndroidAdapter @JvmOverloads constructor(context: Context, layoutResId: In
         holder.getView<View>(R.id.iv).show(showImage)
 
         holder.setText(R.id.tv_title, gank.desc)
-        holder.setText(R.id.tv_date, gank.publishedAt)
+        holder.setText(R.id.tv_date, gank.publishedAt.toLocalTime())
         holder.setText(R.id.tv_who, gank.who)
     }
 }
