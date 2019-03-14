@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.baselist.BaseListFragment
 import com.ayvytr.commonlibrary.bean.WechatCategory
+import com.ayvytr.commonlibrary.callback.WechatCategoryCallback
 import com.ayvytr.commonlibrary.constant.IntentConstant
 import com.ayvytr.commonlibrary.constant.MobConstant
 import com.ayvytr.mob.R
@@ -17,9 +18,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 class WechatCategoryFragment : BaseListFragment<WechatCategoryPresenter, WechatCategory.ResultBean>(), WechatCategoryContract.View {
 
     override fun showWechatCategory(wechatCategory: WechatCategory) {
-        if(wechatCategory.result != null) {
-            updateList(wechatCategory.result)
-        }
+        updateList(wechatCategory.result, WechatCategoryCallback(mAdapter.datas, wechatCategory.result!!))
     }
 
     override fun showWechatCategoryFailed(msg: String?) {

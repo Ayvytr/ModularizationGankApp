@@ -24,7 +24,7 @@ class AndroidPresenter(rootView: AndroidContract.View) :
                     if (gank.isError) {
                         mView.showError(R.string.request_data_error)
                     } else {
-                        mView.showGank(gank)
+                        mView.showGank(gank, currentPage)
                     }
                 }
             })

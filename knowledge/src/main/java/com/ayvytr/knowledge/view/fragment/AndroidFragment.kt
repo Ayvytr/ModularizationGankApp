@@ -10,6 +10,7 @@ import com.ayvytr.baselist.BaseListFragment
 import com.ayvytr.commonlibrary.GankType
 import com.ayvytr.commonlibrary.bean.BaseGank
 import com.ayvytr.commonlibrary.bean.Gank
+import com.ayvytr.commonlibrary.callback.GankCallback
 import com.ayvytr.commonlibrary.constant.WebConstant
 import com.ayvytr.knowledge.R
 import com.ayvytr.knowledge.adapter.AndroidAdapter
@@ -59,16 +60,17 @@ class AndroidFragment : BaseListFragment<AndroidPresenter, Gank>(), AndroidContr
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
         super.onRefresh(refreshLayout)
-        mPresenter.requestGankByType(gankType!!, mPageSize, mCurrentPage)
+        mPresenter.requestGankByType(gankType!!, mPageSize, 1)
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
         super.onLoadMore(refreshLayout)
-        mPresenter.requestGankByType(gankType!!, mPageSize, mCurrentPage)
+        mPresenter.requestGankByType(gankType!!, mPageSize, mCurrentPage + 1)
     }
 
-    override fun showGank(baseGank: BaseGank) {
-        updateList(baseGank.results)
+    override fun showGank(baseGank: BaseGank, currentPage: Int) {
+        mCurrentPage = currentPage
+        updateList(baseGank.results, GankCallback(mAdapter.datas, baseGank.results!!))
     }
 
     companion object {

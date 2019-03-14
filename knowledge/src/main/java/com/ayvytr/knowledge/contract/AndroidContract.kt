@@ -15,6 +15,6 @@ class AndroidContract {
     }
 
     interface View : IView {
-        fun showGank(gank: BaseGank)
+        fun showGank(gank: BaseGank, currentPage: Int)
     }
 }

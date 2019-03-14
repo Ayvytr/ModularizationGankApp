@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.ayvytr.baselist.BaseListFragment
+import com.ayvytr.commonlibrary.callback.TodayInHistoryCallback
 import com.ayvytr.mob.R
 import com.ayvytr.mob.TodayInHistory
 import com.ayvytr.mob.adapter.TodayInHistoryAdapter
@@ -41,7 +42,7 @@ class TodayInHistoryFragment : BaseListFragment<TodayInHistoryPresenter, TodayIn
     }
 
     override fun showTodayInHistory(t: List<TodayInHistory.ResultBean>) {
-        updateList(t)
+        updateList(t, TodayInHistoryCallback(mAdapter.datas, t))
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {

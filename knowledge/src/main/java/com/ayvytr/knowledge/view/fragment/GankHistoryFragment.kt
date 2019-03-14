@@ -5,6 +5,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.baselist.BaseListFragment
+import com.ayvytr.commonlibrary.callback.StringCallback
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant
 import com.ayvytr.knowledge.R
 import com.ayvytr.knowledge.adapter.GankHistoryAdapter
@@ -52,6 +53,6 @@ class GankHistoryFragment : BaseListFragment<GankHistoryPresenter, String>(), Ga
     }
 
     override fun showGankHistory(results: List<String>) {
-        updateList(results)
+        updateList(results, StringCallback(mAdapter.datas, results))
     }
 }

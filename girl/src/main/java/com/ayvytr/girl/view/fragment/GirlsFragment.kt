@@ -8,10 +8,10 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.baselist.BaseListFragment
 import com.ayvytr.commonlibrary.bean.BaseGank
 import com.ayvytr.commonlibrary.bean.Gank
+import com.ayvytr.commonlibrary.callback.GankCallback
 import com.ayvytr.commonlibrary.constant.GirlsConstant
 import com.ayvytr.girl.R
 import com.ayvytr.girl.adapter.GirlsAdapter
-import com.ayvytr.girl.adapter.callback.GirlsCallback
 import com.ayvytr.girl.contract.GirlsContract
 import com.ayvytr.girl.presenter.GirlsPresenter
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -69,7 +69,7 @@ class GirlsFragment : BaseListFragment<GirlsPresenter, Gank>(), GirlsContract.Vi
 
     override fun showGankMm(gank: BaseGank, currentPage: Int) {
         mCurrentPage = currentPage
-        updateList(gank.results, GirlsCallback(mAdapter.datas, gank.results!!))
+        updateList(gank.results, GankCallback(mAdapter.datas, gank.results!!))
     }
 
     override fun onDestroyView() {
