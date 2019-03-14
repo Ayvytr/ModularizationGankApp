@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.baselist.BaseListActivity
 import com.ayvytr.commonlibrary.bean.WechatArticle
+import com.ayvytr.commonlibrary.callback.WechatArticleCallback
 import com.ayvytr.commonlibrary.constant.IntentConstant
 import com.ayvytr.commonlibrary.constant.MobConstant
 import com.ayvytr.commonlibrary.constant.WebConstant
@@ -30,7 +31,7 @@ class WechatArticleActivity : BaseListActivity<WechatArticlePresenter, WechatArt
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        mPresenter.requestWechatArticle(mCid, currentPage, pageSize)
+        mPresenter.requestWechatArticle(mCid, mCurrentPage, mPageSize)
     }
 
     override fun getPresenter(): WechatArticlePresenter {
@@ -68,17 +69,17 @@ class WechatArticleActivity : BaseListActivity<WechatArticlePresenter, WechatArt
     }
 
     override fun showWechatArticle(t: WechatArticle) {
-        currentPage = t.result?.curPage ?: 1
-        updateList(t.result!!.list)
+        mCurrentPage = t.result?.curPage ?: 1
+        updateList(t.result!!.list, WechatArticleCallback(mAdapter.datas, t.result!!.list!!))
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
         super.onRefresh(refreshLayout)
-        mPresenter.requestWechatArticle(mCid, currentPage, pageSize)
+        mPresenter.requestWechatArticle(mCid, 1, mPageSize)
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
         super.onLoadMore(refreshLayout)
-        mPresenter.requestWechatArticle(mCid, currentPage + 1, pageSize)
+        mPresenter.requestWechatArticle(mCid, mCurrentPage + 1, mPageSize)
     }
 }

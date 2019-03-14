@@ -63,7 +63,7 @@ class SearchActivity : BaseListActivity<SearchPresenter, Gank>(), SearchContract
         mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 resetPage()
-                mPresenter.search(query, currentPage, pageSize)
+                mPresenter.search(query, mCurrentPage, mPageSize)
                 return true
             }
 
@@ -91,7 +91,7 @@ class SearchActivity : BaseListActivity<SearchPresenter, Gank>(), SearchContract
     }
 
     override fun showSearchResult(results: List<Gank>) {
-        updateList(results)
+        updateList(results, null)
 
 //        if (results.isEmpty()) {
 //            mAdapter.showEmpty()
