@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.view.ViewGroup
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.baselist.BaseListFragment
 import com.ayvytr.commonlibrary.GankType
@@ -86,10 +85,10 @@ class AndroidFragment : BaseListFragment<AndroidPresenter, Gank>(), AndroidContr
     }
 
     override fun onDestroyView() {
+        mAdapter.clear()
+        mRvList.adapter = null
+        mRvList.layoutManager = null
+        mAdapter = null
         super.onDestroyView()
-        //内存泄漏
-        if(mContentView != null){
-            (mContentView.parent as ViewGroup).removeView(mContentView)
-        }
     }
 }
