@@ -47,6 +47,8 @@ class AndroidFragment : BaseListFragment<AndroidPresenter, Gank>(), AndroidContr
                 .navigation(context)
         }
         mSmartRefreshLayout.autoRefresh()
+
+        mStatusView.showLoading()
     }
 
     override fun initData(savedInstanceState: Bundle?) {

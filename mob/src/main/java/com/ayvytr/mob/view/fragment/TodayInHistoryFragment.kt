@@ -31,6 +31,8 @@ class TodayInHistoryFragment : BaseListFragment<TodayInHistoryPresenter, TodayIn
         mAdapter = TodayInHistoryAdapter(context!!)
         mRvList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         mRvList.adapter = mAdapter
+
+        mStatusView.showLoading()
     }
 
     override fun initData(savedInstanceState: Bundle?) {
