@@ -70,4 +70,11 @@ class ClassifyGankFragment : BaseMvpFragment<IPresenter>() {
         }
     }
 
+    override fun onDestroyView() {
+        vp_type.adapter = null
+        tl_type.setupWithViewPager(null)
+        mFragments.clear()
+        mTitles.clear()
+        super.onDestroyView()
+    }
 }

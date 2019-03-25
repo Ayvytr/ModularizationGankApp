@@ -85,12 +85,4 @@ class AndroidFragment : BaseListFragment<AndroidPresenter, Gank>(), AndroidContr
             return af
         }
     }
-
-    override fun onDestroyView() {
-        mAdapter.clear()
-        mRvList.adapter = null
-        mRvList.layoutManager = null
-        mAdapter = null
-        super.onDestroyView()
-    }
 }
