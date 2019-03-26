@@ -12,7 +12,7 @@ class TodayInHistoryModel : TodayInHistoryContract.Model {
 
     override fun requestTodayInHistory(): Observable<TodayInHistory> {
         val calendar = Calendar.getInstance()
-        return api.todayOfHistory(MobApi.API_KEY, String.format("%02d%02d", calendar.get(Calendar.MONTH + 1),
+        return api.todayOfHistory(MobApi.API_KEY, String.format("%02d%02d", calendar.get(Calendar.MONTH) + 1,
                                                                 calendar.get(Calendar.DAY_OF_MONTH)))
     }
 

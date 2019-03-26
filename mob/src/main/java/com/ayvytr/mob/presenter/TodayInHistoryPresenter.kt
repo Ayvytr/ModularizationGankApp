@@ -1,6 +1,7 @@
 package com.ayvytr.mob.presenter
 
 import com.ayvytr.commonlibrary.BaseObserver
+import com.ayvytr.mob.R
 import com.ayvytr.mob.TodayInHistory
 import com.ayvytr.mob.contract.TodayInHistoryContract
 import com.ayvytr.mvp.BasePresenter
@@ -19,6 +20,11 @@ class TodayInHistoryPresenter : BasePresenter<TodayInHistoryContract.Model, Toda
             .subscribe(object : BaseObserver<List<TodayInHistory.ResultBean>>() {
                 override fun onNext(t: List<TodayInHistory.ResultBean>) {
                     mView.showTodayInHistory(t)
+                }
+
+                override fun onError(e: Throwable) {
+                    super.onError(e)
+                    mView.showError(R.string.get_today_in_history_error)
                 }
             })
     }

@@ -25,4 +25,5 @@
     <string name="share_app">分享App</string>
     <string name="author_ayvytr_github">Ayvytr的GitHub主页</string>
     <string name="author_ayvytr_github_url">https://github.com/ayvytr</string>
+    <string name="get_today_in_history_error">获取历史上的今天失败！</string>
 </resources>
