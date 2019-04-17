@@ -6,8 +6,6 @@ ext {
 
     applicationId = "com.ayvytr.dolphin"
 
-    compileSdkVersion = 27
-    buildToolsVersion = "27.0.3"
     minSdkVersion = 16
     targetSdkVersion = 26
     versionCode = 20190201
