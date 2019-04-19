@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.ayvytr.commonlibrary.GankType
 import com.ayvytr.commonlibrary.bean.Gank
 import com.ayvytr.commonlibrary.constant.GirlsConstant
+import com.ayvytr.commonlibrary.util.GlideApp
 import com.ayvytr.easykotlin.context.getWallpaperManager
 import com.ayvytr.easykotlin.ui.hideActionBar
 import com.ayvytr.easykotlin.ui.showActionBar

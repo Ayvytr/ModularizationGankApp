@@ -88,6 +88,8 @@ dependencies {
         exclude group: 'android.arch.lifecycle', module: 'runtime'
     }
 
+    annotationProcessor rootProject.ext.ap.glide
+
 //    debugImplementation rootProject.ext.dependencies.blockcanary_debug
 //    releaseImplementation rootProject.ext.dependencies.blockcanary_release
 }
