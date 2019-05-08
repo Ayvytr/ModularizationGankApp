@@ -24,39 +24,39 @@ android {
         multiDexEnabled true
     }
 
-    signingConfigs {
+//    signingConfigs {
         // local.properties file in the root director
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        def keystorePwd = properties.getProperty("password")
-        def keystoreAlias = properties.getProperty("alias")
-        def keystoreAliasPwd = properties.getProperty("alias_password")
-        def storeFilePath = properties.getProperty("path")
-        debug {
-            storeFile file(storeFilePath)
-            storePassword keystorePwd
-            keyAlias keystoreAlias
-            keyPassword keystoreAliasPwd
-        }
-        release {
-            storeFile file(storeFilePath)
-            storePassword keystorePwd
-            keyAlias keystoreAlias
-            keyPassword keystoreAliasPwd
-        }
-    }
+//        Properties properties = new Properties()
+//        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//        def keystorePwd = properties.getProperty("password")
+//        def keystoreAlias = properties.getProperty("alias")
+//        def keystoreAliasPwd = properties.getProperty("alias_password")
+//        def storeFilePath = properties.getProperty("path")
+//        debug {
+//            storeFile file(storeFilePath)
+//            storePassword keystorePwd
+//            keyAlias keystoreAlias
+//            keyPassword keystoreAliasPwd
+//        }
+//        release {
+//            storeFile file(storeFilePath)
+//            storePassword keystorePwd
+//            keyAlias keystoreAlias
+//            keyPassword keystoreAliasPwd
+//        }
+//    }
 
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+//            signingConfig signingConfigs.debug
             debuggable true
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
             debuggable false
         }
     }
