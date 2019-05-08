@@ -2,7 +2,7 @@ package com.ayvytr.commonlibrary.callback
 
 import android.support.v7.util.DiffUtil
 
-import com.ayvytr.mob.TodayInHistory
+import com.ayvytr.commonlibrary.bean.TodayInHistory
 
 /**
  * @author Do

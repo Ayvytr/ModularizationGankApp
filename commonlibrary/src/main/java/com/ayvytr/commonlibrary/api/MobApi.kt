@@ -3,7 +3,7 @@ package com.ayvytr.commonlibrary.api
 import com.ayvytr.commonlibrary.bean.Weather
 import com.ayvytr.commonlibrary.bean.WechatArticle
 import com.ayvytr.commonlibrary.bean.WechatCategory
-import com.ayvytr.mob.TodayInHistory
+import com.ayvytr.commonlibrary.bean.TodayInHistory
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,9 +1,13 @@
 package com.ayvytr.commonlibrary.bean
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * @author Do
  */
-class Weather {
+@Parcelize
+data class Weather(
 
     /**
      * msg : success
@@ -11,11 +15,13 @@ class Weather {
      * retCode : 200
      */
 
-    var msg: String? = null
-    var retCode: String? = null
+    var msg: String? = null,
+    var retCode: String? = null,
     var result: List<ResultBean>? = null
+) : Parcelable {
 
-    class ResultBean {
+    @Parcelize
+    data class ResultBean(
         /**
          * airCondition : 良
          * city : 北京
@@ -38,27 +44,29 @@ class Weather {
          * wind : 南风2级
          */
 
-        var airCondition: String? = null
-        var city: String? = null
-        var coldIndex: String? = null
-        var updateTime: String? = null
-        var date: String? = null
-        var distrct: String? = null
-        var dressingIndex: String? = null
-        var exerciseIndex: String? = null
-        var humidity: String? = null
-        var province: String? = null
-        var sunset: String? = null
-        var sunrise: String? = null
-        var temperature: String? = null
-        var time: String? = null
-        var washIndex: String? = null
-        var weather: String? = null
-        var week: String? = null
-        var wind: String? = null
+        var airCondition: String? = null,
+        var city: String? = null,
+        var coldIndex: String? = null,
+        var updateTime: String? = null,
+        var date: String? = null,
+        var distrct: String? = null,
+        var dressingIndex: String? = null,
+        var exerciseIndex: String? = null,
+        var humidity: String? = null,
+        var province: String? = null,
+        var sunset: String? = null,
+        var sunrise: String? = null,
+        var temperature: String? = null,
+        var time: String? = null,
+        var washIndex: String? = null,
+        var weather: String? = null,
+        var week: String? = null,
+        var wind: String? = null,
         var future: List<FutureBean>? = null
+    ) : Parcelable {
 
-        class FutureBean {
+        @Parcelize
+        data class FutureBean(
             /**
              * date : 2015-09-09
              * dayTime : 阵雨
@@ -68,12 +76,12 @@ class Weather {
              * wind : 无持续风向小于3级
              */
 
-            var date: String? = null
-            var dayTime: String? = null
-            var night: String? = null
-            var temperature: String? = null
-            var week: String? = null
+            var date: String? = null,
+            var dayTime: String? = null,
+            var night: String? = null,
+            var temperature: String? = null,
+            var week: String? = null,
             var wind: String? = null
-        }
+        ) : Parcelable
     }
 }

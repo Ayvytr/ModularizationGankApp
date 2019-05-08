@@ -2,7 +2,7 @@ package com.ayvytr.mob.presenter
 
 import com.ayvytr.commonlibrary.BaseObserver
 import com.ayvytr.mob.R
-import com.ayvytr.mob.TodayInHistory
+import com.ayvytr.commonlibrary.bean.TodayInHistory
 import com.ayvytr.mob.contract.TodayInHistoryContract
 import com.ayvytr.mvp.BasePresenter
 import com.ayvytr.mvprxlifecycle.kotlin.bindToLifecycle

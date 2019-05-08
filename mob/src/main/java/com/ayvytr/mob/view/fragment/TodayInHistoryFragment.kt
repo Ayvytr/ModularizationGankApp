@@ -7,7 +7,7 @@ import com.ayvytr.baselist.BaseListFragment
 import com.ayvytr.commonlibrary.callback.TodayInHistoryCallback
 import com.ayvytr.customview.loading.StatusView
 import com.ayvytr.mob.R
-import com.ayvytr.mob.TodayInHistory
+import com.ayvytr.commonlibrary.bean.TodayInHistory
 import com.ayvytr.mob.adapter.TodayInHistoryAdapter
 import com.ayvytr.mob.contract.TodayInHistoryContract
 import com.ayvytr.mob.model.TodayInHistoryModel

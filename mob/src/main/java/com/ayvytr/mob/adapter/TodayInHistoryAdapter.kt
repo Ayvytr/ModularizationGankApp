@@ -4,7 +4,7 @@ import android.content.Context
 import com.ayvytr.baseadapter.CommonAdapter
 import com.ayvytr.baseadapter.ViewHolder
 import com.ayvytr.mob.R
-import com.ayvytr.mob.TodayInHistory
+import com.ayvytr.commonlibrary.bean.TodayInHistory
 import java.text.SimpleDateFormat
 
 /**

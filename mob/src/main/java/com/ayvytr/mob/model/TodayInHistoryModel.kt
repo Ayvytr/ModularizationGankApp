@@ -2,7 +2,7 @@ package com.ayvytr.mob.model
 
 import com.ayvytr.commonlibrary.api.MobApi
 import com.ayvytr.commonlibrary.client.MobClient
-import com.ayvytr.mob.TodayInHistory
+import com.ayvytr.commonlibrary.bean.TodayInHistory
 import com.ayvytr.mob.contract.TodayInHistoryContract
 import io.reactivex.Observable
 import java.util.*

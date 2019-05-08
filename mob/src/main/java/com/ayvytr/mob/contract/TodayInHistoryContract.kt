@@ -1,6 +1,6 @@
 package com.ayvytr.mob.contract
 
-import com.ayvytr.mob.TodayInHistory
+import com.ayvytr.commonlibrary.bean.TodayInHistory
 import com.ayvytr.mvp.IModel
 import com.ayvytr.mvp.IView
 import io.reactivex.Observable

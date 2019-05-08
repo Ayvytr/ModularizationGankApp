@@ -26,7 +26,7 @@ class GankHistoryContentAdapter(context: Context) : MultiItemTypeAdapter<Gank>(c
 
             override fun convert(holder: ViewHolder, gank: Gank, position: Int) {
                 holder.setText(R.id.tv_title, gank.desc)
-                holder.setText(R.id.tv_date, gank.publishedAt.toLocalTime())
+                holder.setText(R.id.tv_date, gank.publishedAt?.toLocalTime())
                 holder.setText(R.id.tv_who, gank.who)
             }
         })
