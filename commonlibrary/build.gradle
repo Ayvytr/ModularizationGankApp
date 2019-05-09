@@ -6,6 +6,7 @@ if (isLib) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -90,6 +91,11 @@ dependencies {
 
     annotationProcessor rootProject.ext.ap.glide
 
+    api rootProject.ext.dependencies.paging
+
+    def lifecycle_version = "+"
+    api "android.arch.lifecycle:extensions:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
 //    debugImplementation rootProject.ext.dependencies.blockcanary_debug
 //    releaseImplementation rootProject.ext.dependencies.blockcanary_release
 }

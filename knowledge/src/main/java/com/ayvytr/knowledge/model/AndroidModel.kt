@@ -1,7 +1,7 @@
 package com.ayvytr.knowledge.model
 
 import com.ayvytr.commonlibrary.bean.BaseGank
-import com.ayvytr.commonlibrary.server.GankApi
+import com.ayvytr.commonlibrary.api.GankApi
 import com.ayvytr.knowledge.contract.AndroidContract
 import com.ayvytr.network.ApiClient
 

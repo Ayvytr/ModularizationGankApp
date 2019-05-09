@@ -101,6 +101,8 @@ ext {
             jsr305Annotations         : 'com.google.code.findbugs:jsr305:3.0.2',
 
             bugly                     : 'com.tencent.bugly:crashreport:2.6.6',
+
+            paging                    : "android.arch.paging:runtime:+"
     ]
 
     kotlin = [
