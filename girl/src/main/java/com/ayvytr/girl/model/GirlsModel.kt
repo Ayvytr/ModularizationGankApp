@@ -2,7 +2,7 @@ package com.ayvytr.girl.model
 
 import com.ayvytr.commonlibrary.GankType
 import com.ayvytr.commonlibrary.bean.BaseGank
-import com.ayvytr.commonlibrary.server.GankApi
+import com.ayvytr.commonlibrary.api.GankApi
 import com.ayvytr.girl.contract.GirlsContract
 import com.ayvytr.network.ApiClient
 

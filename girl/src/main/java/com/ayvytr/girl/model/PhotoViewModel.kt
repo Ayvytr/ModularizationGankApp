@@ -1,6 +1,6 @@
 package com.ayvytr.girl.model
 
-import com.ayvytr.commonlibrary.server.GankApi
+import com.ayvytr.commonlibrary.api.GankApi
 import com.ayvytr.girl.contract.PhotoViewContract
 import com.ayvytr.network.ApiClient
 

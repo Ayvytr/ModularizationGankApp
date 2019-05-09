@@ -33,9 +33,17 @@ data class Gank(
     var images: List<String>? = null,
     var isHeader: Boolean = false
 ) : Parcelable {
-
     constructor(type: String, isHeader: Boolean) : this() {
         this.type = type
         this.isHeader = isHeader
     }
+
+    fun compareByAndroid(newItem: Gank):Boolean {
+        return _id == newItem._id &&
+                desc == newItem.desc &&
+                publishedAt == newItem.publishedAt &&
+                url == newItem.url &&
+                who == newItem.who
+    }
+
 }
