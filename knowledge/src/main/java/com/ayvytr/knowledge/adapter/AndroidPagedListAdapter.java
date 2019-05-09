@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ayvytr.commonlibrary.bean.Gank;
-import com.ayvytr.commonlibrary.util.GlideApp;
 import com.ayvytr.commonlibrary.util.TimeKt;
 import com.ayvytr.easykotlin.context.ContextKt;
 import com.ayvytr.knowledge.R;
+import com.bumptech.glide.Glide;
 
 /**
  * @author wangdunwei
@@ -71,9 +71,14 @@ public class AndroidPagedListAdapter extends PagedListAdapter<Gank, AndroidPaged
 
         public void bind(int i) {
             Gank gank = getItem(i);
-            GlideApp.with(iv.getContext())
-                    .load(gank.getUrl())
-                    .into(iv);
+            String img = "";
+            if(gank.getImages() != null && !gank.getImages().isEmpty()) {
+                img = gank.getImages().get(0);
+            }
+            Glide.with(iv.getContext())
+                 .load(img)
+                 .error(R.drawable.ic_launcher)
+                 .into(iv);
             tvTitle.setText(gank.getDesc());
             tvDate.setText(TimeKt.toLocalTime(gank.getPublishedAt()));
             tvWho.setText(gank.getWho());
