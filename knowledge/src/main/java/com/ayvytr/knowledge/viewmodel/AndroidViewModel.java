@@ -1,38 +1,74 @@
 package com.ayvytr.knowledge.viewmodel;
 
+import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
-import android.arch.paging.DataSource;
-import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 
 import com.ayvytr.commonlibrary.bean.Gank;
-import com.ayvytr.commonlibrary.util.Paging;
-import com.ayvytr.knowledge.datasource.AndroidDataSource;
+import com.ayvytr.commonlibrary.bean.Listing;
+import com.ayvytr.commonlibrary.util.NetworkState;
+import com.ayvytr.knowledge.datasource.AndroidRepository;
 
 /**
  * @author wangdunwei
  */
 public class AndroidViewModel extends ViewModel {
-    private LiveData<PagedList<Gank>> androidLiveData;
-    private AndroidDataSource androidDataSource;
 
-    public AndroidViewModel() {
-        androidLiveData = new LivePagedListBuilder<>(new DataSource.Factory<Integer, Gank>() {
+    private AndroidRepository androidRepository;
+
+    private MutableLiveData<String> gankTypeLiveData = new MutableLiveData<>();
+
+    private LiveData<NetworkState> networkState;
+
+    private final LiveData<Listing<Gank>> repoResult;
+    private final LiveData<PagedList<Gank>> posts;
+
+    public AndroidViewModel(final AndroidRepository androidRepository) {
+        this.androidRepository = androidRepository;
+
+        repoResult = Transformations.map(gankTypeLiveData, new Function<String, Listing<Gank>>() {
             @Override
-            public DataSource<Integer, Gank> create() {
-                //这里写法是无奈之举，需要调用invalidate实现下拉刷新
-                androidDataSource = new AndroidDataSource();
-                return androidDataSource;
+            public Listing<Gank> apply(String input) {
+                return androidRepository.getGankByType(input);
             }
-        }, Paging.config).build();
+        });
+        posts = Transformations.switchMap(repoResult, new Function<Listing<Gank>, LiveData<PagedList<Gank>>>() {
+            @Override
+            public LiveData<PagedList<Gank>> apply(Listing<Gank> input) {
+                return input.getPagedList();
+            }
+        });
+
+        networkState = Transformations
+                .switchMap(repoResult, new Function<Listing<Gank>, LiveData<NetworkState>>() {
+                    @Override
+                    public LiveData<NetworkState> apply(Listing<Gank> input) {
+                        return input.getNetworkState();
+                    }
+                });
     }
 
-    public LiveData<PagedList<Gank>> getAndroidLiveData() {
-        return androidLiveData;
+
+    public LiveData<NetworkState> getNetworkState() {
+        return networkState;
     }
 
-    public AndroidDataSource getAndroidDataSource() {
-        return androidDataSource;
+    public LiveData<Listing<Gank>> getRepoResult() {
+        return repoResult;
+    }
+
+    public LiveData<PagedList<Gank>> getPosts() {
+        return posts;
+    }
+
+    public void showGankByType(String gankType) {
+        gankTypeLiveData.setValue(gankType);
+    }
+
+    public void refresh() {
+        repoResult.getValue().getRefresh().invoke();
     }
 }

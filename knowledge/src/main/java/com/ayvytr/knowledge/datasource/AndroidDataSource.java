@@ -5,7 +5,6 @@ import android.arch.paging.PositionalDataSource;
 import android.support.annotation.NonNull;
 
 import com.ayvytr.commonlibrary.BaseObserver;
-import com.ayvytr.commonlibrary.GankType;
 import com.ayvytr.commonlibrary.api.GankApi;
 import com.ayvytr.commonlibrary.bean.BaseGank;
 import com.ayvytr.commonlibrary.bean.Gank;
@@ -13,7 +12,6 @@ import com.ayvytr.commonlibrary.util.NetworkState;
 import com.ayvytr.commonlibrary.util.Paging;
 import com.ayvytr.logger.L;
 import com.ayvytr.network.ApiClient;
-import com.ayvytr.rxlifecycle.RxUtils;
 
 /**
  * TODO: 接口参数无法传
@@ -22,18 +20,19 @@ import com.ayvytr.rxlifecycle.RxUtils;
 public class AndroidDataSource extends PositionalDataSource<Gank> {
     private final GankApi gankApi;
     private int currentPage;
-    //需要传网络状态，后续要重新设计，防止多个界面用一个networkState
-    public static MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
+    private String gankType;
 
-    public AndroidDataSource() {
+    private MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
+
+    public AndroidDataSource(String gankType) {
+        this.gankType = gankType;
         gankApi = ApiClient.getInstance().create(GankApi.class);
     }
 
     @Override
     public void loadInitial(@NonNull LoadInitialParams params, @NonNull final LoadInitialCallback<Gank> callback) {
 
-        gankApi.getDataByType(GankType.ANDROID.toString(), Paging.DEFAULT_PAGE_SIZE, 1)
-               .compose(RxUtils.<BaseGank>ofDefault())
+        gankApi.getDataByType(gankType, Paging.DEFAULT_PAGE_SIZE, 1)
                .subscribe(new BaseObserver<BaseGank>() {
                    @Override
                    public void onNext(BaseGank baseGank) {
@@ -51,8 +50,7 @@ public class AndroidDataSource extends PositionalDataSource<Gank> {
     public void loadRange(@NonNull final LoadRangeParams params, @NonNull final LoadRangeCallback<Gank> callback) {
         final int newPage = currentPage + 1;
 
-        gankApi.getDataByType(GankType.ANDROID.toString(), Paging.DEFAULT_PAGE_SIZE, newPage)
-               .compose(RxUtils.<BaseGank>ofDefault())
+        gankApi.getDataByType(gankType, Paging.DEFAULT_PAGE_SIZE, newPage)
                .subscribe(new BaseObserver<BaseGank>() {
                    @Override
                    public void onNext(BaseGank baseGank) {
@@ -66,4 +64,7 @@ public class AndroidDataSource extends PositionalDataSource<Gank> {
                });
     }
 
+    public MutableLiveData<NetworkState> getNetworkState() {
+        return networkState;
+    }
 }

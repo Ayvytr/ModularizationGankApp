@@ -1,6 +1,8 @@
 package com.ayvytr.knowledge.view.fragment
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -12,7 +14,7 @@ import com.ayvytr.commonlibrary.util.NetworkState
 import com.ayvytr.knowledge.R
 import com.ayvytr.knowledge.adapter.AndroidPagedListAdapter
 import com.ayvytr.knowledge.contract.AndroidContract
-import com.ayvytr.knowledge.datasource.AndroidDataSource
+import com.ayvytr.knowledge.datasource.AndroidRepository
 import com.ayvytr.knowledge.presenter.AndroidPresenter
 import com.ayvytr.knowledge.viewmodel.AndroidViewModel
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -42,20 +44,30 @@ class AndroidFragment : BaseListFragment2<AndroidPresenter, Gank>(), AndroidCont
         androidPagedListAdapter = AndroidPagedListAdapter()
         mRvList.adapter = androidPagedListAdapter
 
-        androidViewModel = ViewModelProviders.of(this).get(AndroidViewModel::class.java)
-        androidViewModel.androidLiveData.observe(viewLifecycleOwner, Observer {
+        androidViewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                androidViewModel = AndroidViewModel(AndroidRepository())
+                return androidViewModel as T
+            }
+        })[AndroidViewModel::class.java]
+
+        androidViewModel.posts.observe(viewLifecycleOwner, Observer {
             androidPagedListAdapter.submitList(it)
         })
 
-        AndroidDataSource.networkState.observe(viewLifecycleOwner, Observer {
+        androidViewModel.networkState.observe(viewLifecycleOwner, Observer {
             when (it) {
-                NetworkState.LOADING -> mStatusView.showLoading()
+                NetworkState.LOADING ->
+                    if (androidPagedListAdapter.itemCount == 0) {
+                        mStatusView.showLoading()
+                    }
                 NetworkState.SUCCESS -> mStatusView.showContent()
                 NetworkState.FAILED  -> mStatusView.showError()
             }
         })
 
-        AndroidDataSource.networkState.postValue(NetworkState.LOADING)
+        androidViewModel.showGankByType(gankType)
+        mStatusView.showLoading()
     }
 
     override fun initData(savedInstanceState: Bundle?) {
@@ -67,11 +79,15 @@ class AndroidFragment : BaseListFragment2<AndroidPresenter, Gank>(), AndroidCont
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-//        super.onRefresh(refreshLayout)
+        //        super.onRefresh(refreshLayout)
         //        mPresenter.requestGankByType(gankType!!, mPageSize, 1)
         mSmartRefreshLayout.finishRefresh()
-//        AndroidDataSourceFactory.networkState.postValue(NetworkState.LOADING)
-        androidViewModel.androidDataSource.invalidate()
+        //        AndroidDataSourceFactory.networkState.postValue(NetworkState.LOADING)
+
+        //        androidPagedListAdapter.submitList(null)
+        //        androidViewModel.showGankByType(gankType)
+        androidViewModel.refresh()
+        //        androidViewModel.androidDataSource.invalidate()
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
