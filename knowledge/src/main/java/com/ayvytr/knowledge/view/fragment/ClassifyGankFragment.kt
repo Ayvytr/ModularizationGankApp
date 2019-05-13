@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import com.ayvytr.commonlibrary.GankType
 import com.ayvytr.knowledge.R
+import com.ayvytr.logger.L
 import com.ayvytr.mvp.IPresenter
 import com.ayvytr.rxlifecycle.BaseMvpFragment
 import kotlinx.android.synthetic.main.fragment_classify_gank.*
@@ -53,6 +54,8 @@ class ClassifyGankFragment : BaseMvpFragment<IPresenter>() {
         }
 
         tl_type.setupWithViewPager(vp_type)
+
+        L.e()
     }
 
     override fun initData(savedInstanceState: Bundle?) {
@@ -65,6 +68,7 @@ class ClassifyGankFragment : BaseMvpFragment<IPresenter>() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
+        L.e()
         if (isVisibleToUser) {
             (mFragments[vp_type.currentItem] as BaseMvpFragment<*>).initData(null)
         }

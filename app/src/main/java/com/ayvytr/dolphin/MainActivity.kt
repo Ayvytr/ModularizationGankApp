@@ -35,6 +35,8 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
 
     private var mFragments: Array<Fragment>? = arrayOf(AndroidFragment.newInstance(GankType.ANDROID), GirlsFragment())
 
+    private var mCurrentFragment: Fragment? = null
+
     private lateinit var toolbar: Toolbar
 
     override fun getPresenter(): IPresenter? {
@@ -80,28 +82,23 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
         if (id == R.id.nav_home) {
             flContainer.hide()
         } else if (id == R.id.nav_gank_history) {
-            val ft = supportFragmentManager.beginTransaction()
-            ft.replace(R.id.flContainer, GankHistoryFragment())
-            ft.commit()
+            mCurrentFragment = switchFragment(GankHistoryFragment::class.java, R.id.flContainer, mCurrentFragment)
         } else if (id == R.id.nav_gank_of_type) {
-            val ft = supportFragmentManager.beginTransaction()
-            ft.replace(R.id.flContainer, ClassifyGankFragment())
-            ft.commit()
+            mCurrentFragment = switchFragment(ClassifyGankFragment::class.java, R.id.flContainer, mCurrentFragment)
+//            val ft = supportFragmentManager.beginTransaction()
+//            ft.replace(R.id.flContainer, ClassifyGankFragment())
+//            ft.commit()
         } else if (id == R.id.nav_today_in_history) {
-            val ft = supportFragmentManager.beginTransaction()
-            ft.replace(R.id.flContainer, TodayInHistoryFragment())
-            ft.commit()
+            mCurrentFragment = switchFragment(TodayInHistoryFragment::class.java, R.id.flContainer, mCurrentFragment)
         } else if (id == R.id.nav_wechat_selected) {
-            val ft = supportFragmentManager.beginTransaction()
-            ft.replace(R.id.flContainer, WechatCategoryFragment())
-            ft.commit()
+            mCurrentFragment = switchFragment(WechatCategoryFragment::class.java, R.id.flContainer, mCurrentFragment)
         } else if (id == R.id.nav_share) {
             val oks = OnekeyShare()
             oks.disableSSOWhenAuthorize()
             // title标题，微信、QQ和QQ空间等平台使用
             oks.setTitle(getString(R.string.share_app))
             // titleUrl QQ和QQ空间跳转链接
-//            oks.setTitleUrl();
+            //            oks.setTitleUrl();
             oks.setImageData(getDrawable2(R.drawable.ic_launcher)?.toBitmap())
             oks.text = getString(R.string.share_app)
             oks.setUrl(getString(R.string.author_ayvytr_github_url))
@@ -137,19 +134,19 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
 
         bottom_navigation!!.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nv_android  -> {
+                R.id.nv_android -> {
                     vp!!.currentItem = 0
                     true
                 }
-                R.id.nv_girls    -> {
+                R.id.nv_girls   -> {
                     vp!!.currentItem = 1
                     true
                 }
-//                R.id.nv_settings -> {
-//                    vp!!.currentItem = 2
-//                    true
-//                }
-                else             -> false
+                //                R.id.nv_settings -> {
+                //                    vp!!.currentItem = 2
+                //                    true
+                //                }
+                else            -> false
             }
         }
         vp!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -157,9 +154,9 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
 
             override fun onPageSelected(position: Int) {
                 when (position) {
-                    0    -> bottom_navigation!!.selectedItemId = R.id.nv_android
-                    1    -> bottom_navigation!!.selectedItemId = R.id.nv_girls
-//                    else -> bottom_navigation!!.selectedItemId = R.id.nv_settings
+                    0 -> bottom_navigation!!.selectedItemId = R.id.nv_android
+                    1 -> bottom_navigation!!.selectedItemId = R.id.nv_girls
+                    //                    else -> bottom_navigation!!.selectedItemId = R.id.nv_settings
                 }
             }
 
@@ -167,13 +164,13 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
         })
         vp.offscreenPageLimit = mFragments!!.size
 
-//        llHeader = findViewById(R.id.llHeader)
-//        llHeader.setOnClickListener {
-//            ARouter.getInstance().build(WebConstant.WEB)
-//                .withString(WebConstant.EXTRA_TITLE, getString(R.string.author_ayvytr_github))
-//                .withString(WebConstant.EXTRA_URL, getString(R.string.author_ayvytr_github_url))
-//                .navigation(getContext())
-//        }
+        //        llHeader = findViewById(R.id.llHeader)
+        //        llHeader.setOnClickListener {
+        //            ARouter.getInstance().build(WebConstant.WEB)
+        //                .withString(WebConstant.EXTRA_TITLE, getString(R.string.author_ayvytr_github))
+        //                .withString(WebConstant.EXTRA_URL, getString(R.string.author_ayvytr_github_url))
+        //                .navigation(getContext())
+        //        }
         requestStoragePermission()
     }
 
