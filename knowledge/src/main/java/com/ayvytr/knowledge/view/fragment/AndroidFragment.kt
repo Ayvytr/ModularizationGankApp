@@ -1,35 +1,30 @@
 package com.ayvytr.knowledge.view.fragment
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import com.ayvytr.baselist.BaseListFragment2
+import com.alibaba.android.arouter.launcher.ARouter
+import com.ayvytr.baselist.BaseListFragment
 import com.ayvytr.commonlibrary.GankType
 import com.ayvytr.commonlibrary.bean.BaseGank
 import com.ayvytr.commonlibrary.bean.Gank
-import com.ayvytr.commonlibrary.util.NetworkState
+import com.ayvytr.commonlibrary.callback.GankCallback
+import com.ayvytr.commonlibrary.constant.WebConstant
 import com.ayvytr.knowledge.R
-import com.ayvytr.knowledge.adapter.AndroidPagedListAdapter
+import com.ayvytr.knowledge.adapter.AndroidAdapter
 import com.ayvytr.knowledge.contract.AndroidContract
-import com.ayvytr.knowledge.datasource.AndroidRepository
 import com.ayvytr.knowledge.presenter.AndroidPresenter
-import com.ayvytr.knowledge.viewmodel.AndroidViewModel
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 
 /**
  * @author admin
  */
-class AndroidFragment : BaseListFragment2<AndroidPresenter, Gank>(), AndroidContract.View {
+class AndroidFragment : BaseListFragment<AndroidPresenter, Gank>(), AndroidContract.View {
     private var gankType: String? = null
-    private lateinit var androidViewModel: AndroidViewModel
-    private lateinit var androidPagedListAdapter: AndroidPagedListAdapter
 
-    override fun getPresenter(): AndroidPresenter? {
-        //        return AndroidPresenter(this)
-        return null
+    override fun getPresenter(): AndroidPresenter {
+        return AndroidPresenter(this)
     }
 
     override fun initExtra() {
@@ -38,35 +33,21 @@ class AndroidFragment : BaseListFragment2<AndroidPresenter, Gank>(), AndroidCont
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
-        mSmartRefreshLayout.setEnableLoadMore(false)
-
         mRvList.layoutManager = LinearLayoutManager(context)
-        androidPagedListAdapter = AndroidPagedListAdapter()
-        mRvList.adapter = androidPagedListAdapter
+        mAdapter = AndroidAdapter(context!!)
+        mRvList.adapter = mAdapter
 
-        androidViewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                androidViewModel = AndroidViewModel(AndroidRepository())
-                return androidViewModel as T
-            }
-        })[AndroidViewModel::class.java]
+        mRvList.itemAnimator = DefaultItemAnimator()
+        mRvList.addItemDecoration(DividerItemDecoration(context!!, DividerItemDecoration.VERTICAL))
+        mAdapter.setOnItemClickListener { view, holder, position ->
+            val gank = mAdapter.getItemAt(position)
+            ARouter.getInstance().build(WebConstant.WEB)
+                .withString(WebConstant.EXTRA_TITLE, gank.desc)
+                .withString(WebConstant.EXTRA_URL, gank.url)
+                .navigation(context)
+        }
+        mSmartRefreshLayout.autoRefresh()
 
-        androidViewModel.posts.observe(viewLifecycleOwner, Observer {
-            androidPagedListAdapter.submitList(it)
-        })
-
-        androidViewModel.networkState.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                NetworkState.LOADING ->
-                    if (androidPagedListAdapter.itemCount == 0) {
-                        mStatusView.showLoading()
-                    }
-                NetworkState.SUCCESS -> mStatusView.showContent()
-                NetworkState.FAILED  -> mStatusView.showError()
-            }
-        })
-
-        androidViewModel.showGankByType(gankType)
         mStatusView.showLoading()
     }
 
@@ -79,25 +60,18 @@ class AndroidFragment : BaseListFragment2<AndroidPresenter, Gank>(), AndroidCont
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-        //        super.onRefresh(refreshLayout)
-        //        mPresenter.requestGankByType(gankType!!, mPageSize, 1)
-        mSmartRefreshLayout.finishRefresh()
-        //        AndroidDataSourceFactory.networkState.postValue(NetworkState.LOADING)
-
-        //        androidPagedListAdapter.submitList(null)
-        //        androidViewModel.showGankByType(gankType)
-        androidViewModel.refresh()
-        //        androidViewModel.androidDataSource.invalidate()
+        super.onRefresh(refreshLayout)
+        mPresenter.requestGankByType(gankType!!, mPageSize, 1)
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
         super.onLoadMore(refreshLayout)
-        //        mPresenter.requestGankByType(gankType!!, mPageSize, mCurrentPage + 1)
+        mPresenter.requestGankByType(gankType!!, mPageSize, mCurrentPage + 1)
     }
 
     override fun showGank(baseGank: BaseGank, currentPage: Int) {
-        //        mCurrentPage = currentPage
-        //        updateList(baseGank.results, GankCallback(mAdapter.datas, baseGank.results!!))
+        mCurrentPage = currentPage
+        updateList(baseGank.results, GankCallback(mAdapter.datas, baseGank.results!!))
     }
 
     companion object {
