@@ -23,7 +23,6 @@ import com.ayvytr.knowledge.view.fragment.AndroidFragment
 import com.ayvytr.knowledge.view.fragment.ClassifyGankFragment
 import com.ayvytr.knowledge.view.fragment.GankHistoryFragment
 import com.ayvytr.mob.view.fragment.TodayInHistoryFragment
-import com.ayvytr.mob.view.fragment.WechatCategoryFragment
 import com.ayvytr.mvp.IPresenter
 import com.ayvytr.rxlifecycle.BaseMvpActivity
 import com.yanzhenjie.permission.AndPermission
@@ -90,8 +89,8 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
 //            ft.commit()
         } else if (id == R.id.nav_today_in_history) {
             mCurrentFragment = switchFragment(TodayInHistoryFragment::class.java, R.id.flContainer, mCurrentFragment)
-        } else if (id == R.id.nav_wechat_selected) {
-            mCurrentFragment = switchFragment(WechatCategoryFragment::class.java, R.id.flContainer, mCurrentFragment)
+//        } else if (id == R.id.nav_wechat_selected) {
+//            mCurrentFragment = switchFragment(WechatCategoryFragment::class.java, R.id.flContainer, mCurrentFragment)
         } else if (id == R.id.nav_share) {
             val oks = OnekeyShare()
             oks.disableSSOWhenAuthorize()

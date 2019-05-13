@@ -20,10 +20,10 @@
             android:id="@+id/nav_today_in_history"
             android:icon="@drawable/today"
             android:title="@string/today_in_history"/>
-        <item
-            android:id="@+id/nav_wechat_selected"
-            android:icon="@drawable/wechat"
-            android:title="@string/wechat_selected"/>
+        <!--<item-->
+            <!--android:id="@+id/nav_wechat_selected"-->
+            <!--android:icon="@drawable/wechat"-->
+            <!--android:title="@string/wechat_selected"/>-->
     </group>
 
     <item android:title="@string/more">
