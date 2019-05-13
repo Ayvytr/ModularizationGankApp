@@ -28,7 +28,11 @@ fun FragmentActivity.switchFragment(targetFragmentClass: Class<out Fragment>,
     //            L.e("find ", it::class.java.name)
     //        }
 
-    currentFragment?.let { transaction.hide(it) }
+    //当targetFragment=currentFragment时，不进行hide（场景是切换时多次按了同一个menu item，界面上fragment先显示而后隐藏了）
+    if (currentFragment != targetFragment) {
+        currentFragment?.let { transaction.hide(it) }
+    }
+
     transaction.commit()
 
     return targetFragment
@@ -53,7 +57,10 @@ fun Fragment.switchFragment(targetFragmentClass: Class<out Fragment>,
     //            L.e("find ", it::class.java.name)
     //        }
 
-    currentFragment?.let { transaction.hide(it) }
+    //当targetFragment=currentFragment时，不进行hide（场景是切换时多次按了同一个menu item，界面上fragment先显示而后隐藏了）
+    if (currentFragment != targetFragment) {
+        currentFragment?.let { transaction.hide(it) }
+    }
     transaction.commit()
 
     return targetFragment

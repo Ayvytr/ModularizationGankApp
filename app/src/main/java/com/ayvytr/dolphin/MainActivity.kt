@@ -3,23 +3,16 @@ package com.ayvytr.dolphin
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.GravityCompat
-import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import cn.sharesdk.onekeyshare.OnekeyShare
 import com.alibaba.android.arouter.launcher.ARouter
-import com.ayvytr.commonlibrary.GankType
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant
 import com.ayvytr.easykotlin.bitmap.toBitmap
 import com.ayvytr.easykotlin.context.getDrawable2
-import com.ayvytr.easykotlin.ui.hide
-import com.ayvytr.easykotlin.ui.show
-import com.ayvytr.girl.view.fragment.GirlsFragment
-import com.ayvytr.knowledge.view.fragment.AndroidFragment
 import com.ayvytr.knowledge.view.fragment.ClassifyGankFragment
 import com.ayvytr.knowledge.view.fragment.GankHistoryFragment
 import com.ayvytr.mob.view.fragment.TodayInHistoryFragment
@@ -28,11 +21,10 @@ import com.ayvytr.rxlifecycle.BaseMvpActivity
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.Permission
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationItemSelectedListener {
 
-    private var mFragments: Array<Fragment>? = arrayOf(AndroidFragment.newInstance(GankType.ANDROID), GirlsFragment())
 
     private var mCurrentFragment: Fragment? = null
 
@@ -62,7 +54,6 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
 
-
         if (id == R.id.menu_search) {
             ARouter.getInstance().build(KnowledgeConstant.SEARCH).navigation(context)
             return true
@@ -75,11 +66,8 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
         // Handle navigation view item clicks here.
         val id = item.itemId
 
-        flContainer.show(id != R.id.nav_home)
-        group.show(id == R.id.nav_home)
-
         if (id == R.id.nav_home) {
-            flContainer.hide()
+            mCurrentFragment = switchFragment(MainFragment::class.java, R.id.flContainer, mCurrentFragment)
         } else if (id == R.id.nav_gank_history) {
             mCurrentFragment = switchFragment(GankHistoryFragment::class.java, R.id.flContainer, mCurrentFragment)
         } else if (id == R.id.nav_gank_of_type) {
@@ -121,55 +109,8 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
         toggle.syncState()
         nav_view!!.setNavigationItemSelectedListener(this)
 
-        vp!!.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
-            override fun getItem(position: Int): Fragment {
-                return mFragments!![position]
-            }
+        mCurrentFragment = switchFragment(MainFragment::class.java, R.id.flContainer, mCurrentFragment)
 
-            override fun getCount(): Int {
-                return mFragments!!.size
-            }
-        }
-
-        bottom_navigation!!.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nv_android -> {
-                    vp!!.currentItem = 0
-                    true
-                }
-                R.id.nv_girls   -> {
-                    vp!!.currentItem = 1
-                    true
-                }
-                //                R.id.nv_settings -> {
-                //                    vp!!.currentItem = 2
-                //                    true
-                //                }
-                else            -> false
-            }
-        }
-        vp!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-
-            override fun onPageSelected(position: Int) {
-                when (position) {
-                    0 -> bottom_navigation!!.selectedItemId = R.id.nv_android
-                    1 -> bottom_navigation!!.selectedItemId = R.id.nv_girls
-                    //                    else -> bottom_navigation!!.selectedItemId = R.id.nv_settings
-                }
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {}
-        })
-        vp.offscreenPageLimit = mFragments!!.size
-
-        //        llHeader = findViewById(R.id.llHeader)
-        //        llHeader.setOnClickListener {
-        //            ARouter.getInstance().build(WebConstant.WEB)
-        //                .withString(WebConstant.EXTRA_TITLE, getString(R.string.author_ayvytr_github))
-        //                .withString(WebConstant.EXTRA_URL, getString(R.string.author_ayvytr_github_url))
-        //                .navigation(getContext())
-        //        }
         requestStoragePermission()
     }
 
@@ -192,6 +133,5 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
         super.onDestroy()
         bottom_navigation!!.setOnNavigationItemSelectedListener(null)
         vp!!.adapter = null
-        mFragments = null
     }
 }
