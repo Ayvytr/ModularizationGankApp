@@ -6,8 +6,8 @@ import android.widget.ImageView
 import com.ayvytr.baseadapter.CommonAdapter
 import com.ayvytr.baseadapter.ViewHolder
 import com.ayvytr.commonlibrary.bean.Gank
-import com.ayvytr.easykotlin.context.getScreenWidth
 import com.ayvytr.girl.R
+import com.ayvytr.ktx.context.getScreenWidth
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException

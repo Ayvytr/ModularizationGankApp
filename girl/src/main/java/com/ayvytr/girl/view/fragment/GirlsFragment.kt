@@ -33,7 +33,7 @@ class GirlsFragment : BaseListFragment<GirlsPresenter, Gank>(), GirlsContract.Vi
         super.initView(savedInstanceState)
         mAdapter = GirlsAdapter(context!!, R.layout.layout_item_girl)
         mRvList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        mAdapter.setOnItemClickListener { view, holder, position ->
+        mAdapter.setOnItemClickListener { view, _, position ->
             val list = ArrayList(mAdapter.datas)
 
             val compat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity!!,

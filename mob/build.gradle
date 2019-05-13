@@ -66,5 +66,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(":commonlibrary")
-    kapt rootProject.ext.dependencies.arouter_compiler
+    kapt deps.arouter_compiler
 }

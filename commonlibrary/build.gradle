@@ -42,45 +42,42 @@ dependencies {
     api rootProject.ext.support.design
     api rootProject.ext.support.cardview
 
-    api rootProject.ext.dependencies.rxjava2
-    api(rootProject.ext.dependencies.rxjava2_android) {
+    api deps.rxjava2
+    api(deps.rxjava2_android) {
         exclude module: "rxjava"
     }
-    api rootProject.ext.dependencies.rxlifecycle2_components
+    api deps.rxlifecycle2_components
 
-    api rootProject.ext.dependencies.glide
+    api deps.glide
 
     api rootProject.ext.kotlin.kotlin_jdk7
     api rootProject.ext.kotlin.anko
     api rootProject.ext.kotlin.anko_commons
-    api rootProject.ext.kotlin.easykotlin
+    api deps.kotlin.ktx
 
-    api rootProject.ext.dependencies.logger
-    api rootProject.ext.dependencies.junit
-    api rootProject.ext.dependencies.testRunner
-    api rootProject.ext.dependencies.espresso
+    api deps.logger
+    api deps.junit
+    api deps.testRunner
+    api deps.espresso
 
-    api rootProject.ext.dependencies.agentweb
-    api rootProject.ext.dependencies.arouter
-    api rootProject.ext.dependencies.smartrefresh
-    api rootProject.ext.dependencies.photoview
-    api rootProject.ext.dependencies.andpermission
-    api rootProject.ext.dependencies.customviews
-    api rootProject.ext.dependencies.statusbar
+    api deps.agentweb
+    api deps.arouter
+    api deps.smartrefresh
+    api deps.photoview
+    api deps.andpermission
+    api deps.customviews
+    api deps.statusbar
 
-    api rootProject.ext.dependencies.okhttp3
-    api rootProject.ext.dependencies.retrofit
-    api rootProject.ext.dependencies.retrofit_adapter_rxjava2
-    api rootProject.ext.dependencies.retrofit_converter_gson
-    api rootProject.ext.dependencies.okhttploginterceptor
+    api deps.okhttp3
+    api deps.retrofit
+    api deps.retrofit_adapter_rxjava2
+    api deps.retrofit_converter_gson
+    api deps.okhttploginterceptor
 
-    api rootProject.ext.dependencies.network
-//    api rootProject.ext.dependencies.baseadapter
-//    api rootProject.ext.dependencies.mvp_baselist
+    api deps.network
+//    api deps.baseadapter
+//    api deps.mvp_baselist
 
-//    api(rootProject.ext.kotlin.mvp_rxlifecycle_kotlin) {
-//        exclude group:'android.arch.lifecycle', module: 'runtime'
-//    }
     api project(":mvp-base")
     api project(":mvp-baselist")
     api project(":base-adapter")
@@ -89,13 +86,6 @@ dependencies {
         exclude group: 'android.arch.lifecycle', module: 'runtime'
     }
 
-    annotationProcessor rootProject.ext.ap.glide
+    annotationProcessor deps.glide_compiler
 
-    api rootProject.ext.dependencies.paging
-
-    def lifecycle_version = "+"
-    api "android.arch.lifecycle:extensions:$lifecycle_version"
-    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
-//    debugImplementation rootProject.ext.dependencies.blockcanary_debug
-//    releaseImplementation rootProject.ext.dependencies.blockcanary_release
 }

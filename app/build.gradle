@@ -14,11 +14,12 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId rootProject.ext.applicationId
+        applicationId "com.ayvytr.dolphin"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        versionCode 20190201
+        versionName "1.0.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
@@ -91,15 +92,15 @@ dependencies {
         implementation project(':mob')
     }
     implementation rootProject.ext.support.constraint
-    debugImplementation rootProject.ext.dependencies.leakcanary
-    releaseImplementation rootProject.ext.dependencies.leakcanary_release
-    debugImplementation rootProject.ext.dependencies.leakcanary_fragment
-    debugImplementation rootProject.ext.dependencies.blockcanary_debug
-    releaseImplementation rootProject.ext.dependencies.blockcanary_release
-    debugImplementation rootProject.ext.dependencies.okhttp_chuck_debug
-    releaseImplementation rootProject.ext.dependencies.okhttp_chuck_release
-    implementation rootProject.ext.dependencies.crashMonitor
-    implementation rootProject.ext.dependencies.bugly
+    debugImplementation deps.leakcanary
+    releaseImplementation deps.leakcanary_release
+    debugImplementation deps.leakcanary_fragment
+    debugImplementation deps.blockcanary_debug
+    releaseImplementation deps.blockcanary_release
+    debugImplementation deps.okhttp_chuck_debug
+    releaseImplementation deps.okhttp_chuck_release
+    implementation deps.crashMonitor
+    implementation deps.bugly
 }
 
 MobSDK {

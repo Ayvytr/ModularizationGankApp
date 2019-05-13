@@ -12,12 +12,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.ayvytr.commonlibrary.GankType
 import com.ayvytr.commonlibrary.bean.Gank
 import com.ayvytr.commonlibrary.constant.GirlsConstant
-import com.ayvytr.easykotlin.context.getWallpaperManager
-import com.ayvytr.easykotlin.ui.hideActionBar
-import com.ayvytr.easykotlin.ui.showActionBar
 import com.ayvytr.girl.R
 import com.ayvytr.girl.contract.PhotoViewContract
 import com.ayvytr.girl.presenter.PhotoViewPresenter
+import com.ayvytr.ktx.context.getWallpaperManager
+import com.ayvytr.ktx.ui.hideActionBar
+import com.ayvytr.ktx.ui.showActionBar
 import com.ayvytr.rxlifecycle.BaseMvpActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.BitmapImageViewTarget
