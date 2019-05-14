@@ -11,17 +11,16 @@ import android.view.MenuItem
 import cn.sharesdk.onekeyshare.OnekeyShare
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant
-import com.ayvytr.easykotlin.bitmap.toBitmap
-import com.ayvytr.easykotlin.context.getDrawable2
 import com.ayvytr.knowledge.view.fragment.ClassifyGankFragment
 import com.ayvytr.knowledge.view.fragment.GankHistoryFragment
+import com.ayvytr.ktx.bitmap.toBitmap
+import com.ayvytr.ktx.context.getDrawable2
 import com.ayvytr.mob.view.fragment.TodayInHistoryFragment
 import com.ayvytr.mvp.IPresenter
 import com.ayvytr.rxlifecycle.BaseMvpActivity
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.Permission
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -127,11 +126,5 @@ class MainActivity : BaseMvpActivity<IPresenter>(), NavigationView.OnNavigationI
 
     override fun getContentViewRes(): Int {
         return R.layout.activity_main
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        bottom_navigation!!.setOnNavigationItemSelectedListener(null)
-        vp!!.adapter = null
     }
 }

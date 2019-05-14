@@ -17,11 +17,11 @@ import com.ayvytr.commonlibrary.bean.Gank
 import com.ayvytr.commonlibrary.bean.GankHistoryContent
 import com.ayvytr.commonlibrary.constant.KnowledgeConstant
 import com.ayvytr.commonlibrary.constant.WebConstant
-import com.ayvytr.easykotlin.context.getScreenWidth
 import com.ayvytr.knowledge.R
 import com.ayvytr.knowledge.adapter.GankHistoryContentAdapter
 import com.ayvytr.knowledge.contract.GankHistoryContentContract
 import com.ayvytr.knowledge.presenter.GankHistoryContentPresenter
+import com.ayvytr.ktx.context.getScreenWidth
 import com.ayvytr.logger.L
 import com.ayvytr.rxlifecycle.BaseMvpActivity
 import com.ayvytr.rxlifecycle.RxUtils

@@ -6,8 +6,8 @@ import com.ayvytr.baseadapter.CommonAdapter
 import com.ayvytr.baseadapter.ViewHolder
 import com.ayvytr.commonlibrary.bean.Gank
 import com.ayvytr.commonlibrary.util.toLocalTime
-import com.ayvytr.easykotlin.ui.show
 import com.ayvytr.knowledge.R
+import com.ayvytr.ktx.ui.show
 import com.bumptech.glide.Glide
 import java.util.*
 
