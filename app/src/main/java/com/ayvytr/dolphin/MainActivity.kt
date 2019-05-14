@@ -15,6 +15,7 @@ import com.ayvytr.knowledge.view.fragment.ClassifyGankFragment
 import com.ayvytr.knowledge.view.fragment.GankHistoryFragment
 import com.ayvytr.ktx.bitmap.toBitmap
 import com.ayvytr.ktx.context.getDrawable2
+import com.ayvytr.ktx.ui.switchFragment
 import com.ayvytr.mob.view.fragment.TodayInHistoryFragment
 import com.ayvytr.mvp.IPresenter
 import com.ayvytr.rxlifecycle.BaseMvpActivity
